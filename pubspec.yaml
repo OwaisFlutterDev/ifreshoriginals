@@ -48,7 +48,7 @@ dependencies:
   image_gallery_saver: ^1.7.1
   permission_handler: ^9.2.0
   widget_to_image: ^2.0.0
-#  change_app_package_name: ^1.0.0
+  change_app_package_name: ^1.0.0
 
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.10
