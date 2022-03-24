@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "847635158864",
+    "project_id": "ifreshoriginals-563ce",
+    "storage_bucket": "ifreshoriginals-563ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847635158864:android:d50af9c18d275495e4fe55",
+        "android_client_info": {
+          "package_name": "com.esols.ifreshoriginals_userapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847635158864-j3ek7r62ob6det80pin84hdoj0mhqeat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCtTVsX7HWUbudCnN6tkqGc0vVUVO80qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847635158864-j3ek7r62ob6det80pin84hdoj0mhqeat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
