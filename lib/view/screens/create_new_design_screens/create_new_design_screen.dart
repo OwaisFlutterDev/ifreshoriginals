@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/bottom_navigation_bar_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/create_new_design_screens/front_image_of_new_design.dart';
-import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/select_size_and_quantity_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/front_image_text_editor_widget.dart';
@@ -19,20 +17,18 @@ import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/t
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import '../../../controller/home_controller.dart';
 import '../../widgets/create_new_design_widgets/image_picker_alert_dialog_widget.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'back_image_of_new_design.dart';
-import 'package:screenshot/screenshot.dart';
 
 
 class CreateNewDesignScreen extends StatelessWidget{
   CreateNewDesignScreen({Key? key}) : super(key: key);
 
-  CreateNewDesignController createNewDesignController = Get.put(CreateNewDesignController());
-  HomeController homeController = Get.put(HomeController());
-  FunctionalityOnImageController functionalityOnImageController = Get.put(FunctionalityOnImageController(),permanent: true);
+  final CreateNewDesignController createNewDesignController = Get.put(CreateNewDesignController());
+  final HomeController homeController = Get.put(HomeController());
+  final FunctionalityOnImageController functionalityOnImageController = Get.put(FunctionalityOnImageController(),permanent: true);
 
   @override
   Widget build(BuildContext context) {

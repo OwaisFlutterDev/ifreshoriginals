@@ -6,6 +6,7 @@ import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:get/get.dart';
+import '../../../constant/form_validator_constant.dart';
 import '../../../controller/create_new_design_controller.dart';
 
 final CreateNewDesignController createNewDesignController = Get.put(CreateNewDesignController());
@@ -118,8 +119,8 @@ Widget zoomAndChangeImageSideWidget() {
 }
 
 Widget saveImageWidget(context) {
-  return GetBuilder<FunctionalityOnImageController>(
-    init: FunctionalityOnImageController(),
+  return GetBuilder<CreateNewDesignController>(
+    init: CreateNewDesignController(),
     builder: (controller) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -129,65 +130,89 @@ Widget saveImageWidget(context) {
           headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
           InkWell(
             onTap: () {
-              // showDialog(
-              //     context: context,
-              //     builder: (BuildContext context) {
-              //       return AlertDialog(
-              //           scrollable: true,
-              //           alignment: Alignment.center,
-              //           shape: RoundedRectangleBorder(
-              //               borderRadius: BorderRadius.all(
-              //                   Radius.circular(15))),
-              //           backgroundColor: whiteColor,
-              //           content: Column(
-              //               mainAxisSize: MainAxisSize.min,
-              //               children: [
-              //                 Row(
-              //                   mainAxisAlignment: MainAxisAlignment.end,
-              //                   children:  [
-              //                     InkWell(
-              //                         onTap: (){
-              //                           Get.back();
-              //                           },
-              //                         child: Container(
-              //                             height: 70.h,
-              //                             width: 70.w,
-              //                             decoration: BoxDecoration(
-              //                                 color: Colors.transparent,
-              //                                 shape: BoxShape.circle,
-              //                                 border: Border.all(width: 4.r,color: blackColor)
-              //                             ),
-              //                             child: Center(child: Icon(CupertinoIcons.clear, color: redColor,size: 40.r,)))
-              //                     )
-              //                   ],),
-              //
-              //                 SizedBox(height: 70.h,),
-              //                 Center(child: commonText(title: "Come Soon",textStyle:
-              //                 TextStyle(fontWeight: FontWeight.w700,color: blackColor,fontSize: 55.sp), textAlign:  TextAlign.center)),
-              //
-              //                 SizedBox(height: 120.h,),
-              //                 // --------===------========  save  image button =======------===--------
-              //                 InkWell(
-              //                   onTap: (){
-              //                      // controller.saveImage(context);
-              //                   },
-              //                   child: Container(
-              //                     decoration: BoxDecoration(
-              //                         color: redColor,
-              //                         borderRadius: BorderRadius.circular(70.r)
-              //                     ),
-              //                     height: 123.h,
-              //                     width: 0.5.sw,
-              //                     child: Align(
-              //                         alignment: Alignment.center,
-              //                         child: commonText(title: "Add Database", textStyle: TextStyle(
-              //                             color: whiteColor,fontWeight: FontWeight.w500,fontSize: 50.sp) )),
-              //                   ),
-              //                 ),
-              //                 SizedBox(height: 30.h,),
-              //
-              //               ]));
-              //     });
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                        scrollable: true,
+                        alignment: Alignment.center,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(15))),
+                        backgroundColor: bgColor,
+                        content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children:  [
+                                  InkWell(
+                                      onTap: (){
+                                        Get.back();
+                                        },
+                                      child: Container(
+                                          height: 70.h,
+                                          width: 70.w,
+                                          decoration: BoxDecoration(
+                                              color: Colors.transparent,
+                                              shape: BoxShape.circle,
+                                              border: Border.all(width: 4.r,color: blackColor)
+                                          ),
+                                          child: Center(child: Icon(CupertinoIcons.clear, color: redColor,size: 40.r,)))
+                                  )
+                                ],),
+
+                              SizedBox(height: 70.h,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  commonText(
+                                      title: "   Give Design Name",
+                                      textStyle: TextStyle(fontSize: 32.sp)
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 20.h,),
+                              Form(
+                                key: controller.shirtDesignGlobalKey,
+                                child: Column(children: [
+                                  commonTextFormField(
+                                    hintText: "Design Name",
+                                    controller: controller.designNameController,
+                                    validator: FormValidatorConstant.commonValidator,
+                                    prefixIcon: (CupertinoIcons.arrow_right_circle)
+                                  )
+                                ],),
+                              ),
+                              SizedBox(height: 120.h,),
+                              // --------===------========  save image button =======------===--------
+                              InkWell(
+                                onTap: (){
+                                  if (controller.shirtDesignGlobalKey.currentState!.validate()) {
+                                    // controller.saveNewShirtDesign();
+                                  } else {
+                                    Get.snackbar("New Shirt Design Screen",
+                                        "Please Fill The Field",
+                                        duration: Duration(seconds: 3));
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: redColor,
+                                      borderRadius: BorderRadius.circular(70.r)
+                                  ),
+                                  height: 123.h,
+                                  width: 0.5.sw,
+                                  child: Align(
+                                      alignment: Alignment.center,
+                                      child: commonText(title: "Add Database", textStyle: TextStyle(
+                                          color: whiteColor,fontWeight: FontWeight.w500,fontSize: 50.sp) )),
+                                ),
+                              ),
+                              SizedBox(height: 30.h,),
+
+                            ]));
+                  });
             },
             child: Row(
               children: [

@@ -4,7 +4,6 @@ import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:scroll_navigation/scroll_navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -123,59 +122,62 @@ AlertDialog textGenerateAlertDialogWidget() {
                                   Container(
                                     width: 0.9.sw,
                                     color: Colors.transparent,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            fontButton(
-                                                buttonColor: whiteColor,
-                                                buttonName: "Myriad Pro",
-                                                buttonWidth: 420.w,
-                                                buttonHeight: 120.h,
-                                                onTap: (){},
-                                                // Montserrat
-                                                style: GoogleFonts.montserrat(color: Colors.black87)
-                                            ),
-                                            fontButton(
-                                                buttonColor: whiteColor,
-                                                buttonName: "Times New Roman",
-                                                buttonWidth: 420.w,
-                                                buttonHeight: 120.h,
-                                                onTap: (){},
-                                                // Montserrat
-                                                style: GoogleFonts.adamina()
-                                            )
-                                          ],
+                                    // color: Colors.blue[100]
+                                    child: GridView.builder(
+                                        scrollDirection: Axis.vertical,
+                                        physics: ScrollPhysics(),
+                                        shrinkWrap: true,
+                                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                                          // maxCrossAxisExtent: 400.h,
+                                          crossAxisCount: 2,
+                                          mainAxisExtent: 180.h,
                                         ),
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            fontButton(
-                                                buttonColor: whiteColor,
-                                                buttonName: "Montserrat",
-                                                buttonWidth: 420.w,
-                                                buttonHeight: 120.h,
-                                                onTap: (){},
-                                                // Montserrat
-                                                style: GoogleFonts.montserrat(color: Colors.black87)
-                                            ),
+                                        itemCount: controller.fontFamilyList.length,
+                                        itemBuilder: (BuildContext ctx, index) {
+                                          return  Padding(
+                                            padding: const EdgeInsets.all(7.0),
+                                            child: InkWell(
+                                                onTap: () {
+                                                  controller.fontFamily = controller.fontFamilyList[index].name;
+                                                  controller.selectedIndexOfFont = index;
+                                                  controller.update();
+                                                },
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: whiteColor,
+                                                    border: controller.selectedIndexOfFont == index ? Border.all(color: redColor,width: 1) : Border.all(color: Colors.transparent,width: 1),
+                                                    borderRadius:  BorderRadius.circular(27.r) ,
 
-                                            fontButton(
-                                                buttonColor: whiteColor,
-                                                buttonName: "Adam Script",
-                                                buttonWidth: 420.w,
-                                                buttonHeight: 120.h,
-                                                onTap: (){},
-                                                // Montserrat
-                                                style: GoogleFonts.adamina()
-                                            )
-                                          ],
-                                        ),
-                                      ],),
+
+                                                    boxShadow: const <BoxShadow>[
+                                                      BoxShadow(
+                                                        color: Colors.black12,
+                                                        blurRadius: 4.0,
+                                                        offset: Offset(0, 5,),
+                                                      )
+                                                    ],
+
+                                                  ),
+                                                  height: 170.h,
+                                                  // width: 80.w,
+                                                  child: Align(
+                                                      alignment: Alignment.center,
+                                                      child: Wrap(
+                                                        children: [
+                                                          Text("${controller.fontFamilyList[index].name} " ,
+                                                          style: GoogleFonts.getFont('${controller.fontFamilyList[index].name}', textStyle: TextStyle(
+                                                              color: Colors.black87, fontSize: 34.sp
+                                                                   )),
+                                                          ),
+                                                        ],
+                                                      )),
+                                                ),
+
+                                            ),
+                                          );
+                                        }),
                                   ),
+
                                 ],
                                 items:  [
                                   ScrollNavigationItem(icon: Column(

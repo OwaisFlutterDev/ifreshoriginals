@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/model/create_new_design_models.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:path/path.dart';
+import 'package:intl/intl.dart';
 
 class CreateNewDesignController extends GetxController {
 
@@ -17,7 +21,7 @@ class CreateNewDesignController extends GetxController {
 
 
   // ----------------------------=== ==================================== ===------------------------
-  // ----------------------------===        For Text For First Image      ===------------------------
+  // ----------------------------===        Text For First Image      ===------------------------
   // ----------------------------=== ==================================== ===------------------------
   List<ColorsModel> colorsList = [
     ColorsModel(
@@ -62,19 +66,45 @@ class CreateNewDesignController extends GetxController {
     ),
   ];
 
+  List<FontFamilyModel> fontFamilyList = [
+    FontFamilyModel(
+        name: "Adamina",
+    ),
+    FontFamilyModel(
+      name: "Allerta",
+    ),
+    FontFamilyModel(
+      name: "Roboto",
+    ),
+    FontFamilyModel(
+      name: "Poppins",
+    ),
+    FontFamilyModel(
+      name: "Actor",
+    ),
+    FontFamilyModel(
+      name: "Montserrat",
+    ),
+
+  ];
+
   TextEditingController textController = TextEditingController();
   List<TextModel> textList = [];
   Color? color;
   int? selectedIndexOfColor ;
   bool textSelected = false;
   int currentIndexOfText = 0;
+  String? fontFamily = 'Lato';
+  int? selectedIndexOfFont ;
+
 
 
   // --- ===  add text on short from TextField === ---
   addNewText() {
     textList.add(TextModel(color: color, top: 75, text: textController.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal,
-      left: 78,fontSize: 18,fontWeight: FontWeight.bold,));
+      left: 78,fontSize: 18,fontWeight: FontWeight.bold,  fontFamily: fontFamily
+    ));
     Get.back();
     update();
   }
@@ -272,7 +302,7 @@ class CreateNewDesignController extends GetxController {
 //  -=-=---= ======================================================================================================== =---=-=-
 
   // ----------------------------=== ==================================== ===------------------------
-  // ----------------------------===        For Text For First Image      ===------------------------
+  // ----------------------------===        For Text For Second Image      ===------------------------
   // ----------------------------=== ==================================== ===------------------------
 
   TextEditingController textControllerForSecondImage = TextEditingController();
@@ -281,12 +311,14 @@ class CreateNewDesignController extends GetxController {
   int? selectedIndexOfColorSecondImage ;
   bool textSelectedSecondImage = false;
   int currentIndexOfTextSecondImage = 0;
+  String? fontFamilySecImage = 'Lato';
+  int? selectedIndexOfFontSecImage ;
 
 
   // --- ===  add text on short from TextField === ---
   addNewTextSecondImage() {
     textListForSecondImage.add(TextModel(color: colorSecondImage, top: 75, text: textControllerForSecondImage.text,
-      textAlign: TextAlign.center, fontStyle: FontStyle.normal,
+      textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImage,
       left: 78,fontSize: 18,fontWeight: FontWeight.bold,));
     Get.back();
     update();
@@ -364,7 +396,7 @@ class CreateNewDesignController extends GetxController {
   }
 
   // ----------------------------=== ===================== ===------------------------
-// ----------------------------===      For Sticker      ===------------------------
+// ----------------------------===      For Sticker Second Image   ===------------------------
 // ----------------------------=== ===================== ===------------------------
 
 
@@ -388,7 +420,7 @@ class CreateNewDesignController extends GetxController {
 
 
 // ----------------------------=== ======================================= ===------------------------
-// ----------------------------===    Choose Image From Cam And Gallery    ===------------------------
+// ----------------------------===    Choose Image From Cam And Gallery Second Image   ===------------------------
 // ----------------------------=== ======================================= ===------------------------
 
   File? imageFromGallerySecondImage;
@@ -431,7 +463,7 @@ class CreateNewDesignController extends GetxController {
   }
 
   // ----------------------------=== ===================== ===------------------------
-// ----------------------------===    For Shirt Color    ===------------------------
+// ----------------------------===    For Shirt Color Second Image  ===------------------------
 // ----------------------------=== ===================== ===------------------------
 
   Color? selectedColorsForShirtSecondImage;
@@ -443,5 +475,59 @@ class CreateNewDesignController extends GetxController {
     update();
   }
 
+//  ---------------------------------------------------------------------------------------------------------------------
+//  -=-=---= ======================================================================================================== =---=-=-
+//  ============== -------=----------=--=== ==-=-=-== Firebase (DB Queries) ==-=-=-== ===----=------=-------============
+//  ---------------------------------------------------------------------------------------------------------------------
+//  -=-=---= ======================================================================================================== =---=-=-
+
+
+// ----------------------------=== ================================= ===------------------------
+// ----------------------------===    Save data of new shirt design  ===------------------------
+// ----------------------------=== ================================= ===------------------------
+
+  final GlobalKey<FormState> shirtDesignGlobalKey = GlobalKey<FormState>();
+  final TextEditingController designNameController = TextEditingController();
+
+  Future saveNewShirtDesign() async {
+    User? user =  FirebaseAuth.instance.currentUser;
+    final homeController = Get.find<HomeController>();
+    successMsg(){
+      Get.snackbar(
+        "Add Product Notification",
+        "Successfully Added the Product",
+        snackPosition: SnackPosition.TOP,
+        duration: Duration(seconds: 5),
+      );
+    }
+
+    try{
+
+      final addProduct = FirebaseFirestore.instance.collection("NewShirtDesign").doc();
+      await addProduct.set({
+        "id": addProduct.id,
+        "userId": user!.uid.toString(),
+        "frontImage": homeController.selectedFrontImage,
+        "backImage": homeController.selectedBackImage,
+        "firstShirtColor": selectedColorsForShirt ?? "whiteColor",
+        "secondShirtColor": selectedColorsForShirtSecondImage ?? "whiteColor",
+
+        "shirtType": homeController.selectedShirtName,
+        "designName": designNameController.text.toString(),
+        "currentDateTime": DateTime.now(),
+
+        "galleryImagesOfFirstImage": imageList ,
+        "galleryImagesOfSecondImage": imageListSecondImage,
+        "stickersOfFirstImage": stickerList,
+        "stickersOfSecondImage": stickerListSecondImage,
+        "textsOfFirstImage": textList,
+        "textsOfSecondImage": textList,
+      }).then((_) => successMsg()).catchError((onError) => print(onError.toString()));
+
+    }
+    catch(e){
+      print(e);
+    }
+  }
 
 }

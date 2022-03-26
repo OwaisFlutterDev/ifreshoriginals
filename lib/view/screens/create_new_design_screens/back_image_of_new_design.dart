@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../constant/constants.dart';
 import '../../../controller/create_new_design_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,14 +80,18 @@ Widget backImageOfNewDesign(context) {
                         },
 
                         child: Draggable(
-                          feedback: Text("${controller.textListForSecondImage[i].text}", style: TextStyle(
-                              color: controller.textListForSecondImage[i].color ?? blackColor, fontStyle: controller.textListForSecondImage[i].fontStyle,
-                              fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
-                          ),),
-                          child: Text("${controller.textListForSecondImage[i].text}", style: TextStyle(
-                              color: controller.textListForSecondImage[i].color ?? blackColor,fontStyle: controller.textListForSecondImage[i].fontStyle,
-                              fontSize: controller.textListForSecondImage[i].fontSize,fontWeight: controller.textListForSecondImage[i].fontWeight
-                          ),),
+                          feedback: Text("${controller.textListForSecondImage[i].text}",
+                            style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
+                                color: controller.textListForSecondImage[i].color ?? blackColor, fontStyle: controller.textListForSecondImage[i].fontStyle,
+                                fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
+                            )),
+                          ),
+                          child: Text("${controller.textListForSecondImage[i].text}",
+                            style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
+                                color: controller.textListForSecondImage[i].color ?? blackColor, fontStyle: controller.textListForSecondImage[i].fontStyle,
+                                fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
+                            )),
+                          ),
 
                           onDragEnd: (drag) {
 

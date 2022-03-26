@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import '../../../controller/create_new_design_controller.dart';
@@ -79,14 +80,20 @@ Widget frontImageOfNewDesign( context) {
                         },
 
                         child: Draggable(
-                          feedback: Text("${controller.textList[i].text}", style: TextStyle(
-                              color: controller.textList[i].color ?? blackColor, fontStyle: controller.textList[i].fontStyle,
-                              fontSize: controller.textList[i].fontSize, fontWeight: controller.textList[i].fontWeight
-                          ),),
-                          child: Text("${controller.textList[i].text}", style: TextStyle(
-                              color: controller.textList[i].color ?? blackColor,fontStyle: controller.textList[i].fontStyle,
-                              fontSize: controller.textList[i].fontSize,fontWeight: controller.textList[i].fontWeight
-                          ),),
+                          feedback:  Text(
+                            "${controller.textList[i].text}",
+                            style: GoogleFonts.getFont('${controller.textList[i].fontFamily}' , textStyle: TextStyle(
+                               color: controller.textList[i].color ?? blackColor, fontStyle: controller.textList[i].fontStyle,
+                               fontSize: controller.textList[i].fontSize, fontWeight: controller.textList[i].fontWeight
+                            )),
+                          ),
+
+                          child: Text("${controller.textList[i].text}",
+                            style: GoogleFonts.getFont('${controller.textList[i].fontFamily}' , textStyle: TextStyle(
+                                color: controller.textList[i].color ?? blackColor, fontStyle: controller.textList[i].fontStyle,
+                                fontSize: controller.textList[i].fontSize, fontWeight: controller.textList[i].fontWeight
+                            )),
+                          ),
 
                           onDragEnd: (drag) {
 

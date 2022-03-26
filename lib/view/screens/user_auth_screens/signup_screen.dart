@@ -13,8 +13,8 @@ import 'package:get/get.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
-  UserAuthController userAuthController = Get.put(UserAuthController());
-  FormValidationController formValidationController = Get.put(FormValidationController());
+  final UserAuthController userAuthController = Get.put(UserAuthController());
+  final FormValidationController formValidationController = Get.put(FormValidationController());
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,8 @@ class UserProfileModel {
     this.image,
     this.phoneNumber,
     this.email,
-    this.address
+    this.address,
+    this.cart
   });
 
   String? uid;
@@ -16,6 +17,7 @@ class UserProfileModel {
   String? image;
   String? phoneNumber;
   String? address;
+  List? cart;
 
   UserProfileModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     uid = doc["uid"];
@@ -24,5 +26,6 @@ class UserProfileModel {
     image = doc["image"];
     phoneNumber = doc["phoneNumber"];
     address = doc["address"];
+    cart = doc["cart"];
   }
 }

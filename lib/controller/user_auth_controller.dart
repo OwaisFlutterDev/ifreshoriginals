@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/form_validation_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_profile_controller.dart';
@@ -80,6 +79,7 @@ class UserAuthController extends GetxController{
           "image": "",
           "address": "",
           "phoneNumber": "",
+          "cart": []
 
         }).then((_) => print("Data Of User Is Added to Firestore "))
             .catchError((onError) => print(onError.toString()));
@@ -272,6 +272,7 @@ class UserAuthController extends GetxController{
                   "image": firebaseUser.photoURL,
                   "address": "",
                   "phoneNumber": "",
+                  "cart": []
             })
                 .then((_) => print("Data is add to fireStore"))
                 .catchError((onError) => print(onError.toString())));
@@ -279,6 +280,8 @@ class UserAuthController extends GetxController{
         // ----- to keep login the user -----
         final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
         await sharedPreferences.setString("user", firebaseUser.email.toString());
+
+        print("yes google signin working fine.........................................");
 
         // // ----- to get user profile data -------
         await _userProfileController.getUserData();
@@ -308,6 +311,7 @@ class UserAuthController extends GetxController{
         // handle the error here
       }
     } catch (error) {
+      print(error);
       googleSignInBool = false;
       update();
       // Get.snackbar("Login Message", error.toString(),
