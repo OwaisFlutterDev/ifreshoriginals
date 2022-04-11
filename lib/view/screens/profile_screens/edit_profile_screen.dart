@@ -122,10 +122,10 @@ class EditProfileScreen extends StatelessWidget {
                     height: .2.sh,
                   ),
                   controller.updateDataBool == false ? commonButton(
-                    buttonHeight: 150.h,
                     buttonWidth: 1.sw,
                     buttonName: "Save",
                     buttonColor: redColor,
+                    textColor: whiteColor,
                     onTap: () {
                       controller.updateDataOfProfile();
                     }
@@ -134,11 +134,12 @@ class EditProfileScreen extends StatelessWidget {
                     height: 70.h,
                   ),
                   commonButton(
-                      buttonHeight: 150.h,
                       buttonWidth: 1.sw,
                       buttonName: "Change Password",
                       buttonColor: whiteColor,
+                      textColor: blackColor,
                       onTap: () => Get.to(() => ChangePasswordScreen())),
+                   SizedBox(height: 20.h,)
                 ],
               );
             }

@@ -66,6 +66,7 @@ AlertDialog shirtColorAlertDialogWidgetSecondImage() {
                                     onTap:  ()   {
                                       controller.selectedColorsForShirtSecondImage = controller.colorsList[index].color;
                                       controller.selectIndexColorsForShirtSecondImage = index;
+                                      controller.hexToColorForSecondShort();
                                       controller.update();
                                     } ,
                                     child: Container(
@@ -105,8 +106,7 @@ AlertDialog shirtColorAlertDialogWidgetSecondImage() {
                               Get.back();
                             },
                             buttonColor: redColor,
-                            buttonHeight: 140.h,
-                            textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600),
+                            textColor: whiteColor,
                             buttonWidth: 1.sw
                         ),
                         SizedBox(height: 10.h,),

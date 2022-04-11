@@ -150,9 +150,9 @@ class SignUpScreen extends StatelessWidget {
                                   duration: Duration(seconds: 3));
                             }
                           },
-                          buttonHeight: 150.h,
-                          buttonWidth: 1.sw,
-                          textStyle: TextStyle(color: whiteColor,)
+
+                        buttonWidth: 1.sw,
+                        textColor: whiteColor,
                       ) : CircularProgressIndicator();
                     }
                   ),

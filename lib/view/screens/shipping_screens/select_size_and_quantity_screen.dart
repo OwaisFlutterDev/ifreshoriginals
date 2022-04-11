@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/cart_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ifreshoriginals_userapp/view/widgets/opened_design_screen_widgets/opened_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -16,6 +18,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
 
   // final ShippingController _shippingController = Get.put(ShippingController());
   final FunctionalityOnImageController functionalityOnImageController = Get.put(FunctionalityOnImageController());
+  final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                 headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
                 InkWell(
                   onTap: () {
-                    functionalityOnImageController.saveImage(context);
+                    functionalityOnImageController.createDesignBool == true ?
+                    functionalityOnImageController.saveImage(context) :
+                    functionalityOnOpenedDesignController.saveImageOfOD(context) ;
                   },
                 child: Row(
                   children: [
@@ -86,7 +91,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
             // -----------------------------------------------------
             // -----=--======= Both Shirt Image (Front And Back) ========--=-----
             // -----------------------------------------------------
-            GetBuilder<FunctionalityOnImageController>(
+            functionalityOnImageController.createDesignBool == true ? GetBuilder<FunctionalityOnImageController>(
                 init: FunctionalityOnImageController(),
                 builder: (controller) {
                   return Screenshot(
@@ -136,6 +141,57 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                     ),
                   );
                 }
+            ) :
+            GetBuilder<FunctionalityOnOpenedDesignController>(
+                init: FunctionalityOnOpenedDesignController(),
+                builder: (controller) {
+                  return Screenshot(
+                    controller: controller.screenshotControllerForSelectedSAQOfOD,
+                    child: InteractiveViewer(
+                      transformationController: controller.interactiveViewerTwoControllerOfOD,
+                      child:  Container(
+                        height: 340,
+                        width: 1.sw,
+                        color: Color(0xffE2E2E2),
+                        child: Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: 40.w,vertical: 20.h),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 250,
+                                width: 570.w,
+                                decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    // border: Border.all(color: blackColor,width: 1),
+                                    image: DecorationImage(image: MemoryImage(controller.frontByteImageOfOD!.buffer.asUint8List()),
+                                      fit: BoxFit.fill,
+                                    )
+                                ),
+
+                              ),
+
+                              Padding(
+                                padding:  EdgeInsets.only(top: 120),
+                                child: Container(
+                                  height: 160,
+                                  width: 400.w,
+                                  decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      // border: Border.all(color: blackColor,width: 1),
+                                      image: DecorationImage(image: MemoryImage(controller.backByteImageOfOD!.buffer.asUint8List()),
+                                        fit: BoxFit.fill,
+                                      )
+                                  ),
+
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }
             ),
 
             // -----------------------------------------------------
@@ -155,7 +211,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                         children: [
                         InkWell(
                           onTap: (){
-                            functionalityOnImageController.zoomInForSelectedSizeAndQua();
+                            functionalityOnImageController.createDesignBool == true ?
+                            functionalityOnImageController.zoomInForSelectedSizeAndQua() :
+                            functionalityOnOpenedDesignController.zoomInForSelectedSizeAndQuaOfOD() ;
                           },
                           child: imageWidget(
                             image: "assets/Asset 39.png",
@@ -167,7 +225,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                         SizedBox(width: 7.w,),
                         InkWell(
                           onTap: (){
-                            functionalityOnImageController.zoomOutForSelectedSizeAndQua();
+                            functionalityOnImageController.createDesignBool == true ?
+                            functionalityOnImageController.zoomOutForSelectedSizeAndQua() :
+                            functionalityOnOpenedDesignController.zoomOutForSelectedSizeAndQuaOfOD();
                           },
                           child: imageWidget(
                             image: "assets/Asset 40.png",
@@ -492,12 +552,14 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                       SizedBox(height: 60.h,),
                       commonButton(
                           buttonName: "Add To Cart",
-                          textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600),
+                          textColor: whiteColor,
                           onTap: (){
+                               functionalityOnImageController.createDesignBool = false;
+                               functionalityOnImageController.update();
                                Get.to(() => CartScreen());
                           },
                           buttonColor: redColor,
-                          buttonHeight: 150.h,
+
                           buttonWidth: 1.sw
                       )
                     ],

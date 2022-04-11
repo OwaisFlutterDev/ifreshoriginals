@@ -159,9 +159,8 @@ class ShippingMethodScreen extends StatelessWidget{
                 commonButton(
                   buttonName: "Proceed",
                   buttonColor: redColor,
-                  buttonHeight: 150.h,
                   buttonWidth: 1.sw,
-                  textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600,fontSize: 50.sp),
+                    textColor: whiteColor,
                   onTap: () {
                     Get.to(() => PaymentMethodsScreen());
                   }

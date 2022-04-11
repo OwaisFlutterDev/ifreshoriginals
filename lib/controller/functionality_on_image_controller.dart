@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -6,14 +7,14 @@ import 'package:get/get.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:get/get.dart';
 import 'package:widget_to_image/widget_to_image.dart';
 import '../view/screens/shipping_screens/select_size_and_quantity_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../view/widgets/common_widgets.dart';
 
 class FunctionalityOnImageController extends GetxController{
+
+  bool createDesignBool = false;
 
   //  ==========================================================================
   //   ------- === --- == ---- flip image controller ---- == --- === ----------

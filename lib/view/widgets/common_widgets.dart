@@ -45,8 +45,8 @@ Widget smallText({String? title,Color? color,FontWeight? fontWeight, TextAlign? 
 //                ------------------------------------------------------------
 //  --------- ======================= Common Button  ======================  ---------
 //                ------------------------------------------------------------
-Widget commonButton({ Function()? onTap, Color? buttonColor, double? buttonWidth ,
-  double? buttonHeight , String? buttonName, TextStyle? textStyle}) {
+Widget commonButton({ Function()? onTap, Color? buttonColor,Color? textColor, double? buttonWidth ,
+   String? buttonName, double? buttonHeight,double? textSize}) {
   return InkWell(
     onTap: onTap,
     child: Container(
@@ -55,11 +55,11 @@ Widget commonButton({ Function()? onTap, Color? buttonColor, double? buttonWidth
         borderRadius: BorderRadius.circular(27.r)
 
       ),
-      height: buttonHeight,
+      height: buttonHeight ?? 50,
       width: buttonWidth,
       child: Align(
           alignment: Alignment.center,
-          child: commonText(title: buttonName, textStyle: textStyle )),
+          child: commonText(title: buttonName, textStyle: TextStyle(color: textColor, fontSize: textSize ?? 15) )),
     ),
   );
 }
@@ -94,7 +94,7 @@ Widget commonButton({ Function()? onTap, Color? buttonColor, double? buttonWidth
               ],),
           ),
           suffixIcon: suffixIcon,
-          hintStyle: TextStyle(color: Color(0xff000000)),
+          hintStyle: TextStyle(color: Colors.black54),
           hintText: hintText,
           filled: true,
           fillColor: Colors.white,

@@ -142,9 +142,9 @@ class LoginScreen extends StatelessWidget {
                             }
 
                           } ,
-                          buttonHeight: 150.h,
+
                           buttonWidth: 1.sw,
-                          textStyle: TextStyle(color: whiteColor,)
+                        textColor: whiteColor,
                       ) : CircularProgressIndicator(),
 
                       //  -------- ======= or , google, fb sign in buttons & signup  ======== --------

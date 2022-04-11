@@ -106,9 +106,9 @@ class NewPasswordScreen extends StatelessWidget {
                       onTap: () {
                         Get.to(() => PasswordUpdatedScreen());
                       },
-                      buttonHeight: 150.h,
+
                       buttonWidth: 1.sw,
-                      textStyle: TextStyle(color: whiteColor,)
+                    textColor: whiteColor,
                   ),
                   SizedBox(height: 10.h,)
                 ],

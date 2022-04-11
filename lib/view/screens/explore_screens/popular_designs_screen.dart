@@ -1,13 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
+import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/opened_design_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 
 class PopularDesignsScreen extends StatelessWidget{
-  const PopularDesignsScreen({Key? key}) : super(key: key);
+  PopularDesignsScreen({Key? key}) : super(key: key);
+
+  HomeController homeController  = Get.find<HomeController>();
+  OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +53,75 @@ class PopularDesignsScreen extends StatelessWidget{
               child: Column(children: [
                 SizedBox(height: 40.h,),
 
-                GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: ScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                      // maxCrossAxisExtent: 400.h,
-                      crossAxisCount: 3,
-                      mainAxisExtent: 440.h,
-                    ),
-                    itemCount: 25,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return  savedAndDesignHistoryWidget(
-                        image: "https://tinyurl.com/y9ax33uv",
-                        name: "Football Love",
-                      );
-                    }),
+                Obx(
+                      () =>
+                      GridView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: ScrollPhysics(),
+                          shrinkWrap: true,
+                          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                            // maxCrossAxisExtent: 400.h,
+                            crossAxisCount: 3,
+                            mainAxisExtent: 440.h,
+                          ),
+                          itemCount: homeController.popularDesignDataList.length,
+                          itemBuilder: (BuildContext ctx, index) {
+                            return  savedAndDesignHistoryWidget(
+                                image: homeController.popularDesignDataList[index].frontImageOfDesign,
+                                name: homeController.popularDesignDataList[index].designName,
+                                onTap: ()  async{
+
+                                  homeController.selectedFrontImageOfOpenedDesign =  homeController.popularDesignDataList[index].frontImage;
+                                  homeController.selectedBackImageOfOpenedDesign =   homeController.popularDesignDataList[index].backImage;
+                                  homeController.selectedShirtNameOfOpenedDesign =   homeController.popularDesignDataList[index].designName;
+                                  homeController.selectedShirtTypeOfOpenedDesign =   homeController.popularDesignDataList[index].shirtType;
+                                  homeController.update();
+
+
+                                  openedDesignController.selectedColorsForShirt = homeController.popularDesignDataList[index].firstShirtColor;
+                                  openedDesignController.hexToColor();
+                                  openedDesignController.selectedColorsForShirtSecondImage = homeController.popularDesignDataList[index].secondShirtColor;
+                                  openedDesignController.hexToColorForSecondShort();
+
+                                  // --------= -=-=-= clear lists =-=-=- =--------
+                                  openedDesignController.stickerListFirstImageOfOD.clear();
+                                  openedDesignController.stickerListSecondImageOfOD.clear();
+                                  openedDesignController.imageListOfOd.clear();
+                                  openedDesignController.imageListSecondImageOfOd.clear();
+                                  openedDesignController.textListOfOd.clear();
+                                  openedDesignController.textListForSecondImageOfOd.clear();
+
+                                  openedDesignController.docID = homeController.popularDesignDataList[index].id;
+                                  openedDesignController.userID = homeController.popularDesignDataList[index].userId;
+                                  openedDesignController.designNameControllerOfOd.text = homeController.popularDesignDataList[index].designName!;
+
+                                  // --------= -=-=-= adding value to lists =-=-=- =--------
+                                  openedDesignController.stickerListFirstImageOfOD.addAll(homeController.popularDesignDataList[index].stickersOfFirstImage!);
+                                  openedDesignController.stickerListSecondImageOfOD.addAll(homeController.popularDesignDataList[index].stickersOfSecondImage!);
+
+                                  openedDesignController.imageListOfOd.addAll(homeController.popularDesignDataList[index].galleryImagesOfFirstImage!);
+                                  openedDesignController.imageListSecondImageOfOd.addAll(homeController.popularDesignDataList[index].galleryImagesOfSecondImage!);
+
+                                  openedDesignController.textListOfOd.addAll(homeController.popularDesignDataList[index].textsOfFirstImage!);
+                                  openedDesignController.textListForSecondImageOfOd.addAll(homeController.popularDesignDataList[index].textsOfSecondImage!);
+
+                                  homeController.popularityCountInt = homeController.popularDesignDataList[index].popularityCount;
+
+                                  int? popularityCount;
+                                  popularityCount = homeController.popularityCountInt! + 1;
+
+                                  openedDesignController.update();
+                                  await FirebaseFirestore.instance.collection("NewShirtDesign").doc(openedDesignController.docID).update({
+                                    "popularityCount" : popularityCount,
+                                  });
+
+                                  Get.to(() => OpenedDesignScreen());
+
+
+                                }
+                            );
+                          }),
+                ),
               ],),
             ),)),
     );

@@ -59,8 +59,7 @@ AlertDialog imagePickerAlertDialogWidgetSecondImage() {
                               controller.addNewImageSecondImage();
                             },
                             buttonColor: redColor,
-                            buttonHeight: 140.h,
-                            textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600),
+                            textColor: whiteColor,
                             buttonWidth: 1.sw
                         ),
 

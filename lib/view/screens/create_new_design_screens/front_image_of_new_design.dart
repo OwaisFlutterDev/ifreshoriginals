@@ -24,9 +24,11 @@ Widget frontImageOfNewDesign( context) {
           width: 700.w,
           decoration: BoxDecoration(
               color: Colors.transparent,
-              border: Border.all(color: blackColor,width: 1),
+              // border: Border.all(color: blackColor,width: 1),
               image: DecorationImage(image: AssetImage("${homeController.selectedFrontImage}",),
-                  fit: BoxFit.cover,colorFilter: ColorFilter.mode(controller.selectedColorsForShirt ?? Colors.white, BlendMode.modulate))
+                  fit: BoxFit.fill,
+                  colorFilter: ColorFilter.mode(controller.convertedColorForShirt ?? Colors.white  , BlendMode.modulate)
+              )
           ),
           child: Stack(
             // clipBehavior: Clip.,
@@ -41,17 +43,17 @@ Widget frontImageOfNewDesign( context) {
               //     ],
               //   ),
               // ),
-              Padding(
-                padding:  EdgeInsets.only(bottom: 16),
-                child: Center(
-                  child: Container(
-                    width: 105,
-                      height: 120,
-                      decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
-                    child: Center(child: Text(".")),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding:  EdgeInsets.only(bottom: 16),
+              //   child: Center(
+              //     child: Container(
+              //       width: 105,
+              //         height: 120,
+              //         decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
+              //       child: Center(child: Text(".")),
+              //     ),
+              //   ),
+              // ),
 
               // Center(child: Image(image:  AssetImage("assets/Asset 12.png",),color: Colors.red.withOpacity(1))),
               //-----------------------------------------------
@@ -83,16 +85,16 @@ Widget frontImageOfNewDesign( context) {
                           feedback:  Text(
                             "${controller.textList[i].text}",
                             style: GoogleFonts.getFont('${controller.textList[i].fontFamily}' , textStyle: TextStyle(
-                               color: controller.textList[i].color ?? blackColor, fontStyle: controller.textList[i].fontStyle,
+                               color: Color(controller.textList[i].color ?? blackHexColor)  , fontStyle: controller.textList[i].fontStyle,
                                fontSize: controller.textList[i].fontSize, fontWeight: controller.textList[i].fontWeight
-                            )),
+                            )), textAlign: controller.textList[i].textAlign
                           ),
 
                           child: Text("${controller.textList[i].text}",
                             style: GoogleFonts.getFont('${controller.textList[i].fontFamily}' , textStyle: TextStyle(
-                                color: controller.textList[i].color ?? blackColor, fontStyle: controller.textList[i].fontStyle,
-                                fontSize: controller.textList[i].fontSize, fontWeight: controller.textList[i].fontWeight
-                            )),
+                                color: Color(controller.textList[i].color ?? blackHexColor), fontStyle: controller.textList[i].fontStyle,
+                                fontSize: controller.textList[i].fontSize , fontWeight: controller.textList[i].fontWeight,
+                            ), ), textAlign: controller.textList[i].textAlign ,
                           ),
 
                           onDragEnd: (drag) {
@@ -234,7 +236,7 @@ Widget frontImageOfNewDesign( context) {
                             width: 200.h,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: FileImage(controller.imageList[i].image!),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: FileImage(controller.imageList[i].image!),fit: BoxFit.fill)),
                           ),
 
 
@@ -242,7 +244,7 @@ Widget frontImageOfNewDesign( context) {
                             height: 200.w,
                             width: 200.h,
                             decoration: BoxDecoration(
-                                image: DecorationImage(image: FileImage(controller.imageList[i].image! ),fit: BoxFit.scaleDown),
+                                image: DecorationImage(image: FileImage(controller.imageList[i].image! ),fit: BoxFit.fill),
                                 color: Colors.transparent),
                           ),
 

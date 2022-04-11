@@ -173,13 +173,12 @@ class PaymentMethodsScreen extends StatelessWidget {
                         padding:  EdgeInsets.symmetric(horizontal: 37.w),
                         child: commonButton(
                           buttonWidth: 1.sw,
-                          buttonHeight: 150.h,
                           buttonName: "Proceed",
                           onTap: () {
                             Get.to(() => OrderPlacedConformationScreen());
                           },
                           buttonColor: redColor,
-                          textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600)
+                          textColor: whiteColor,
                         ),
                       ),
                       SizedBox(

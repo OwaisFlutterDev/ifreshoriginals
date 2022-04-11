@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 
@@ -101,7 +102,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
             color: Colors.black,
           ),
           onPressed: () {
-            functionalityOnImageController .flipCarController.state!.isFront ? controller.addLinesToText() :
+            functionalityOnImageController.flipCarController.state!.isFront ? controller.addLinesToText() :
            controller.addLinesToTextSecondImage();
             },
           // onPressed: addLinesToText,
@@ -112,7 +113,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                    controller.changeTextColor(Colors.red) : controller.changeTextColorSecondImage(Colors.red); },
+                    controller.changeTextColor(redHexColor) : controller.changeTextColorSecondImage(redHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.red,
               )),
@@ -125,7 +126,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.white) : controller.changeTextColorSecondImage(Colors.white); },
+                controller.changeTextColor(whiteHexColor) : controller.changeTextColorSecondImage(whiteHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.white,
               )),
@@ -138,7 +139,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: (){
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.black) : controller.changeTextColorSecondImage(Colors.black); },
+                controller.changeTextColor(blackHexColor) : controller.changeTextColorSecondImage(blackHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.black,
               )),
@@ -151,7 +152,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.blue) : controller.changeTextColorSecondImage(Colors.blue); },
+                controller.changeTextColor(blueHexColor) : controller.changeTextColorSecondImage(blueHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.blue,
               )),
@@ -164,7 +165,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.yellow) : controller.changeTextColorSecondImage(Colors.yellow); },
+                controller.changeTextColor(yellowHexColor) : controller.changeTextColorSecondImage(yellowHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.yellow,
               )),
@@ -177,7 +178,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.green) : controller.changeTextColorSecondImage(Colors.green); },
+                controller.changeTextColor(greenHexColor) : controller.changeTextColorSecondImage(greenHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.green,
               )),
@@ -190,7 +191,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: (){
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.brown) : controller.changeTextColorSecondImage(Colors.brown); },
+                controller.changeTextColor(brownHexColor) : controller.changeTextColorSecondImage(brownHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.brown,
               )),
@@ -203,7 +204,7 @@ Widget frontTextEditorWidget(CreateNewDesignController controller) {
           child: GestureDetector(
               onTap: () {
                 functionalityOnImageController.flipCarController.state!.isFront ?
-                controller.changeTextColor(Colors.purple) : controller.changeTextColorSecondImage(Colors.purple); },
+                controller.changeTextColor(purpleHexColor) : controller.changeTextColorSecondImage(purpleHexColor); },
               child: const CircleAvatar(
                 backgroundColor: Colors.purple,
               )),

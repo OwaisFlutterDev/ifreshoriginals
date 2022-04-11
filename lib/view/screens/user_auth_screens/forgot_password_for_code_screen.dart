@@ -99,9 +99,9 @@ class ForgotPasswordForCodeScreen extends StatelessWidget {
                         Get.to(() => NewPasswordScreen());
                         print("Sms Code ${_formValidationController.smsCode}");
                       },
-                      buttonHeight: 150.h,
+
                       buttonWidth: 1.sw,
-                      textStyle: TextStyle(color: whiteColor,)
+                    textColor: whiteColor,
                   ),
                   SizedBox(height: 10.h,)
                 ],

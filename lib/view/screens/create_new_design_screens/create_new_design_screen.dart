@@ -196,12 +196,13 @@ class CreateNewDesignScreen extends StatelessWidget{
                               padding:  EdgeInsets.symmetric(horizontal: 20.w),
                               child: commonButton(
                                 buttonName: "Proceed",
-                                textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600),
+                                textColor: whiteColor,
                                 onTap: (){
+                                  functionalityOnImageController.createDesignBool = true;
+                                  functionalityOnImageController.update();
                                   functionalityOnImageController.getByteImages(createNewDesignController);
                                   },
                                 buttonColor: redColor,
-                                buttonHeight: 150.h,
                                 buttonWidth: 1.sw
                               ),
                             )

@@ -26,7 +26,9 @@ Widget backImageOfNewDesign(context) {
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
                 image: DecorationImage(image: AssetImage("${homeController.selectedBackImage}",),
-                    fit: BoxFit.fill,colorFilter: ColorFilter.mode(controller.selectedColorsForShirtSecondImage ?? Colors.white, BlendMode.modulate))
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(controller.convertedColorForSecondShirt ?? whiteColor, BlendMode.modulate)
+                )
             ),
           child:  Stack(
             // clipBehavior: Clip.,
@@ -41,17 +43,17 @@ Widget backImageOfNewDesign(context) {
               //     ],
               //   ),
               // ),
-              Padding(
-                padding:  EdgeInsets.only(bottom: 16),
-                child: Center(
-                  child: Container(
-                    width: 105,
-                    height: 120,
-                    decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
-                    child: Center(child: Text(".")),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding:  EdgeInsets.only(bottom: 16),
+              //   child: Center(
+              //     child: Container(
+              //       width: 105,
+              //       height: 120,
+              //       decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
+              //       child: Center(child: Text(".")),
+              //     ),
+              //   ),
+              // ),
 
               // Center(child: Image(image:  AssetImage("assets/Asset 12.png",),color: Colors.red.withOpacity(1))),
               //-----------------------------------------------
@@ -82,13 +84,13 @@ Widget backImageOfNewDesign(context) {
                         child: Draggable(
                           feedback: Text("${controller.textListForSecondImage[i].text}",
                             style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
-                                color: controller.textListForSecondImage[i].color ?? blackColor, fontStyle: controller.textListForSecondImage[i].fontStyle,
+                                color: Color(controller.textListForSecondImage[i].color ?? blackHexColor), fontStyle: controller.textListForSecondImage[i].fontStyle,
                                 fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
                             )),
                           ),
                           child: Text("${controller.textListForSecondImage[i].text}",
                             style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
-                                color: controller.textListForSecondImage[i].color ?? blackColor, fontStyle: controller.textListForSecondImage[i].fontStyle,
+                                color: Color(controller.textListForSecondImage[i].color ?? blackHexColor), fontStyle: controller.textListForSecondImage[i].fontStyle,
                                 fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
                             )),
                           ),
@@ -232,7 +234,7 @@ Widget backImageOfNewDesign(context) {
                             width: 200.h,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image!),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image!),fit: BoxFit.fill)),
                           ),
 
 
@@ -240,7 +242,7 @@ Widget backImageOfNewDesign(context) {
                             height: 200.w,
                             width: 200.h,
                             decoration: BoxDecoration(
-                                image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image! ),fit: BoxFit.scaleDown),
+                                image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image! ),fit: BoxFit.fill),
                                 color: Colors.transparent),
                           ),
 

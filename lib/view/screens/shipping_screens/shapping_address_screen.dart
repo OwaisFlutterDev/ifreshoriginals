@@ -85,10 +85,10 @@ class ShippingAddressScreen extends StatelessWidget{
                           Get.to(() => ShippingMethodScreen());
                         },
                         buttonWidth: 1.sw,
-                        buttonHeight: 130.h,
+
                         buttonColor: redColor,
                         buttonName: "Proceed",
-                        textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600)
+                        textColor: whiteColor,
                       ),
                       SizedBox(height: 40.h,),
 

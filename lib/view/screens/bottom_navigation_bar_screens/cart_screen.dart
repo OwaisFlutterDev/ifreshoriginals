@@ -199,18 +199,15 @@ class CartScreen extends StatelessWidget {
                         
                       },
                       buttonColor: redColor,
-                      buttonHeight: 140.h,
                       buttonWidth: 1.sw,
-                      textStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w500))
+                      textColor: Colors.white,
+                  )
                       :
                   commonButton(
                       buttonName: "Checkout",
                       buttonColor: whiteColor,
-                      buttonHeight: 140.h,
                       buttonWidth: 1.sw,
-                      textStyle: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w500));
+                      textColor: Colors.black, );
                 }
               )
             ],

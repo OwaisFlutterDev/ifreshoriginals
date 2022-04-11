@@ -213,8 +213,7 @@ AlertDialog textGenerateAlertDialogWidget() {
                             controller.addNewText();
                           },
                           buttonColor: redColor,
-                          buttonHeight: 140.h,
-                          textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600),
+                          textColor: whiteColor,
                           buttonWidth: 1.sw
                       ),
                       SizedBox(height: 10.h,),

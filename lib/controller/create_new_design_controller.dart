@@ -1,14 +1,19 @@
+import 'dart:typed_data';
+import 'package:path_provider/path_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/model/create_new_design_models.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:intl/intl.dart';
+import 'package:widget_to_image/widget_to_image.dart';
 
 class CreateNewDesignController extends GetxController {
 
@@ -26,42 +31,42 @@ class CreateNewDesignController extends GetxController {
   List<ColorsModel> colorsList = [
     ColorsModel(
       image: "assets/Asset 47.png",
-      color: Colors.white,
+      color: 0xffffffff,
       name: "White"
     ),
     ColorsModel(
       image: "assets/Asset 48.png",
-      color: Colors.black,
+      color: 0xff000000,
       name: "Black"
     ),
     ColorsModel(
       image: "assets/Asset 49.png",
-      color: Colors.blue.shade900,
+      color: 0xff58bbe4,
       name: "Blue"
     ),
     ColorsModel(
       image: "assets/Asset 50.png",
-      color: Colors.red,
+      color: 0xffF90408,
         name: "Red"
     ),
     ColorsModel(
       image: "assets/Asset 51.png",
-      color: Colors.green,
+      color: 0xff04f90d,
         name: "Green"
     ),
     ColorsModel(
       image: "assets/Asset 52.png",
-      color: Colors.purple,
+      color: 0xffF904d2,
         name: "Purple"
     ),
     ColorsModel(
       image: "assets/Asset 53.png",
-      color: Colors.brown.shade900,
+      color: 0xff964B00,
         name: "Brown"
     ),
     ColorsModel(
       image: "assets/Asset 54.png",
-      color: Colors.yellow,
+      color: 0xffFFFF00,
         name: "Yellow"
     ),
   ];
@@ -90,7 +95,7 @@ class CreateNewDesignController extends GetxController {
 
   TextEditingController textController = TextEditingController();
   List<TextModel> textList = [];
-  Color? color;
+  int? color = blackHexColor;
   int? selectedIndexOfColor ;
   bool textSelected = false;
   int currentIndexOfText = 0;
@@ -103,7 +108,7 @@ class CreateNewDesignController extends GetxController {
   addNewText() {
     textList.add(TextModel(color: color, top: 75, text: textController.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal,
-      left: 78,fontSize: 18,fontWeight: FontWeight.bold,  fontFamily: fontFamily
+      left: 78,fontSize: 18,fontWeight: FontWeight.normal,  fontFamily: fontFamily ,
     ));
     Get.back();
     update();
@@ -116,18 +121,18 @@ class CreateNewDesignController extends GetxController {
     update();
   }
 
-  changeTextColor(Color color) {
+  changeTextColor(int color) {
     textList[currentIndexOfText].color = color;
     update();
   }
 
   increaseFontSize() {
-    textList[currentIndexOfText].fontSize += 2;
+    textList[currentIndexOfText].fontSize = textList[currentIndexOfText].fontSize! + 2;
     update();
   }
 
   decreaseFontSize() {
-    textList[currentIndexOfText].fontSize -= 2;
+    textList[currentIndexOfText].fontSize =    textList[currentIndexOfText].fontSize! - 2;
     update();
   }
 
@@ -226,7 +231,7 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add Sticker on short from TextField === ---
   addNewSticker() {
-    stickerList.add(StickerModel(sticker: selectedSticker, left: 90,top: 75,));
+    stickerList.add(StickerModel(sticker: selectedSticker, left: 90,top: 75,title: ''));
     Get.back();
     update();
   }
@@ -242,8 +247,13 @@ class CreateNewDesignController extends GetxController {
 // ----------------------------===    For Shirt Color    ===------------------------
 // ----------------------------=== ===================== ===------------------------
 
-  Color? selectedColorsForShirt;
+  int? selectedColorsForShirt;
   int? selectIndexColorsForShirt = 0;
+  Color? convertedColorForShirt;
+
+  Color hexToColor() {
+    return  convertedColorForShirt = Color(int.parse(selectedColorsForShirt.toString()));
+  }
 
   giveColorToShirt() {
 
@@ -280,7 +290,7 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add Sticker on short from TextField === ---
   addNewImage() {
-    imageList.add(ImageFromGalleryAndCamModel(image: imageFromGallery ?? imageFromCam ,left: 80,top: 75,));
+    imageList.add(ImageFromGalleryAndCamModel(image: imageFromGallery ?? imageFromCam ,left: 80,top: 75, imageUrl: ''));
     Get.back();
     update();
     imageFromGallery = null;
@@ -307,7 +317,7 @@ class CreateNewDesignController extends GetxController {
 
   TextEditingController textControllerForSecondImage = TextEditingController();
   List<TextModel> textListForSecondImage = [];
-  Color? colorSecondImage;
+  int? colorSecondImage = blackHexColor;
   int? selectedIndexOfColorSecondImage ;
   bool textSelectedSecondImage = false;
   int currentIndexOfTextSecondImage = 0;
@@ -319,7 +329,7 @@ class CreateNewDesignController extends GetxController {
   addNewTextSecondImage() {
     textListForSecondImage.add(TextModel(color: colorSecondImage, top: 75, text: textControllerForSecondImage.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImage,
-      left: 78,fontSize: 18,fontWeight: FontWeight.bold,));
+      left: 78,fontSize: 18,fontWeight: FontWeight.normal,));
     Get.back();
     update();
   }
@@ -331,18 +341,18 @@ class CreateNewDesignController extends GetxController {
     update();
   }
 
-  changeTextColorSecondImage(Color color) {
+  changeTextColorSecondImage(int color) {
     textListForSecondImage[currentIndexOfTextSecondImage].color = color;
     update();
   }
 
   increaseFontSizeSecondImage() {
-    textListForSecondImage[currentIndexOfTextSecondImage].fontSize += 2;
+    textListForSecondImage[currentIndexOfTextSecondImage].fontSize = textListForSecondImage[currentIndexOfTextSecondImage].fontSize! + 2;
     update();
   }
 
   decreaseFontSizeSecondImage() {
-    textListForSecondImage[currentIndexOfTextSecondImage].fontSize -= 2;
+    textListForSecondImage[currentIndexOfTextSecondImage].fontSize = textListForSecondImage[currentIndexOfTextSecondImage].fontSize! - 2;
     update();
   }
 
@@ -406,7 +416,7 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add Sticker on short from TextField === ---
   addNewStickerSecondImage () {
-    stickerListSecondImage.add(StickerModel(sticker: selectedStickerSecondImage, left: 90,top: 75,));
+    stickerListSecondImage.add(StickerModel(sticker: selectedStickerSecondImage, left: 90,top: 75,title: ''));
     Get.back();
     update();
   }
@@ -448,7 +458,8 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add Sticker on short from TextField === ---
   addNewImageSecondImage() {
-    imageListSecondImage.add(ImageFromGalleryAndCamModel(image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 80,top: 75,));
+    imageListSecondImage.add(ImageFromGalleryAndCamModel(
+      image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 80,top: 75,imageUrl: ''));
     Get.back();
     update();
     imageFromGallerySecondImage = null;
@@ -466,8 +477,14 @@ class CreateNewDesignController extends GetxController {
 // ----------------------------===    For Shirt Color Second Image  ===------------------------
 // ----------------------------=== ===================== ===------------------------
 
-  Color? selectedColorsForShirtSecondImage;
+  int? selectedColorsForShirtSecondImage;
   int? selectIndexColorsForShirtSecondImage = 0;
+
+  Color? convertedColorForSecondShirt;
+
+  Color hexToColorForSecondShort() {
+    return  convertedColorForSecondShirt = Color(int.parse(selectedColorsForShirtSecondImage.toString()));
+  }
 
   giveColorToShirtSecondImage() {
 
@@ -486,16 +503,34 @@ class CreateNewDesignController extends GetxController {
 // ----------------------------===    Save data of new shirt design  ===------------------------
 // ----------------------------=== ================================= ===------------------------
 
+  // Future saveNewShirtDesignn() async{
+  //   List _imageListOfFirstImage = [];
+  //
+  //   for (ImageFromGalleryAndCamModel textData in imageList) {
+  //
+  //       print(textData.image);
+  //   }
+  // }
+
   final GlobalKey<FormState> shirtDesignGlobalKey = GlobalKey<FormState>();
   final TextEditingController designNameController = TextEditingController();
+  bool saveNewDesignShirtBool = false;
 
   Future saveNewShirtDesign() async {
+
+    saveNewDesignShirtBool = true;
+    update();
+
     User? user =  FirebaseAuth.instance.currentUser;
     final homeController = Get.find<HomeController>();
+
     successMsg(){
+      saveNewDesignShirtBool = false;
+      update();
+      Get.back();
       Get.snackbar(
-        "Add Product Notification",
-        "Successfully Added the Product",
+        "Saved Design Notification",
+        "Design Is Saved...",
         snackPosition: SnackPosition.TOP,
         duration: Duration(seconds: 5),
       );
@@ -503,31 +538,300 @@ class CreateNewDesignController extends GetxController {
 
     try{
 
+
+      // String? backImageDesignUrl;
+
+      // ------ == -- == ---==========  Save Front Image Design In FireStorage  =========----- == -- == -------
+      final funcOnImageController = Get.find<FunctionalityOnImageController>();
+      String? frontImageDesignUrl;
+      ByteData? frontByteImage;
+
+      funcOnImageController.flipCarController.state!.isFront ? print("Its Front") :
+      await funcOnImageController.flipCarController.flipcard();
+
+      ByteData frontImage = await WidgetToImage.repaintBoundaryToImage(funcOnImageController.frontGlobalKey!);
+
+      frontByteImage =  frontImage;
+
+      final tempDir = await getTemporaryDirectory();
+      File frontImageFile = await File('${tempDir.path}/${user!.uid + DateTime.now().toString()}.png').create();
+      frontImageFile.writeAsBytesSync(frontByteImage.buffer.asUint8List());
+
+      String filePath = basename(frontImageFile.path);
+
+      Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+          'shirt_design_images/$filePath');
+      UploadTask uploadTask = firebaseStorageRef.putFile(frontImageFile);
+
+      await uploadTask.whenComplete(() =>
+          () {
+        print("Front Image Upload SuccessFully");
+      });
+
+      frontImageDesignUrl = await firebaseStorageRef.getDownloadURL();
+
+      // ------ == -- == ---==========   =========----- == -- == -------
+
+      List _stickerOfFirstImage = [];
+
+      for (StickerModel stickerData in stickerList) {
+        _stickerOfFirstImage.add({
+          "sticker": stickerData.sticker,
+          "left": stickerData.left,
+          "top": stickerData.top,
+          "title" : stickerData.title,
+        });
+      }
+
+      List _stickerListSecondImage = [];
+
+      for (StickerModel stickerData in stickerListSecondImage) {
+        _stickerListSecondImage.add({
+          "sticker": stickerData.sticker,
+          "left": stickerData.left,
+          "top": stickerData.top,
+          "title" : stickerData.title,
+        });
+      }
+
+      List _textListOfFirstImage = [];
+
+      for (TextModel textData in textList) {
+        _textListOfFirstImage.add({
+         "text": textData.text,
+         "left": textData.left,
+         "top": textData.top,
+         "color": textData.color,
+         "fontWeight": textData.fontWeight.toString(),
+         "fontStyle": textData.fontStyle.toString(),
+         "fontSize": textData.fontSize,
+         "textAlign": textData.textAlign.toString(),
+         "fontFamily": textData.fontFamily,
+        });
+      }
+
+      List _textListOfSecondImage = [];
+
+      for (TextModel textData in textListForSecondImage) {
+        _textListOfSecondImage.add({
+          "text": textData.text,
+          "left": textData.left,
+          "top": textData.top,
+          "color": textData.color,
+          "fontWeight": textData.fontWeight.toString(),
+          "fontStyle": textData.fontStyle.toString(),
+          "fontSize": textData.fontSize,
+          "textAlign": textData.textAlign.toString(),
+          "fontFamily": textData.fontFamily,
+        });
+      }
+
+      List _imageListOfFirstImage = [];
+
+      for (ImageFromGalleryAndCamModel textData in imageList) {
+        if (textData.image != null) {
+          String imageUrl;
+          String? fileName;
+          fileName = basename(textData.image!.path);
+          Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+              'images_on_shirt/$fileName');
+          UploadTask uploadTask = firebaseStorageRef.putFile(textData.image!);
+
+          await uploadTask.whenComplete(() =>
+              () {
+            print("Upload Complete");
+          });
+
+          imageUrl = await firebaseStorageRef.getDownloadURL();
+
+          _imageListOfFirstImage.add({
+            "left": textData.left,
+            "top": textData.top,
+            "image": "",
+            "imageUrl": imageUrl,
+          });
+        }
+
+      }
+
+      List _imageListOfSecondImage = [];
+
+      for (ImageFromGalleryAndCamModel textData in imageListSecondImage) {
+        if (textData.image != null) {
+          String imageUrl;
+          String? fileName;
+          fileName = basename(textData.image!.path);
+          Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+              'images_on_shirt/$fileName');
+          UploadTask uploadTask = firebaseStorageRef.putFile(textData.image!);
+
+          await uploadTask.whenComplete(() =>
+              () {
+            print("Upload Complete");
+          });
+
+          imageUrl = await firebaseStorageRef.getDownloadURL();
+
+          _imageListOfSecondImage.add({
+            "left": textData.left,
+            "top": textData.top,
+            "image": "",
+            "imageUrl": imageUrl,
+          });
+        }
+
+      }
+
+
       final addProduct = FirebaseFirestore.instance.collection("NewShirtDesign").doc();
       await addProduct.set({
         "id": addProduct.id,
-        "userId": user!.uid.toString(),
+        "userId": user.uid.toString(),
+
         "frontImage": homeController.selectedFrontImage,
         "backImage": homeController.selectedBackImage,
-        "firstShirtColor": selectedColorsForShirt ?? "whiteColor",
-        "secondShirtColor": selectedColorsForShirtSecondImage ?? "whiteColor",
+        "firstShirtColor": selectedColorsForShirt ?? whiteHexColor.toInt(),
+        "secondShirtColor": selectedColorsForShirtSecondImage ?? whiteHexColor.toInt(),
 
         "shirtType": homeController.selectedShirtName,
         "designName": designNameController.text.toString(),
+
         "currentDateTime": DateTime.now(),
 
-        "galleryImagesOfFirstImage": imageList ,
-        "galleryImagesOfSecondImage": imageListSecondImage,
-        "stickersOfFirstImage": stickerList,
-        "stickersOfSecondImage": stickerListSecondImage,
-        "textsOfFirstImage": textList,
-        "textsOfSecondImage": textList,
+        "frontImageOfDesign": frontImageDesignUrl,
+        // "backImageOfDesign": backImageDesignUrl,
+
+         "galleryImagesOfFirstImage": _imageListOfFirstImage,
+         "galleryImagesOfSecondImage": _imageListOfSecondImage,
+
+        "stickersOfFirstImage": _stickerOfFirstImage,
+        "stickersOfSecondImage": _stickerListSecondImage,
+        "textsOfFirstImage": _textListOfFirstImage,
+        "textsOfSecondImage": _textListOfSecondImage,
+        "popularityCount": 1,
       }).then((_) => successMsg()).catchError((onError) => print(onError.toString()));
 
     }
     catch(e){
+      saveNewDesignShirtBool = false;
+      update();
       print(e);
     }
   }
 
 }
+
+
+//----------------------------------------------------------------------------------------------------------
+
+// if(funcOnImageController.flipCarController.state!.isFront  ) {
+//
+//   // ------ == -- == ---==========  Save Front Image Design In FireStorage  =========----- == -- == -------
+//   ByteData? frontByteImage;
+//   ByteData frontImage = await WidgetToImage.repaintBoundaryToImage(funcOnImageController.frontGlobalKey!);
+//
+//   frontByteImage =  frontImage;
+//
+//   final tempDir = await getTemporaryDirectory();
+//   File frontImageFile = await File('${tempDir.path}/${frontByteImage.elementSizeInBytes}.png').create();
+//   frontImageFile.writeAsBytesSync(frontByteImage.buffer.asUint8List());
+//
+//   String filePath = basename(frontImageFile.path);
+//
+//   Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+//       'shirt_design_images/$filePath');
+//   UploadTask uploadTask = firebaseStorageRef.putFile(frontImageFile);
+//
+//   await uploadTask.whenComplete(() =>
+//       () {
+//     print("Front Image Upload SuccessFully");
+//   });
+//
+//   frontImageDesignUrl = await firebaseStorageRef.getDownloadURL();
+//
+//   await funcOnImageController.flipCarController.flipcard();
+//
+//   // ------ == -- == ---==========  Save back Image Design In FireStorage  =========----- == -- == -------
+//
+//   ByteData? backByteImage;
+//   ByteData backImage = await WidgetToImage.repaintBoundaryToImage(funcOnImageController.backGlobalKey!);
+//
+//   backByteImage =  backImage;
+//
+//   final tempDire = await getTemporaryDirectory();
+//   File backImageFile = await File('${tempDire.path}/$backByteImage.png').create();
+//   backImageFile.writeAsBytesSync(backByteImage.buffer.asUint8List());
+//
+//   String filePaths = basename(backImageFile.path);
+//
+//   Reference firebaseStorageRefe = FirebaseStorage.instance.ref().child(
+//       'shirt_design_images/$filePaths');
+//   UploadTask uploadTasks = firebaseStorageRefe.putFile(backImageFile);
+//
+//   await uploadTasks.whenComplete(() =>
+//       () {
+//     print("Front Image Upload SuccessFully");
+//   });
+//
+//   backImageDesignUrl = await firebaseStorageRefe.getDownloadURL();
+//
+//
+//
+// }
+// else {
+//
+//   // ------ == -- == ---==========  Save back Image Design In FireStorage  =========----- == -- == -------
+//
+//   ByteData? backByteImage;
+//   ByteData backImage = await WidgetToImage.repaintBoundaryToImage(funcOnImageController.backGlobalKey!);
+//
+//   backByteImage =  backImage;
+//
+//   final tempDire = await getTemporaryDirectory();
+//   File backImageFile = await File('${tempDire.path}/$backByteImage.png').create();
+//   backImageFile.writeAsBytesSync(backByteImage.buffer.asUint8List());
+//
+//   String filePaths = basename(backImageFile.path);
+//
+//   Reference firebaseStorageRefe = FirebaseStorage.instance.ref().child(
+//       'shirt_design_images/$filePaths');
+//   UploadTask uploadTasks = firebaseStorageRefe.putFile(backImageFile);
+//
+//   await uploadTasks.whenComplete(() =>
+//       () {
+//     print("Front Image Upload SuccessFully");
+//   });
+//
+//   backImageDesignUrl = await firebaseStorageRefe.getDownloadURL();
+//
+//   await funcOnImageController.flipCarController.flipcard();
+//
+//   // ------ == -- == ---==========  Save Front Image Design In FireStorage  =========----- == -- == -------
+//   ByteData? frontByteImage;
+//   ByteData frontImage = await WidgetToImage.repaintBoundaryToImage(funcOnImageController.frontGlobalKey!);
+//
+//   frontByteImage =  frontImage;
+//
+//   final tempDir = await getTemporaryDirectory();
+//   File frontImageFile = await File('${tempDir.path}/$frontByteImage.png').create();
+//   frontImageFile.writeAsBytesSync(frontByteImage.buffer.asUint8List());
+//
+//   String filePath = basename(frontImageFile.path);
+//
+//   Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+//       'shirt_design_images/$filePath');
+//   UploadTask uploadTask = firebaseStorageRef.putFile(frontImageFile);
+//
+//   await uploadTask.whenComplete(() =>
+//       () {
+//     print("Front Image Upload SuccessFully");
+//   });
+//
+//   frontImageDesignUrl = await firebaseStorageRef.getDownloadURL();
+//
+//
+// }
+
+
+
+// ------ == -- == ---==========   =========----- == -- == -------

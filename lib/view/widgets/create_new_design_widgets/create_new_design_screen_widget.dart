@@ -163,52 +163,72 @@ Widget saveImageWidget(context) {
                                 ],),
 
                               SizedBox(height: 70.h,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  commonText(
-                                      title: "   Give Design Name",
-                                      textStyle: TextStyle(fontSize: 32.sp)
-                                  ),
-                                ],
+
+                              GetBuilder<CreateNewDesignController>(
+                                  builder: (controller) {
+                                    return controller.saveNewDesignShirtBool == true ? Wrap(
+                                      children: [
+                                        commonText(
+                                          title: "Please Wait The Shirt Design Is Saving...",
+                                          textAlign: TextAlign.center,
+                                          textStyle: TextStyle(color: blackColor,fontSize: 18)
+                                        ),
+                                      ],
+                                    ) : Form(
+                                    key: controller.shirtDesignGlobalKey,
+                                    child: Column(children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          commonText(
+                                              title: "   Give Design Name",
+                                              textStyle: TextStyle(fontSize: 32.sp)
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 30.h,),
+                                      commonTextFormField(
+                                        hintText: "Design Name",
+                                        controller: controller.designNameController,
+                                        validator: FormValidatorConstant.commonValidator,
+                                        prefixIcon: (CupertinoIcons.arrow_right_circle)
+                                      )
+                                    ],),
+                                  );
+                                }
                               ),
-                              SizedBox(height: 20.h,),
-                              Form(
-                                key: controller.shirtDesignGlobalKey,
-                                child: Column(children: [
-                                  commonTextFormField(
-                                    hintText: "Design Name",
-                                    controller: controller.designNameController,
-                                    validator: FormValidatorConstant.commonValidator,
-                                    prefixIcon: (CupertinoIcons.arrow_right_circle)
-                                  )
-                                ],),
-                              ),
-                              SizedBox(height: 120.h,),
+                              SizedBox(height: 200.h,),
                               // --------===------========  save image button =======------===--------
-                              InkWell(
-                                onTap: (){
-                                  if (controller.shirtDesignGlobalKey.currentState!.validate()) {
-                                    // controller.saveNewShirtDesign();
-                                  } else {
-                                    Get.snackbar("New Shirt Design Screen",
-                                        "Please Fill The Field",
-                                        duration: Duration(seconds: 3));
-                                  }
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: redColor,
-                                      borderRadius: BorderRadius.circular(70.r)
-                                  ),
-                                  height: 123.h,
-                                  width: 0.5.sw,
-                                  child: Align(
-                                      alignment: Alignment.center,
-                                      child: commonText(title: "Add Database", textStyle: TextStyle(
-                                          color: whiteColor,fontWeight: FontWeight.w500,fontSize: 50.sp) )),
-                                ),
-                              ),
+
+                              GetBuilder<CreateNewDesignController>(
+                                builder: (controller) {
+                                  return controller.saveNewDesignShirtBool == true ? CircularProgressIndicator() :
+                                  InkWell(
+                                    onTap: (){
+                                      if (controller.shirtDesignGlobalKey.currentState!.validate()) {
+                                        controller.saveNewShirtDesign();
+                                      } else {
+                                        Get.snackbar("New Shirt Design Screen",
+                                            "Please Fill The Field",
+                                            duration: Duration(seconds: 3));
+                                      }
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: redColor,
+                                          borderRadius: BorderRadius.circular(70.r)
+                                      ),
+                                      height: 39,
+                                      width: 0.6.sw,
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: commonText(title: "Save Shirt Design", textStyle: TextStyle(
+                                              color: whiteColor,fontWeight: FontWeight.w500,fontSize: 12) )),
+                                    ),
+                                  );
+                                }
+                              ) ,
+
                               SizedBox(height: 30.h,),
 
                             ]));

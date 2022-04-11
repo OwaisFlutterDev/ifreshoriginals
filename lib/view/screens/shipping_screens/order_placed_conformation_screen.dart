@@ -55,10 +55,10 @@ class OrderPlacedConformationScreen extends StatelessWidget{
                       Get.offAll(() => BottomNavigationBarScreen());
                     },
                     buttonWidth: 1.sw,
-                    buttonHeight: 130.h,
+
                     buttonColor: redColor,
                     buttonName: "Done",
-                    textStyle: TextStyle(color: whiteColor,fontWeight: FontWeight.w600)
+                  textColor: whiteColor,
                 ),
               ],),
           ),),),

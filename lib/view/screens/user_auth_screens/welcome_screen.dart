@@ -66,10 +66,10 @@ class WelcomeScreen extends StatelessWidget {
                           Get.to(() => LoginScreen());
                         },
                         buttonColor: redColor,
-                        buttonHeight: 140.h,
+
                         buttonWidth: 0.9.sw,
                         buttonName: "Login",
-                        textStyle: TextStyle(color: whiteColor,)
+                      textColor: whiteColor,
 
                     ),
                   ],
@@ -89,11 +89,11 @@ class WelcomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(27.r),
                         border: Border.all(color: Color(0xff707070))
                     ),
-                    height: 140.h,
+                    height: 50,
                     width: 0.9.sw,
                     child: Align(
                         alignment: Alignment.center,
-                        child: commonText(title: "Signup", textStyle: TextStyle(color: blackColor) )),
+                        child: commonText(title: "Signup", textStyle: TextStyle(color: blackColor,fontSize: 14) )),
                   ),
                 ),
 

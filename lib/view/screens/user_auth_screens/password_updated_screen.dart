@@ -64,9 +64,9 @@ class PasswordUpdatedScreen extends StatelessWidget {
                       buttonName: "Login",
                       buttonColor: redColor,
                       onTap: () {},
-                      buttonHeight: 150.h,
+
                       buttonWidth: 1.sw,
-                      textStyle: TextStyle(color: whiteColor,)
+                    textColor: whiteColor,
                   ),
                   SizedBox(height: 10.h,)
                 ],

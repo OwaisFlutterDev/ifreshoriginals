@@ -79,10 +79,10 @@ class ChangePasswordScreen extends StatelessWidget {
                       SizedBox(height: .3.sh,),
 
                       commonButton(
-                        buttonHeight: 150.h,
                         buttonWidth: 1.sw,
                         buttonName: "Change Password",
                         buttonColor: redColor,
+                        textColor: whiteColor,
                         onTap: () {
                           if (userProfileController.changeProfileFormKey.currentState!.validate()) {
                             controller.changePassword();
