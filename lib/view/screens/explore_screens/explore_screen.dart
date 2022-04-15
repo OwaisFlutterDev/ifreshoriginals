@@ -65,6 +65,12 @@ class ExploreScreen extends StatelessWidget {
                                               homeController.selectedShirtTypeOfOpenedDesign =   homeController.popularDesignLimitedDataList[index].shirtType;
                                               homeController.update();
 
+                                              //-=-= payment details =-=-
+                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.update();
+                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.popularDesignLimitedDataList[index].totalPrice!;
+                                              homeController.update();
+
 
                                               openedDesignController.selectedColorsForShirt = homeController.popularDesignLimitedDataList[index].firstShirtColor;
                                               openedDesignController.hexToColor();
@@ -150,6 +156,11 @@ class ExploreScreen extends StatelessWidget {
                                               homeController.selectedShirtTypeOfOpenedDesign =   homeController.featuredDesignLimitedDataList[index].shirtType;
                                               homeController.update();
 
+                                              //-=-= payment details =-=-
+                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.update();
+                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.featuredDesignLimitedDataList[index].totalPrice!;
+                                              homeController.update();
 
                                               openedDesignController.selectedColorsForShirt = homeController.featuredDesignLimitedDataList[index].firstShirtColor;
                                               openedDesignController.hexToColor();
@@ -240,6 +251,11 @@ class ExploreScreen extends StatelessWidget {
                                               openedDesignController.hexToColor();
                                               openedDesignController.selectedColorsForShirtSecondImage = homeController.allDesignLimitedDataList[index].secondShirtColor;
                                               openedDesignController.hexToColorForSecondShort();
+
+                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.update();
+                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.allDesignLimitedDataList[index].totalPrice!;
+                                              homeController.update();
 
                                               // --------= -=-=-= clear lists =-=-=- =--------
                                               openedDesignController.stickerListFirstImageOfOD.clear();

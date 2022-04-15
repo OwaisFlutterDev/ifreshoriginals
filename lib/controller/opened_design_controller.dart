@@ -17,6 +17,14 @@ import 'package:path_provider/path_provider.dart';
 
 class OpenedDesignController extends GetxController{
 
+  // ----------------------------=== ==================================== ===------------------------
+  // ----------------------------===            Price  details            ===------------------------
+  // ----------------------------=== ==================================== ===------------------------
+
+  double? stickerPriceForOD = 4;
+  double? textPriceForOD = 2;
+  double? imagePriceForOD = 7;
+
   List<ColorsModel> colorsListOfOd = [
     ColorsModel(
         image: "assets/Asset 47.png",
@@ -122,7 +130,7 @@ class OpenedDesignController extends GetxController{
   int? selectedIndexOfStickerOfOD ;
   String? selectedStickerOfOD;
 
-  HomeController homeController = Get.find<HomeController>();
+
 
 
   // --- ===  add Sticker on short from TextField === ---
@@ -130,6 +138,11 @@ class OpenedDesignController extends GetxController{
     stickerListFirstImageOfOD.add(StickerModel(sticker: selectedStickerOfOD, left: 90,top: 75,title: ''));
     Get.back();
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    selectedStickerOfOD != null ? homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + stickerPriceForOD!
+        : null;
+    homeController.update();
   }
 
   //   ---  == remove text ==  ---
@@ -137,6 +150,11 @@ class OpenedDesignController extends GetxController{
   removeStickerOfOD(){
     stickerListFirstImageOfOD.removeAt(removeStickerIndexOfOD!);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! - stickerPriceForOD!;
+    homeController.update();
+
   }
 
   List<StickerModel> giveStickerData(stickerList) {
@@ -149,6 +167,13 @@ class OpenedDesignController extends GetxController{
 
   File? imageFromGalleryOfOd;
   String? imageFromGalleryToStringOfOd;
+
+  addImagesPriceOnFirImage(){
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + imagePriceForOD!;
+    homeController.update();
+  }
+
   //  ---------------- get the image from gallery ---------------------
   void getImageFromGalleryOfOd() async {
     final picker = ImagePicker();
@@ -173,6 +198,9 @@ class OpenedDesignController extends GetxController{
   // --- ===  add Sticker on short from TextField === ---
   addNewImageOfOd() {
     imageListOfOd.add(ImageFromGalleryAndCamModel(image: imageFromGalleryOfOd ?? imageFromCamOfOd ,left: 80,top: 75, imageUrl: null));
+
+    imageFromGalleryOfOd != null ? addImagesPriceOnFirImage() : imageFromCamOfOd != null ? addImagesPriceOnFirImage() : null;
+
     Get.back();
     update();
     imageFromGalleryOfOd= null;
@@ -184,6 +212,11 @@ class OpenedDesignController extends GetxController{
   removeImageOfOd(){
     imageListOfOd.removeAt(removeImageIndexOfOd!);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! - imagePriceForOD!;
+    homeController.update();
+
   }
 
   // ----------------------------=== ==================================== ===------------------------
@@ -230,6 +263,12 @@ class OpenedDesignController extends GetxController{
       textAlign: TextAlign.center, fontStyle: FontStyle.normal,
       left: 78,fontSize: 18,fontWeight: FontWeight.normal,  fontFamily: fontFamilyOfOd ,
     ));
+
+    HomeController homeController = Get.find<HomeController>();
+    textControllerOfOd.text.isNotEmpty ? homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + textPriceForOD!
+        : null;
+    homeController.update();
+
     Get.back();
     update();
   }
@@ -239,6 +278,10 @@ class OpenedDesignController extends GetxController{
   removeTextOfOd(){
     textListOfOd.removeAt(removeTextIndexOfOd!);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+     homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! - textPriceForOD!;
+    homeController.update();
   }
 
   changeTextColorOfOd(int color) {
@@ -331,6 +374,12 @@ class OpenedDesignController extends GetxController{
     textListForSecondImageOfOd.add(TextModel(color: colorSecondImageOfOd, top: 75, text: textControllerForSecondImageOfOd.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImageOfOd,
       left: 78,fontSize: 18,fontWeight: FontWeight.normal,));
+
+    HomeController homeController = Get.find<HomeController>();
+    textControllerForSecondImageOfOd.text.isNotEmpty ? homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + textPriceForOD!
+        : null;
+    homeController.update();
+
     Get.back();
     update();
   }
@@ -340,6 +389,10 @@ class OpenedDesignController extends GetxController{
   removeTextSecondImageOfOd(){
     textListForSecondImageOfOd.removeAt(removeTextIndexSecondImageOfOd!);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! - textPriceForOD!;
+    homeController.update();
   }
 
   changeTextColorSecondImageOfOd(int color) {
@@ -437,15 +490,27 @@ class OpenedDesignController extends GetxController{
   // --- ===  add Sticker on short from TextField === ---
   addNewStickerSecondImageOfOD () {
     stickerListSecondImageOfOD.add(StickerModel(sticker: selectedStickerSecondImageOfOD, left: 90,top: 75,title: ''));
+
+    HomeController homeController = Get.find<HomeController>();
+    selectedStickerSecondImageOfOD != null ? homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + stickerPriceForOD!
+        : null;
+    homeController.update();
+
     Get.back();
     update();
   }
 
   //   ---  == remove text ==  ---
   int? removeStickerIndexSecondImageOfOD  = 0;
+  // double? subStickerPrice = 0;
   removeStickerSecondImageOfOD (){
     stickerListSecondImageOfOD.removeAt(removeStickerIndexSecondImageOfOD !);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! -  stickerPriceForOD!;
+    homeController.update();
+
   }
 
   // ----------------------------=== ======================================= ===------------------------
@@ -454,6 +519,13 @@ class OpenedDesignController extends GetxController{
 
   File? imageFromGallerySecondImageOfOd;
   String? imageFromGalleryToStringSecondImageOfOd;
+
+  addImagesPriceOnSecImage(){
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! + imagePriceForOD!;
+    homeController.update();
+  }
+
   //  ---------------- get the image from gallery ---------------------
   void getImageFromGallerySecondImageOfOd() async {
     final picker = ImagePicker();
@@ -479,6 +551,9 @@ class OpenedDesignController extends GetxController{
   addNewImageSecondImageOfOd() {
     imageListSecondImageOfOd.add(ImageFromGalleryAndCamModel(
         image: imageFromGallerySecondImageOfOd ?? imageFromCamSecondImageOfOd ,left: 80,top: 75,imageUrl: null));
+
+    imageFromGallerySecondImageOfOd != null ? addImagesPriceOnSecImage() : imageFromCamSecondImageOfOd != null ? addImagesPriceOnSecImage() : null;
+
     Get.back();
     update();
     imageFromGallerySecondImageOfOd = null;
@@ -490,6 +565,10 @@ class OpenedDesignController extends GetxController{
   removeImageSecondImageOfOd(){
     imageListSecondImageOfOd.removeAt(removeImageIndexSecondImageOfOd!);
     update();
+
+    HomeController homeController = Get.find<HomeController>();
+    homeController.newDesignPriceForOD = homeController.newDesignPriceForOD! - imagePriceForOD!;
+    homeController.update();
   }
 
 //  ---------------------------------------------------------------------------------------------------------------------
@@ -528,7 +607,7 @@ class OpenedDesignController extends GetxController{
       update();
       Get.back();
       Get.snackbar(
-        "Update Design Notification",
+        "Update Design Notification:",
         "Design Is Updated...",
         snackPosition: SnackPosition.TOP,
         duration: Duration(seconds: 5),
@@ -540,7 +619,7 @@ class OpenedDesignController extends GetxController{
       update();
       Get.back();
       Get.snackbar(
-        "Saved Design Notification",
+        "Saved Design Notification:",
         "Design Is Saved...",
         snackPosition: SnackPosition.TOP,
         duration: Duration(seconds: 5),
@@ -591,6 +670,7 @@ class OpenedDesignController extends GetxController{
           "left": stickerData.left,
           "top": stickerData.top,
           "title" : stickerData.title,
+          "stickerPrice" : stickerData.stickerPrice
         });
       }
 
@@ -602,6 +682,7 @@ class OpenedDesignController extends GetxController{
           "left": stickerData.left,
           "top": stickerData.top,
           "title" : stickerData.title,
+          "stickerPrice" : stickerData.stickerPrice
         });
       }
 
@@ -618,6 +699,7 @@ class OpenedDesignController extends GetxController{
           "fontSize": textData.fontSize,
           "textAlign": textData.textAlign.toString(),
           "fontFamily": textData.fontFamily,
+          "textPrice" : textData.textPrice,
         });
       }
 
@@ -634,6 +716,7 @@ class OpenedDesignController extends GetxController{
           "fontSize": textData.fontSize,
           "textAlign": textData.textAlign.toString(),
           "fontFamily": textData.fontFamily,
+          "textPrice" : textData.textPrice
         });
       }
 
@@ -660,6 +743,7 @@ class OpenedDesignController extends GetxController{
             "top": textData.top,
             "image": "",
             "imageUrl": textData.imageUrl ?? imageUrl,
+            "imagePrice" : textData.imagePrice
           });
         }
 
@@ -688,6 +772,7 @@ class OpenedDesignController extends GetxController{
             "top": textData.top,
             "image": "",
             "imageUrl":  textData.imageUrl ?? imageUrl,
+            "imagePrice" : textData.imagePrice
           });
         }
       }
@@ -696,6 +781,9 @@ class OpenedDesignController extends GetxController{
         // ------=-=-=-=======-==== update data ====-=======-=-=-=-=------
 
         await FirebaseFirestore.instance.collection("NewShirtDesign").doc(docID).update({
+
+          "totalPrice": homeController.newDesignPriceForOD,
+
           "frontImage": homeController.selectedFrontImageOfOpenedDesign,
           "backImage": homeController.selectedBackImageOfOpenedDesign,
           "firstShirtColor": selectedColorsForShirt ?? whiteHexColor.toInt(),
@@ -716,7 +804,7 @@ class OpenedDesignController extends GetxController{
           "stickersOfSecondImage": _stickerListSecondImage,
           "textsOfFirstImage": _textListOfFirstImage,
           "textsOfSecondImage": _textListOfSecondImage,
-        }).then((_) => savedDesign()).catchError((onError) => print(onError.toString()));
+        }).then((_) => updateDesign()).catchError((onError) => print(onError.toString()));
 
       }
       else
@@ -727,6 +815,9 @@ class OpenedDesignController extends GetxController{
           await addProduct.set({
             "id": addProduct.id,
             "userId": user.uid.toString(),
+
+            "totalPrice": homeController.newDesignPriceForOD,
+
             "frontImage": homeController.selectedFrontImageOfOpenedDesign,
             "backImage": homeController.selectedBackImageOfOpenedDesign,
             "firstShirtColor": selectedColorsForShirt ?? whiteHexColor.toInt(),
@@ -748,7 +839,7 @@ class OpenedDesignController extends GetxController{
             "textsOfFirstImage": _textListOfFirstImage,
             "textsOfSecondImage": _textListOfSecondImage,
             "popularityCount": 1,
-          }).then((_) => updateDesign()).catchError((onError) => print(onError.toString()));
+          }).then((_) => savedDesign()).catchError((onError) => print(onError.toString()));
           print("the doc not belong to that user");
         }
 

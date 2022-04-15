@@ -8,6 +8,17 @@ import 'opened_design_controller.dart';
 
 class HomeController extends GetxController {
 
+  // ------------------------------------------------------------------------------
+  // ---=-=-=========== -=-=        create new design price =-=- ==========-=-=----
+  //-------------------------------------------------------------------------------
+  double? newDesignPrice = 0;
+  double? shirtPrice = 0;
+
+  double? newDesignPriceForOD = 0;
+  double? shirtPriceForOD = 0;
+
+
+  // -====-==-=====------------------------------------------------==-===-============
   RxList<NewShirtDesignModel> savedDesignDataList = RxList<NewShirtDesignModel>([]);
   RxList<NewShirtDesignModel> savedDesignAllDataList = RxList<NewShirtDesignModel>([]);
 
@@ -54,34 +65,32 @@ class HomeController extends GetxController {
   String? selectedShirtTypeOfOpenedDesign;
   int? selectedFirstImageColorOfOpenedDesign;
   int? selectedSecondImageColorOfOpenedDesign;
-
   int? popularityCountInt;
 
-  List<CreateNewDesignModel> createNewDesignList = [
-    CreateNewDesignModel(
+  List<ShirtModel> createNewDesignList = [
+    ShirtModel(
         frontImage: "assets/t_shirt.png",
         backImage: "assets/t_shirt.png",
-        title: "T-Shirt For Man"
+        title: "Classic Tee Unisex",
+        shirtPrice: 15
     ),
-    // CreateNewDesignModel(
-    //     frontImage: "assets/Hoodie.png",
-    //     backImage: "assets/Hoodie.png",
-    //     title: "Hoodie"
-    // ),
-    CreateNewDesignModel(
+    ShirtModel(
         frontImage: "assets/Crewneck.png",
         backImage: "assets/Crewneck.png",
-        title: "Crewneck"
+        title: "Crewneck",
+        shirtPrice: 25
     ),
-    CreateNewDesignModel(
+    ShirtModel(
         frontImage: "assets/Long-Sleeve.png",
         backImage: "assets/Long-Sleeve.png",
-        title: "Adult Long-Sleeve"
+        title: "Adult Long-Sleeve",
+        shirtPrice: 10.5
     ),
-    CreateNewDesignModel(
+    ShirtModel(
         frontImage: "assets/Women's-Tee.png",
         backImage: "assets/Women's-Tee.png",
-        title: "T-Shirt For Women"
+        title: "T-Shirt For Women",
+        shirtPrice: 25
     ),
   ];
 
@@ -148,11 +157,9 @@ class HomeController extends GetxController {
           query.docs.map((item) =>
               NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
-
   Stream<List<NewShirtDesignModel>> getPopularDesignData() =>
       collectionReference.orderBy("popularityCount", descending: true,).snapshots()
           .map((query) =>
           query.docs.map((item) =>
               NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
-
 }

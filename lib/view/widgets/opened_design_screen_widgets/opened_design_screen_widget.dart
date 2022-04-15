@@ -48,27 +48,40 @@ Widget zoomAndChangeImageSideWidgetOfOpenedDesign() {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 230.w,
-              height: 100.h,
-              decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(70.r),
-                boxShadow: const <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 2.0,
-                    offset: Offset(0, 2,),
-                  )
-                ],
-              ),
-              child: Center(
-                child: smallText(
-                  color: redColor,
-                  title: "\$14.99" ,
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            GetBuilder<HomeController>(
+              init: HomeController(),
+              builder: (controller) {
+                return Container(
+                  width: 230.w,
+                  height: 100.h,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(70.r),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 2.0,
+                        offset: Offset(0, 2,),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      smallText(
+                        color: redColor,
+                        title: "\$" ,
+                        textAlign: TextAlign.center,
+                      ),
+                      smallText(
+                        color: redColor,
+                        title: "${controller.newDesignPriceForOD}" ,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              }
             ),
             SizedBox(height: 10.h,)
           ],

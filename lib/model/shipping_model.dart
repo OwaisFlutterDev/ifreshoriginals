@@ -5,7 +5,8 @@ class SizeModel{
 
 class QuantityModel{
   int?  quantity;
-  QuantityModel({this.quantity});
+  int? discount;
+  QuantityModel({this.quantity, this.discount});
 }
 
 class  DiscountModel{

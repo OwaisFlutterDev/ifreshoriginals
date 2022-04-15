@@ -26,6 +26,7 @@ class NewShirtDesignModel {
     this.designName,
     this.shirtType,
     this.popularityCount,
+    this.totalPrice
   });
   String? id;
   String? userId;
@@ -44,6 +45,7 @@ class NewShirtDesignModel {
   List<TextModel>? textsOfFirstImage;
   List<TextModel>? textsOfSecondImage;
   int? popularityCount;
+  double?  totalPrice;
 
   NewShirtDesignModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     id = doc["id"];
@@ -63,6 +65,7 @@ class NewShirtDesignModel {
     textsOfFirstImage = _textOfFirstImageItems(doc["textsOfFirstImage"] ?? []);
     textsOfSecondImage =   _textOfSecondImageItems(doc["textsOfSecondImage"] ?? []);
     frontImageOfDesign = doc["frontImageOfDesign"];
+    totalPrice = doc["totalPrice"];
 
   }
   // ------= -=-== convert text of first image ==-=- =------
@@ -134,14 +137,15 @@ class NewShirtDesignModel {
 }
 
 // ---------------------====================================-------------------------
-//    ------------------ ==== Create New Design Model  ==== ------------------
+//    ------------------ ==== shirt Model  ==== ------------------
 // ---------------------====================================-------------------------
-class CreateNewDesignModel{
+class ShirtModel{
   String? frontImage;
   String? backImage;
   String? title;
+  double? shirtPrice;
 
-  CreateNewDesignModel({this.frontImage,this.title, this.backImage});
+  ShirtModel({this.frontImage,this.title, this.backImage,this.shirtPrice});
 }
 
 
@@ -180,6 +184,7 @@ class TextModel {
   FontStyle? fontStyle;
   TextAlign? textAlign;
   String? fontFamily;
+  double? textPrice;
 
   TextModel(
       {
@@ -192,6 +197,7 @@ class TextModel {
         this.top,
         this.text,
         this.left,
+        this.textPrice
       });
 
   TextModel.fromMap(Map<String, dynamic> data){
@@ -227,6 +233,7 @@ class TextModel {
     fontFamily = data["fontFamily"];
     color = data["color"];
     text = data["text"];
+    textPrice = data["textPrice"];
   }
 
 }
@@ -241,14 +248,15 @@ class StickerModel {
   double? left;
   double? top;
   String? title;
-
-  StickerModel({this.sticker,this.title,this.top,this.left});
+  double? stickerPrice;
+  StickerModel({this.sticker,this.title,this.top,this.left,this.stickerPrice});
 
   StickerModel.fromMap(Map<String, dynamic> data){
     sticker = data["sticker"];
     left = data["left"];
     top = data["top"];
     title = data["title"];
+    stickerPrice = data["stickerPrice"];
   }
 
 }
@@ -262,9 +270,10 @@ class ImageFromGalleryAndCamModel {
   double? left;
   double? top;
   String? imageUrl;
+  double? imagePrice;
 
   ImageFromGalleryAndCamModel({
-    this.image,
+    this.image, this.imagePrice,
     this.top,this.left,this.imageUrl});
 
   ImageFromGalleryAndCamModel.fromMap(Map<String, dynamic> data){
@@ -272,6 +281,7 @@ class ImageFromGalleryAndCamModel {
     left = data["left"];
     top = data["top"];
     imageUrl = data["imageUrl"];
+    imagePrice = data["imagePrice"];
   }
 
 }

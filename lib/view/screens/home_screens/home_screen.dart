@@ -64,7 +64,11 @@ class HomeScreen extends StatelessWidget {
                                       homeController.selectedFrontImage =  homeController.createNewDesignList[index].frontImage;
                                       homeController.selectedBackImage =   homeController.createNewDesignList[index].backImage;
                                       homeController.selectedShirtName =   homeController.createNewDesignList[index].title;
-                                      controller.update();
+                                      homeController.newDesignPrice = 0;
+                                      homeController.update();
+                                      homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.createNewDesignList[index].shirtPrice!;
+                                      homeController.shirtPrice = homeController.createNewDesignList[index].shirtPrice!;
+                                      homeController.update();
                                       Get.to(() => CreateNewDesignScreen());
                                     },
                                     image: "${homeController.createNewDesignList[index].frontImage}",
@@ -112,6 +116,11 @@ class HomeScreen extends StatelessWidget {
                                            homeController.selectedShirtTypeOfOpenedDesign =   homeController.savedDesignDataList[index].shirtType;
                                            homeController.update();
 
+                                           //-=-= payment details =-=-
+                                           homeController.newDesignPriceForOD = 0;
+                                           homeController.update();
+                                           homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.savedDesignDataList[index].totalPrice!;
+                                           homeController.update();
 
                                            openedDesignController.selectedColorsForShirt = homeController.savedDesignDataList[index].firstShirtColor;
                                            openedDesignController.hexToColor();

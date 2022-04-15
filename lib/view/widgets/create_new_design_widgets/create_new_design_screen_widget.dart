@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
@@ -74,33 +75,45 @@ Widget zoomAndChangeImageSideWidget() {
           ),
         ),
         SizedBox(width: 18.w,),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: 230.w,
-              height: 100.h,
-              decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(70.r),
-                boxShadow: const <BoxShadow>[
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 2.0,
-                    offset: Offset(0, 2,),
-                  )
-                ],
-              ),
-              child: Center(
-                child: smallText(
-                  color: redColor,
-                  title: "\$14.99" ,
-                  textAlign: TextAlign.center,
+        GetBuilder<HomeController>(
+          builder: (controller) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 230.w,
+                  height: 100.h,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    borderRadius: BorderRadius.circular(70.r),
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 2.0,
+                        offset: Offset(0, 2,),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      smallText(
+                        color: redColor,
+                        title: "\$" ,
+                        textAlign: TextAlign.center,
+                      ),
+                      smallText(
+                        color: redColor,
+                        title: "${controller.newDesignPrice}" ,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(height: 10.h,)
-          ],
+                SizedBox(height: 10.h,)
+              ],
+            );
+          }
         ),
       ],
       ),

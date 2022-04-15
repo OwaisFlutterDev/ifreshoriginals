@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/cart_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
@@ -10,6 +12,7 @@ import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/opened_design_screen_widgets/opened_design_screen_widget.dart';
+import 'package:ifreshoriginals_userapp/view/widgets/selected_size_and_quantity_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:screenshot/screenshot.dart';
 
@@ -17,15 +20,15 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
   SelectSizeAndQuantityScreen({Key? key}) : super(key: key);
 
   // final ShippingController _shippingController = Get.put(ShippingController());
+  final  HomeController homeController = Get.find<HomeController>();
   final FunctionalityOnImageController functionalityOnImageController = Get.put(FunctionalityOnImageController());
-  final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
-
+  final CartController cartController = Get.put(CartController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(
-          title: "T-Shirt Design",
+          title: "${homeController.selectedShirtName}",
           leadingWidget: InkWell(
             onTap: () => Get.back(),
             child: Row(
@@ -56,9 +59,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                 headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
                 InkWell(
                   onTap: () {
-                    functionalityOnImageController.createDesignBool == true ?
-                    functionalityOnImageController.saveImage(context) :
-                    functionalityOnOpenedDesignController.saveImageOfOD(context) ;
+                    functionalityOnImageController.saveImage(context);
                   },
                 child: Row(
                   children: [
@@ -91,7 +92,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
             // -----------------------------------------------------
             // -----=--======= Both Shirt Image (Front And Back) ========--=-----
             // -----------------------------------------------------
-            functionalityOnImageController.createDesignBool == true ? GetBuilder<FunctionalityOnImageController>(
+            GetBuilder<FunctionalityOnImageController>(
                 init: FunctionalityOnImageController(),
                 builder: (controller) {
                   return Screenshot(
@@ -141,58 +142,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                     ),
                   );
                 }
-            ) :
-            GetBuilder<FunctionalityOnOpenedDesignController>(
-                init: FunctionalityOnOpenedDesignController(),
-                builder: (controller) {
-                  return Screenshot(
-                    controller: controller.screenshotControllerForSelectedSAQOfOD,
-                    child: InteractiveViewer(
-                      transformationController: controller.interactiveViewerTwoControllerOfOD,
-                      child:  Container(
-                        height: 340,
-                        width: 1.sw,
-                        color: Color(0xffE2E2E2),
-                        child: Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 40.w,vertical: 20.h),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 250,
-                                width: 570.w,
-                                decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    // border: Border.all(color: blackColor,width: 1),
-                                    image: DecorationImage(image: MemoryImage(controller.frontByteImageOfOD!.buffer.asUint8List()),
-                                      fit: BoxFit.fill,
-                                    )
-                                ),
-
-                              ),
-
-                              Padding(
-                                padding:  EdgeInsets.only(top: 120),
-                                child: Container(
-                                  height: 160,
-                                  width: 400.w,
-                                  decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      // border: Border.all(color: blackColor,width: 1),
-                                      image: DecorationImage(image: MemoryImage(controller.backByteImageOfOD!.buffer.asUint8List()),
-                                        fit: BoxFit.fill,
-                                      )
-                                  ),
-
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }
-            ),
+            ) ,
 
             // -----------------------------------------------------
             // -----=--======= below image section ========--=-----
@@ -211,9 +161,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                         children: [
                         InkWell(
                           onTap: (){
-                            functionalityOnImageController.createDesignBool == true ?
-                            functionalityOnImageController.zoomInForSelectedSizeAndQua() :
-                            functionalityOnOpenedDesignController.zoomInForSelectedSizeAndQuaOfOD() ;
+                            functionalityOnImageController.zoomInForSelectedSizeAndQua() ;
                           },
                           child: imageWidget(
                             image: "assets/Asset 39.png",
@@ -225,9 +173,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                         SizedBox(width: 7.w,),
                         InkWell(
                           onTap: (){
-                            functionalityOnImageController.createDesignBool == true ?
-                            functionalityOnImageController.zoomOutForSelectedSizeAndQua() :
-                            functionalityOnOpenedDesignController.zoomOutForSelectedSizeAndQuaOfOD();
+                            functionalityOnImageController.zoomOutForSelectedSizeAndQua();
                           },
                           child: imageWidget(
                             image: "assets/Asset 40.png",
@@ -340,6 +286,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                                       onTap: () {
                                         controller.selectedQuantityIndex = index;
                                         controller.selectedQuantity = controller.selectQuantityList[index].quantity!;
+                                        controller.discount =  controller.selectQuantityList[index].discount!;
                                         print( controller.selectedQuantity);
                                         controller.update();
                                       },
@@ -388,6 +335,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                         ],
                       ),
                       SizedBox(height: 40.h,),
+                      // ------------ ==== discount ==== -----------
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -556,7 +504,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                           onTap: (){
                                functionalityOnImageController.createDesignBool = false;
                                functionalityOnImageController.update();
-                               Get.to(() => CartScreen());
+                               cartController.addCartData();
                           },
                           buttonColor: redColor,
 
@@ -573,30 +521,6 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
     );
   }
 
-  Container discountWidget({String? discount, String? quantity,
-    BoxDecoration? boxDecoration , Color? textColorForQuantity, Color? textColorForDiscount}) {
-    return Container(
-                                  height: 200.h,
-                                  width: 140.w,
-                                  decoration: boxDecoration,
-                                  child:  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      smallText(
-                                          color:  textColorForQuantity,
-                                          fontWeight: FontWeight.w500,
-                                          title: quantity
-                                      ),
-                                      SizedBox(height: 30.h,),
-                                      largeText(
-                                          color:  textColorForDiscount,
-                                          title:"$discount%",
-                                          fontWeight: FontWeight.w600
-                                      ),
-                                    ],
-                                  )
-                              );
-  }
 
 
 }

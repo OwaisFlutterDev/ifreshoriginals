@@ -84,6 +84,12 @@ class SavedDesignsScreen extends StatelessWidget{
                             openedDesignController.selectedColorsForShirtSecondImage = homeController.savedDesignAllDataList[index].secondShirtColor;
                             openedDesignController.hexToColorForSecondShort();
 
+                            //-=-= payment details =-=-
+                            homeController.newDesignPriceForOD = 0;
+                            homeController.update();
+                            homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.savedDesignDataList[index].totalPrice!;
+                            homeController.update();
+
                             // --------= -=-=-= clear lists =-=-=- =--------
                             openedDesignController.stickerListFirstImageOfOD.clear();
                             openedDesignController.stickerListSecondImageOfOD.clear();

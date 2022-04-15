@@ -172,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                               //-------------------------------------------------
                               //     ------ ========== Saved Designs section ======== ------
                               //-------------------------------------------------
-                              SizedBox(height: 90.h,),
+                              // SizedBox(height: 90.h,),
                               // -- == section title == ---
                            Obx(
                                 () => homeController.savedDesignDataList.isNotEmpty ? sectionTitleWidget(

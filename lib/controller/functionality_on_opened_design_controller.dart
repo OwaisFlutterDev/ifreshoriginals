@@ -1,7 +1,7 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/select_size_and_quantity_screen_for_OD.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:get/get.dart';
 import 'package:flutter_flip_card/flutter_flip_card.dart';
@@ -129,7 +129,7 @@ class FunctionalityOnOpenedDesignController extends GetxController{
 
       update();
       // print("after update");
-      Get.to(() => SelectSizeAndQuantityScreen());
+      Get.to(() => SelectSizeAndQuantityScreenForOD());
     }
     else if (flipCarControllerOfOD.state!.isFront == false) {
 

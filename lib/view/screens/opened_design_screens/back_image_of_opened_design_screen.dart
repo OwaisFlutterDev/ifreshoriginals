@@ -149,6 +149,7 @@ Widget backImageOfOpenedDesign(context) {
                         child: GestureDetector(
                           onDoubleTap: () {
                             controller.removeStickerIndexSecondImageOfOD  = i;
+                            // controller.subStickerPrice =  controller.stickerListSecondImageOfOD[i].stickerPrice!;
                             controller.update();
                             controller.removeStickerSecondImageOfOD();
                           },

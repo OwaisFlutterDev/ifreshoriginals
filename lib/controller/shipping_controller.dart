@@ -21,17 +21,17 @@ class ShippingController extends GetxController {
 
   int? selectedQuantityIndex ;
   int selectedQuantity = 0 ;
+  int discount = 0;
 
   List<QuantityModel> selectQuantityList = [
-    QuantityModel(quantity: 1),
-    QuantityModel(quantity: 2),
-    QuantityModel(quantity: 3),
-    QuantityModel(quantity: 4),
-    QuantityModel(quantity: 5),
-    QuantityModel(quantity: 10),
-    QuantityModel(quantity: 15),
-    QuantityModel(quantity: 20),
-    QuantityModel(quantity: 25),
+    QuantityModel(quantity: 1,discount: 0),
+    QuantityModel(quantity: 2,discount: 0),
+    QuantityModel(quantity: 3,discount: 4),
+    QuantityModel(quantity: 4,discount: 4),
+    QuantityModel(quantity: 5,discount: 4),
+    QuantityModel(quantity: 10,discount: 8),
+    QuantityModel(quantity: 15,discount: 12),
+    QuantityModel(quantity: 20,discount: 16),
+    QuantityModel(quantity: 25,discount: 20),
   ];
-
 }
