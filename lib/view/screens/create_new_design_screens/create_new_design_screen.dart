@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/create_new_design_screens/front_image_of_new_design.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
@@ -35,7 +36,7 @@ class CreateNewDesignScreen extends StatelessWidget{
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(
-        title: "${homeController.selectedShirtName}",
+        title: "${homeController.selectedDesignType}",
           leadingWidget: InkWell(
             onTap: () {
               Get.back();
@@ -192,20 +193,27 @@ class CreateNewDesignScreen extends StatelessWidget{
                         // -----------------------------------------------------
                         // -----=--======= Proceed Button ========--=-----
                         // -----------------------------------------------------
-                        Padding(
-                              padding:  EdgeInsets.symmetric(horizontal: 20.w),
-                              child: commonButton(
-                                buttonName: "Proceed",
-                                textColor: whiteColor,
-                                onTap: (){
-                                  functionalityOnImageController.createDesignBool = true;
-                                  functionalityOnImageController.update();
-                                  functionalityOnImageController.getByteImages(createNewDesignController);
-                                  },
-                                buttonColor: redColor,
-                                buttonWidth: 1.sw
-                              ),
-                            )
+                        GetBuilder<ShippingController>(
+                          init: ShippingController() ,
+                          builder: (controller) {
+                            return Padding(
+                                  padding:  EdgeInsets.symmetric(horizontal: 20.w),
+                                  child: commonButton(
+                                    buttonName: "Proceed",
+                                    textColor: whiteColor,
+                                    onTap: (){
+                                      controller.calculationFun();
+                                      functionalityOnImageController.createDesignBool = true;
+                                      functionalityOnImageController.update();
+                                      functionalityOnImageController.getByteImages(createNewDesignController);
+
+                                      },
+                                    buttonColor: redColor,
+                                    buttonWidth: 1.sw
+                                  ),
+                                );
+                          }
+                        )
                       ],
                     ),
                   ),

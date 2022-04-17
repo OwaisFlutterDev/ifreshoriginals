@@ -9,9 +9,9 @@ import '../../widgets/common_widgets.dart';
 import '../../widgets/home_screen_widget.dart';
 
 class BottomNavigationBarScreen extends StatelessWidget {
-  final controller=Get.put(BottomNavigationBarController());
     BottomNavigationBarScreen({Key? key}) : super(key: key);
 
+    final BottomNavigationBarController controller = Get.put(BottomNavigationBarController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

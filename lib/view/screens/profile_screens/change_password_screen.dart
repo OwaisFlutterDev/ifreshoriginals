@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/constant/form_validator_constant.dart';
-import 'package:ifreshoriginals_userapp/controller/form_validation_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_profile_controller.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';

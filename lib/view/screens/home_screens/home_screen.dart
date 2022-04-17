@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                                     onTap: () {
                                       homeController.selectedFrontImage =  homeController.createNewDesignList[index].frontImage;
                                       homeController.selectedBackImage =   homeController.createNewDesignList[index].backImage;
-                                      homeController.selectedShirtName =   homeController.createNewDesignList[index].title;
+                                      homeController.selectedDesignType =   homeController.createNewDesignList[index].title;
                                       homeController.newDesignPrice = 0;
                                       homeController.update();
                                       homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.createNewDesignList[index].shirtPrice!;

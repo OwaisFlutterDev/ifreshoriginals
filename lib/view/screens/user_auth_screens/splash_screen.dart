@@ -23,8 +23,6 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-
-
     controller.getUserData().whenComplete(() async {
       Timer(Duration(seconds: 4), () async {
         controller.checkUser != null ? await profileController.getUserData() : null ;

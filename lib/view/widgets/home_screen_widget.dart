@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/cart_screen.dart';
 import '../../constant/constants.dart';
 import 'common_widgets.dart';
 import 'package:get/get.dart';
 
+// final CartController cartController = Get.put(CartController());
 
 // ---- =======  Drawer Button Widget ====== ------
 Widget drawerButtonWidget({void Function()? onTap}) {
@@ -26,18 +28,48 @@ Widget drawerButtonWidget({void Function()? onTap}) {
 }
 
 // ---- =======  Cart Button Widget  ====== ------
-InkWell cartButtonWidget() {
-  return InkWell(
-    onTap: () => Get.to(() => CartScreen()),
-    child: Container(
-      height: 90.h,
-      width: 90.w,
-      color: Colors.transparent,
-      child: Image(image: AssetImage("assets/Asset 23.png"),
-        color: blackColor, fit: BoxFit.scaleDown,),
-    ),
+// Widget cartButtonWidget() {
+//   return  InkWell(
+//     onTap: () => Get.to(() => CartScreen()),
+//     child: Container(
+//       height: 90.h,
+//       width: 90.w,
+//       color: Colors.transparent,
+//       child: Image(image: AssetImage("assets/Asset 23.png"),
+//         color: blackColor, fit: BoxFit.scaleDown,),
+//     ),
+//   );
+// }
+Widget cartButtonWidget() {
+  return  GetBuilder<CartController>(
+    init: CartController(),
+    builder: (controller) {
+      return controller.cartList.value.cart!.isNotEmpty ? InkWell(
+        onTap: () {
+          controller.makeSum();
+          Get.to(() => CartScreen());
+          } ,
+        child: Container(
+          height: 90.h,
+          width: 90.w,
+          color: Colors.transparent,
+          child: Image(image: AssetImage("assets/Asset 67.png"),
+            color: redColor, fit: BoxFit.scaleDown,),
+        ),
+      ) :  InkWell(
+        onTap: () => Get.to(() => CartScreen()),
+        child: Container(
+          height: 90.h,
+          width: 90.w,
+          color: Colors.transparent,
+          child: Image(image: AssetImage("assets/Asset 23.png"),
+            color: blackColor, fit: BoxFit.scaleDown,),
+        ),
+      );
+    }
   );
 }
+
 
 // ---- =======  create New Design Widget  ====== ------
 Widget createNewDesignWidget({void Function()? onTap, String? image,String? name}) {

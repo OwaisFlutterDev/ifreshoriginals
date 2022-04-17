@@ -632,9 +632,6 @@ class CreateNewDesignController extends GetxController {
 
     try{
 
-
-      // String? backImageDesignUrl;
-
       // ------ == -- == ---==========  Save Front Image Design In FireStorage  =========----- == -- == -------
       final funcOnImageController = Get.find<FunctionalityOnImageController>();
       String? frontImageDesignUrl;
@@ -796,7 +793,7 @@ class CreateNewDesignController extends GetxController {
         "firstShirtColor": selectedColorsForShirt ?? whiteHexColor.toInt(),
         "secondShirtColor": selectedColorsForShirtSecondImage ?? whiteHexColor.toInt(),
 
-        "shirtType": homeController.selectedShirtName,
+        "shirtType": homeController.selectedDesignType,
         "designName": designNameController.text.toString(),
 
         "currentDateTime": DateTime.now(),

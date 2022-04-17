@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/model/user_profile_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -13,6 +14,8 @@ class UserProfileController extends GetxController {
   //   ----- ========== Global Key ========== -----
   final GlobalKey<FormState> editProfileFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> changeProfileFormKey = GlobalKey<FormState>();
+
+  final CartController cartController  = Get.put(CartController());
 
   //   ----- ========== Text Editing Controller ========== -----
 

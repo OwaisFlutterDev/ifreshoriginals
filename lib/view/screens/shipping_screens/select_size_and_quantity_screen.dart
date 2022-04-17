@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
-import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/cart_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/opened_design_screen_widgets/opened_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/selected_size_and_quantity_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:screenshot/screenshot.dart';
@@ -19,16 +16,16 @@ import 'package:screenshot/screenshot.dart';
 class SelectSizeAndQuantityScreen extends StatelessWidget{
   SelectSizeAndQuantityScreen({Key? key}) : super(key: key);
 
-  // final ShippingController _shippingController = Get.put(ShippingController());
+  final ShippingController _shippingController = Get.put(ShippingController());
   final  HomeController homeController = Get.find<HomeController>();
   final FunctionalityOnImageController functionalityOnImageController = Get.put(FunctionalityOnImageController());
-  final CartController cartController = Get.put(CartController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgColor,
       appBar: appBar(
-          title: "${homeController.selectedShirtName}",
+          title: "${homeController.selectedDesignType}",
           leadingWidget: InkWell(
             onTap: () => Get.back(),
             child: Row(
@@ -287,6 +284,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                                         controller.selectedQuantityIndex = index;
                                         controller.selectedQuantity = controller.selectQuantityList[index].quantity!;
                                         controller.discount =  controller.selectQuantityList[index].discount!;
+                                        controller.calculationFun();
                                         print( controller.selectedQuantity);
                                         controller.update();
                                       },
@@ -342,9 +340,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                           discountWidget(
                             quantity: "0-2",
                             discount: "0",
-                            textColorForDiscount: controller.selectedQuantity == 0 || controller.selectedQuantity < 3   ? redColor : blackColor,
-                            textColorForQuantity: controller.selectedQuantity == 0 || controller.selectedQuantity < 3  ? redColor : Colors.black54,
-                            boxDecoration: controller.selectedQuantity == 0 || controller.selectedQuantity < 3 ?  BoxDecoration(
+                            textColorForDiscount: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3   ? redColor : blackColor,
+                            textColorForQuantity: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3  ? redColor : Colors.black54,
+                            boxDecoration: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3 ?  BoxDecoration(
                               color:  whiteColor,
                               borderRadius: BorderRadius.circular(15.r),
                               boxShadow: const <BoxShadow>[
@@ -361,9 +359,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                           discountWidget(
                             quantity: "3-5",
                             discount: "-4",
-                            textColorForDiscount: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 )  ? redColor : blackColor,
-                            textColorForQuantity: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 )  ? redColor : Colors.black54,
-                            boxDecoration: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 ) ?  BoxDecoration(
+                            textColorForDiscount: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 )  ? redColor : blackColor,
+                            textColorForQuantity: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 )  ? redColor : Colors.black54,
+                            boxDecoration: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 ) ?  BoxDecoration(
                               color:  whiteColor,
                               borderRadius: BorderRadius.circular(15.r),
                               boxShadow: const <BoxShadow>[
@@ -470,7 +468,7 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                               fontWeight: FontWeight.w500
                           ),
                           smallText(
-                              title: "\$10.00",
+                              title: "\$${controller.discountPer}",
                               color: Colors.black87,
                               fontWeight: FontWeight.w500
                           ),
@@ -486,29 +484,35 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                               fontWeight: FontWeight.w700
                           ),
                           largeText(
-                              title: "\$23.23",
+                              title: "\$${controller.totalPrice}",
                               color: Colors.black,
                               fontWeight: FontWeight.w700
                           ),
                         ],
                       ),
 
-
                       // -----------------------------------------------------
                       // -----=--======= Add To Cart Button ========--=-----
                       // -----------------------------------------------------
                       SizedBox(height: 60.h,),
-                      commonButton(
-                          buttonName: "Add To Cart",
-                          textColor: whiteColor,
-                          onTap: (){
-                               functionalityOnImageController.createDesignBool = false;
-                               functionalityOnImageController.update();
-                               cartController.addCartData();
-                          },
-                          buttonColor: redColor,
+                      GetBuilder<CartController>(
+                        init: CartController(),
+                        builder: (controller) {
+                          return controller.addToCartBool == false ? commonButton(
+                              buttonName: "Add To Cart",
+                              textColor: whiteColor,
+                              onTap: (){
 
-                          buttonWidth: 1.sw
+                                   controller.addCartData();
+                                   functionalityOnImageController.createDesignBool = false;
+                                   functionalityOnImageController.update();
+
+                              },
+                              buttonColor: redColor,
+
+                              buttonWidth: 1.sw
+                          ) : CircularProgressIndicator();
+                        }
                       )
                     ],
                   ),

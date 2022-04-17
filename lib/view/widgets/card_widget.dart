@@ -50,7 +50,23 @@ Widget cartItemWidget({String? image, void Function()? editItem,void Function()?
                     //       offset: Offset(1, 2)
                     //   )
                     // ],
-                    image: DecorationImage(image: NetworkImage(image!),fit: BoxFit.scaleDown,)
+                    // image: DecorationImage(image: NetworkImage(image!),fit: BoxFit.fill,)
+                ),
+                child: Container(
+                  height: 280.h,
+                  width: 250.w,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      // shape: BoxShape.circle,
+                      // boxShadow: const <BoxShadow>[
+                      //   BoxShadow(
+                      //       color: Colors.black12,
+                      //       blurRadius: 5.0,
+                      //       offset: Offset(1, 2)
+                      //   )
+                      // ],
+                      image: DecorationImage(image: NetworkImage(image!),fit: BoxFit.fill,)
+                  ),
                 ),
               ),
             ),
@@ -113,14 +129,14 @@ Widget cartItemWidget({String? image, void Function()? editItem,void Function()?
                 Wrap(
                     children: [
                       commonText(
-                        title: "Price: \$ ",
+                        title: "Price:  \$",
                         textStyle: TextStyle(
                             color: blackColor,
                             fontSize: 38.sp,
                             fontWeight: FontWeight.w600
                         ),
                       ),
-                      SizedBox(width: 24.w,),
+                      // SizedBox(width: 24.w,),
                       commonText(
                         title: price,
                         textStyle: TextStyle(
@@ -236,3 +252,7 @@ Widget alertDialogWidget() {
 
           ]));
 }
+
+// AlertDialog shirtColorAlertDialogWidgetSecondImageOfOd() {
+//   return ;
+// }

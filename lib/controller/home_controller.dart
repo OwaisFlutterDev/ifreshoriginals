@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 
 import '../model/create_new_design_models.dart';
 import 'opened_design_controller.dart';
@@ -8,14 +9,16 @@ import 'opened_design_controller.dart';
 
 class HomeController extends GetxController {
 
+  final CartController cartController = Get.put(CartController(),permanent: true);
+
   // ------------------------------------------------------------------------------
   // ---=-=-=========== -=-=        create new design price =-=- ==========-=-=----
   //-------------------------------------------------------------------------------
-  double? newDesignPrice = 0;
-  double? shirtPrice = 0;
+  num? newDesignPrice = 0;
+  num? shirtPrice = 0;
 
-  double? newDesignPriceForOD = 0;
-  double? shirtPriceForOD = 0;
+  num? newDesignPriceForOD = 0;
+  num? shirtPriceForOD = 0;
 
 
   // -====-==-=====------------------------------------------------==-===-============
@@ -57,7 +60,8 @@ class HomeController extends GetxController {
   // ----------------------------=== ================================================== ===------------------------
   String? selectedFrontImage;
   String? selectedBackImage;
-  String? selectedShirtName;
+  String? selectedDesignType;
+
 
   String? selectedFrontImageOfOpenedDesign;
   String? selectedBackImageOfOpenedDesign;

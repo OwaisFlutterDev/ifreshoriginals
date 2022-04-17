@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 
 import '../model/shipping_model.dart';
 
@@ -8,9 +9,6 @@ class ShippingController extends GetxController {
   bool isCheckedTwo = false;
   bool isCheckedThree = false;
 
-  int? selectedSizedIndex ;
-  String? selectedSize ;
-
   List<SizeModel> selectSizeList = [
     SizeModel(size: "S"),
     SizeModel(size: "M"),
@@ -19,9 +17,27 @@ class ShippingController extends GetxController {
     SizeModel(size: "2XL"),
   ];
 
-  int? selectedQuantityIndex ;
-  int selectedQuantity = 0 ;
-  int discount = 0;
+  // --=-=-=-============= Calculation ==============-=-=-=-=--
+  int? selectedSizedIndex = 0 ;
+  String? selectedSize = "S" ;
+
+  int? selectedQuantityIndex = 0;
+  num? selectedQuantity = 1;
+  num? discount = 0;
+
+  num? subTotal = 0;
+  num? discountPer = 0;
+  num? totalPrice = 0;
+
+  calculationFun() {
+    HomeController homeController = Get.find<HomeController>();
+
+    subTotal = homeController.newDesignPrice! * selectedQuantity!;
+    discountPer = subTotal! / 100 * discount! ;
+    totalPrice = subTotal! - discountPer!;
+    print("Total Price $totalPrice");
+    update();
+  }
 
   List<QuantityModel> selectQuantityList = [
     QuantityModel(quantity: 1,discount: 0),

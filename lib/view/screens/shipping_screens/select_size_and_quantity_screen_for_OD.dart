@@ -338,9 +338,9 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                             discountWidget(
                               quantity: "0-2",
                               discount: "0",
-                              textColorForDiscount: controller.selectedQuantity == 0 || controller.selectedQuantity < 3   ? redColor : blackColor,
-                              textColorForQuantity: controller.selectedQuantity == 0 || controller.selectedQuantity < 3  ? redColor : Colors.black54,
-                              boxDecoration: controller.selectedQuantity == 0 || controller.selectedQuantity < 3 ?  BoxDecoration(
+                              textColorForDiscount: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3   ? redColor : blackColor,
+                              textColorForQuantity: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3  ? redColor : Colors.black54,
+                              boxDecoration: controller.selectedQuantity == 0 || controller.selectedQuantity! < 3 ?  BoxDecoration(
                                 color:  whiteColor,
                                 borderRadius: BorderRadius.circular(15.r),
                                 boxShadow: const <BoxShadow>[
@@ -357,9 +357,9 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                             discountWidget(
                               quantity: "3-5",
                               discount: "-4",
-                              textColorForDiscount: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 )  ? redColor : blackColor,
-                              textColorForQuantity: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 )  ? redColor : Colors.black54,
-                              boxDecoration: controller.selectedQuantity == 3 || (controller.selectedQuantity > 3 && controller.selectedQuantity < 6 ) ?  BoxDecoration(
+                              textColorForDiscount: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 )  ? redColor : blackColor,
+                              textColorForQuantity: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 )  ? redColor : Colors.black54,
+                              boxDecoration: controller.selectedQuantity == 3 || (controller.selectedQuantity! > 3 && controller.selectedQuantity! < 6 ) ?  BoxDecoration(
                                 color:  whiteColor,
                                 borderRadius: BorderRadius.circular(15.r),
                                 boxShadow: const <BoxShadow>[
