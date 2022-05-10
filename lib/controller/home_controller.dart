@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
-
 import '../model/create_new_design_models.dart';
-import 'opened_design_controller.dart';
 
 
 class HomeController extends GetxController {
@@ -17,8 +15,8 @@ class HomeController extends GetxController {
   num? newDesignPrice = 0;
   num? shirtPrice = 0;
 
-  num? newDesignPriceForOD = 0;
-  num? shirtPriceForOD = 0;
+  // num? newDesignPriceForOD = 0;
+  // num? shirtPriceForOD = 0;
 
 
   // -====-==-=====------------------------------------------------==-===-============
@@ -27,7 +25,7 @@ class HomeController extends GetxController {
 
   RxList<NewShirtDesignModel> allDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
   RxList<NewShirtDesignModel> allDesignDataList = RxList<NewShirtDesignModel>([]);
-
+  // 127.0.0.1:59915
   RxList<NewShirtDesignModel> featuredDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
   RxList<NewShirtDesignModel> featuredDesignDataList = RxList<NewShirtDesignModel>([]);
 
@@ -40,6 +38,8 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    // InAppPayments.setSquareApplicationId('sandbox-sq0idb-DmyyChN1jRRS7sq8M3e_XQ');
 
     savedDesignDataList.bindStream(getSavedDesignData());
     savedDesignAllDataList.bindStream(getAllSavedDesignData());

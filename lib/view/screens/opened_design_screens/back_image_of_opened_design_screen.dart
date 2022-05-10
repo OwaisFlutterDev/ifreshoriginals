@@ -19,8 +19,8 @@ Widget backImageOfOpenedDesign(context) {
         return RepaintBoundary(
           key: functionalityOnImageController.backGlobalKeyOfOD,
           child: Container(
-            height: 280,
-            width: 700.w,
+            height: 360,
+            width: 940.w,
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
@@ -103,22 +103,37 @@ Widget backImageOfOpenedDesign(context) {
                               // controller.textList[i].top = off.dy - 159;
                               // controller.textList[i].left = off.dx - 60;
 
-                              if(off.dy > 300 ){
-                                controller.textListForSecondImageOfOd[i].top = 160;
+                              if(off.dy > 400 ){
+                                controller.textListForSecondImageOfOd[i].top = 243;
                                 // controller.update();
                               }else if(off.dy < 230){
-                                controller.textListForSecondImageOfOd[i].top = 70;
+                                controller.textListForSecondImageOfOd[i].top = 80;
                                 // controller.update();
                               }else{
                                 controller.textListForSecondImageOfOd[i].top =  off.dy-159;
                                 // controller.update();
                               }
 
-                              if(off.dx > 160 ){
-                                controller.textListForSecondImageOfOd[i].left = 105;
-                                // controller.update();
+                              if(
+                              controller.textListForSecondImageOfOd[i].fontSize! >= 10 ? off.dx > 235 :
+                              controller.textListForSecondImageOfOd[i].fontSize! >= 20 ? off.dx > 190 :
+                              controller.textListForSecondImageOfOd[i].fontSize! >= 30 ? off.dx > 160 :
+                              controller.textListForSecondImageOfOd[i].fontSize! >= 40 ? off.dx > 125 :
+                              controller.textListForSecondImageOfOd[i].fontSize! >= 50 ? off.dx > 105 :
+                              off.dx > 270
+                              )
+                              {
+                                controller.textListForSecondImageOfOd[i].fontSize! >= 55 ?  controller.textListForSecondImageOfOd[i].left = 75 :
+                                controller.textListForSecondImageOfOd[i].fontSize! >= 40 ?  controller.textListForSecondImageOfOd[i].left = 100 :
+                                controller.textListForSecondImageOfOd[i].fontSize! >= 30 ?  controller.textListForSecondImageOfOd[i].left = 142 :
+                                controller.textListForSecondImageOfOd[i].fontSize! >= 20 ?  controller.textListForSecondImageOfOd[i].left = 155 :
+                                controller.textListForSecondImageOfOd[i].fontSize! >= 10 ?  controller.textListForSecondImageOfOd[i].left = 175 :
+                                controller.textListForSecondImageOfOd[i].left = 200;
+                                // controller.imageList[i].left = 160;
+                                print("${  controller.textListForSecondImageOfOd[i].fontSize!}");
+
                               }else if(off.dx < 140){
-                                controller.textListForSecondImageOfOd[i].left = 68;
+                                controller.textListForSecondImageOfOd[i].left = 84;
                                 // controller.update();
                               }else{
                                 controller.textListForSecondImageOfOd[i].left =  off.dx-60;
@@ -153,19 +168,24 @@ Widget backImageOfOpenedDesign(context) {
                             controller.update();
                             controller.removeStickerSecondImageOfOD();
                           },
+                          onTap: (){
+                            controller.stickerSelected = true;
+                            controller.currentIndexOfStickerOfSecImage = i;
+                            controller.update();
+                          },
 
                           child: Draggable(
                             feedback:   Container(
-                              height: 150.w,
-                              width: 150.h,
+                              height: controller.stickerListSecondImageOfOD[i].stickerHeight,
+                              width: controller.stickerListSecondImageOfOD[i].stickerWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image: AssetImage("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
                             ),
 
                             child:   Container(
-                              height: 150.w,
-                              width: 150.h,
+                              height: controller.stickerListSecondImageOfOD[i].stickerHeight,
+                              width: controller.stickerListSecondImageOfOD[i].stickerWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image: AssetImage("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
@@ -180,23 +200,44 @@ Widget backImageOfOpenedDesign(context) {
                               //  controller.stickerList[i].left =  off.dx - 60;
                               // controller.update();
 
-                              if(off.dy > 300 ){
-                                controller.stickerListSecondImageOfOD[i].top = 140;
+                              if(
+                              controller.stickerListSecondImageOfOD[i].stickerHeight! >= 50 ? off.dy > 400 :
+                              controller.stickerListSecondImageOfOD[i].stickerHeight! >= 70 ? off.dy > 360 :
+                              controller.stickerListSecondImageOfOD[i].stickerHeight! >= 90 ? off.dy > 320 :
+                              controller.stickerListSecondImageOfOD[i].stickerHeight! >= 110 ? off.dy > 300 :
+                              off.dy > 450
+                              )
+                              {
+                                controller.stickerListSecondImageOfOD[i].stickerHeight! >= 110 ? controller.stickerListSecondImageOfOD[i].top = 170 :
+                                controller.stickerListSecondImageOfOD[i].stickerHeight! >= 90 ? controller.stickerListSecondImageOfOD[i].top = 190 :
+                                controller.stickerListSecondImageOfOD[i].stickerHeight! >= 70 ? controller.stickerListSecondImageOfOD[i].top = 210 :
+                                controller.stickerListSecondImageOfOD[i].stickerHeight! >= 50 ? controller.stickerListSecondImageOfOD[i].top = 230 :
+                                controller.stickerListSecondImageOfOD[i].top = 256;
                                 // controller.update();
-                              }else if(off.dy < 210){
-                                controller.stickerListSecondImageOfOD[i].top = 70;
+                                print("${controller.stickerListSecondImageOfOD[i].stickerHeight!}");
+                              }else if(off.dy < 230){
+                                controller.stickerListSecondImageOfOD[i].top = 80;
                                 // controller.update();
                               }else{
                                 controller.stickerListSecondImageOfOD[i].top =  off.dy-159;
                                 // controller.update();
                               }
 
-
-                              if(off.dx > 200 ){
-                                controller.stickerListSecondImageOfOD[i].left = 117;
+                              if( controller.stickerListSecondImageOfOD[i].stickerWeight! >= 50 ? off.dx > 235 :
+                              controller.stickerListSecondImageOfOD[i].stickerWeight! >= 70 ? off.dx > 205 :
+                              controller.stickerListSecondImageOfOD[i].stickerWeight! >= 90 ? off.dx > 180 :
+                              controller.stickerListSecondImageOfOD[i].stickerWeight! >= 110 ? off.dx > 145 :
+                              off.dx > 270
+                              )
+                              {
+                                controller.stickerListSecondImageOfOD[i].stickerWeight! >= 110 ?  controller.stickerListSecondImageOfOD[i].left = 116 :
+                                controller.stickerListSecondImageOfOD[i].stickerWeight! >= 90 ?  controller.stickerListSecondImageOfOD[i].left = 140 :
+                                controller.stickerListSecondImageOfOD[i].stickerWeight! >= 70 ?  controller.stickerListSecondImageOfOD[i].left = 155 :
+                                controller.stickerListSecondImageOfOD[i].stickerWeight! >= 50 ?  controller.stickerListSecondImageOfOD[i].left = 176 :
+                                controller.stickerListSecondImageOfOD[i].left = 200;
                                 // controller.update();
                               }else if(off.dx < 140){
-                                controller.stickerListSecondImageOfOD[i].left = 65;
+                                controller.stickerListSecondImageOfOD[i].left = 84;
                                 // controller.update();
                               }else{
                                 controller.stickerListSecondImageOfOD[i].left =  off.dx-60;
@@ -228,17 +269,22 @@ Widget backImageOfOpenedDesign(context) {
                             controller.update();
                             controller.removeImageSecondImageOfOd();
                           },
+                          onTap: (){
+                            controller.imageSelected = true;
+                            controller.currentIndexOfImageOfSI = i;
+                            controller.update();
+                          },
 
                           child: Draggable(
                             feedback:   controller.imageListSecondImageOfOd[i].imageUrl != null ? Container(
-                              height: 200.w,
-                              width: 200.h,
+                              height: controller.imageListSecondImageOfOd[i].imageHeight,
+                              width: controller.imageListSecondImageOfOd[i].imageWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image:  NetworkImage(controller.imageListSecondImageOfOd[i].imageUrl!),fit: BoxFit.fill)),
                             ) :  controller.imageListSecondImageOfOd[i].image != null ?  Container(
-                              height: 200.w,
-                              width: 200.h,
+                              height: controller.imageListSecondImageOfOd[i].imageHeight,
+                              width: controller.imageListSecondImageOfOd[i].imageWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image:  FileImage(controller.imageListSecondImageOfOd[i].image!),fit: BoxFit.fill)),
@@ -246,14 +292,14 @@ Widget backImageOfOpenedDesign(context) {
 
 
                             child: controller.imageListSecondImageOfOd[i].imageUrl != null ? Container(
-                              height: 200.w,
-                              width: 200.h,
+                              height: controller.imageListSecondImageOfOd[i].imageHeight,
+                              width: controller.imageListSecondImageOfOd[i].imageWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image:  NetworkImage(controller.imageListSecondImageOfOd[i].imageUrl!),fit: BoxFit.fill)),
                             ) :  controller.imageListSecondImageOfOd[i].image != null ?  Container(
-                              height: 200.w,
-                              width: 200.h,
+                              height: controller.imageListSecondImageOfOd[i].imageHeight,
+                              width: controller.imageListSecondImageOfOd[i].imageWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   image: DecorationImage(image:  FileImage(controller.imageListSecondImageOfOd[i].image!),fit: BoxFit.fill)),
@@ -266,23 +312,51 @@ Widget backImageOfOpenedDesign(context) {
                               // controller.imageList[i].top = off.dy - 159;
                               // controller.imageList[i].left = off.dx - 60;
 
-                              if(off.dy > 280 ){
-                                controller.imageListSecondImageOfOd[i].top = 110;
+                              if(
+                              controller.imageListSecondImageOfOd[i].imageHeight! >= 50 ? off.dy > 400 :
+                              controller.imageListSecondImageOfOd[i].imageHeight! >= 70 ? off.dy > 360 :
+                              controller.imageListSecondImageOfOd[i].imageHeight! >= 90 ? off.dy > 320 :
+                              controller.imageListSecondImageOfOd[i].imageHeight! >= 110 ? off.dy > 300 :
+                              controller.imageListSecondImageOfOd[i].imageHeight! >= 130 ?off.dy > 280  :
+                              off.dy > 450
+                              )
+                              {
+                                controller.imageListSecondImageOfOd[i].imageHeight! >= 130 ? controller.imageListSecondImageOfOd[i].top = 160 :
+                                controller.imageListSecondImageOfOd[i].imageHeight! >= 110 ? controller.imageListSecondImageOfOd[i].top = 185 :
+                                controller.imageListSecondImageOfOd[i].imageHeight! >= 90 ? controller.imageListSecondImageOfOd[i].top = 210 :
+                                controller.imageListSecondImageOfOd[i].imageHeight! >= 70 ? controller.imageListSecondImageOfOd[i].top = 230 :
+                                controller.imageListSecondImageOfOd[i].imageHeight! >= 50 ? controller.imageListSecondImageOfOd[i].top = 240 :
+                                controller.imageListSecondImageOfOd[i].top = 256;
+                                print("${controller.imageListSecondImageOfOd[i].imageHeight!}");
                                 // controller.update();
                               }else if(off.dy < 240){
-                                controller.imageListSecondImageOfOd[i].top = 75;
+                                controller.imageListSecondImageOfOd[i].top = 80;
                                 // controller.update();
                               }else{
                                 controller.imageListSecondImageOfOd[i].top =  off.dy-159;
                                 // controller.update();
                               }
 
-
-                              if(off.dx > 180 ){
-                                controller.imageListSecondImageOfOd[i].left = 110;
+                              if(
+                              controller.imageListSecondImageOfOd[i].imageWeight! >= 50 ? off.dx > 235 :
+                              controller.imageListSecondImageOfOd[i].imageWeight! >= 70 ? off.dx > 190 :
+                              controller.imageListSecondImageOfOd[i].imageWeight! >= 90 ? off.dx > 160 :
+                              controller.imageListSecondImageOfOd[i].imageWeight! >= 110 ? off.dx > 125 :
+                              controller.imageListSecondImageOfOd[i].imageWeight! >= 130 ? off.dx > 105 :
+                              off.dx > 270
+                              )
+                              {
+                                controller.imageListSecondImageOfOd[i].imageWeight! >= 130 ?  controller.imageListSecondImageOfOd[i].left = 95 :
+                                controller.imageListSecondImageOfOd[i].imageWeight! >= 110 ?  controller.imageListSecondImageOfOd[i].left = 116 :
+                                controller.imageListSecondImageOfOd[i].imageWeight! >= 90 ?  controller.imageListSecondImageOfOd[i].left = 140 :
+                                controller.imageListSecondImageOfOd[i].imageWeight! >= 70 ?  controller.imageListSecondImageOfOd[i].left = 155 :
+                                controller.imageListSecondImageOfOd[i].imageWeight! >= 50 ?  controller.imageListSecondImageOfOd[i].left = 176 :
+                                controller.imageListSecondImageOfOd[i].left = 195;
+                                // controller.imageList[i].left = 160;
+                                print("${  controller.imageListSecondImageOfOd[i].imageWeight!}");
                                 // controller.update();
                               }else if(off.dx < 140){
-                                controller.imageListSecondImageOfOd[i].left = 55;
+                                controller.imageListSecondImageOfOd[i].left = 84;
                                 // controller.update();
                               }else{
                                 controller.imageListSecondImageOfOd[i].left =  off.dx-60;

@@ -99,6 +99,87 @@ class CreateNewDesignController extends GetxController {
     FontFamilyModel(
       name: "Montserrat",
     ),
+    FontFamilyModel(
+      name: "Nanum Gothic",
+    ),
+    FontFamilyModel(
+      name: "PT Serif",
+    ),
+    FontFamilyModel(
+      name: "Open Sans",
+    ),
+    FontFamilyModel(
+      name: "Oswald",
+    ),
+    FontFamilyModel(
+      name: "Noto Sans",
+    ),
+    FontFamilyModel(
+      name: "Noto Serif",
+    ),
+    FontFamilyModel(
+      name: "Nanum Gothic",
+    ),
+    FontFamilyModel(
+      name: "Lora",
+    ),
+    FontFamilyModel(
+      name: "Asul",
+    ),
+    FontFamilyModel(
+      name: "Architects Daughter",
+    ),
+    FontFamilyModel(
+      name: "Azeret Mono",
+    ),
+    FontFamilyModel(
+      name: "Almarai",
+    ),
+    FontFamilyModel(
+      name: "Bahianita",
+    ),FontFamilyModel(
+      name: "Baloo",
+    ),
+    FontFamilyModel(
+      name: "Barriecito",
+    ),
+    FontFamilyModel(
+      name: "Cabin",
+    ),
+    FontFamilyModel(
+      name: "Carme",
+    ),
+    FontFamilyModel(
+      name: "Days One",
+    ),
+    FontFamilyModel(
+      name: "Junge",
+    ),
+    FontFamilyModel(
+      name: "Archivo",
+    ),
+    FontFamilyModel(
+      name: "Jaldi",
+    ),
+    FontFamilyModel(
+      name: "Xanh Mono",
+    ),
+    FontFamilyModel(
+      name: "Caudex",
+    ),
+    FontFamilyModel(
+      name: "Vampiro One",
+    ),
+    FontFamilyModel(
+      name: "Varela Round",
+    ),
+    FontFamilyModel(
+      name: "Kurale",
+    ),
+    FontFamilyModel(
+      name: "Lacquer",
+    ),
+
   ];
 
   TextEditingController textController = TextEditingController();
@@ -117,9 +198,9 @@ class CreateNewDesignController extends GetxController {
     try{
       HomeController homeController = Get.find<HomeController>();
 
-      textList.add(TextModel(color: color, top: 75, text: textController.text,
+      textList.add(TextModel(color: color, top: 84, text: textController.text,
           textAlign: TextAlign.center, fontStyle: FontStyle.normal,
-          left: 78,fontSize: 18,fontWeight: FontWeight.normal,  fontFamily: fontFamily , textPrice: textPrice
+          left: 135,fontSize: 18,fontWeight: FontWeight.normal,  fontFamily: fontFamily , textPrice: textPrice
       ));
 
       textController.text.isNotEmpty ? homeController.newDesignPrice = homeController.newDesignPrice! + textPrice!
@@ -267,7 +348,9 @@ class CreateNewDesignController extends GetxController {
 
     try{
       stickerList.add(StickerModel(
-          sticker: selectedSticker, left: 90,top: 75,title: '',stickerPrice: stickerPrice)
+          sticker: selectedSticker, left: 135,top: 84, title: '', stickerPrice: stickerPrice,
+          stickerHeight: 50, stickerWeight: 50
+      )
       );
       selectedSticker != null ? homeController.newDesignPrice = homeController.newDesignPrice! + stickerPrice!
       : null;
@@ -287,6 +370,19 @@ class CreateNewDesignController extends GetxController {
     HomeController homeController = Get.find<HomeController>();
     homeController.newDesignPrice = homeController.newDesignPrice! - stickerPrice!;
     homeController.update();
+  }
+  int currentIndexOfSticker = 0;
+  bool stickerSelected = false;
+  increaseSizeOfSticker() {
+    stickerList[currentIndexOfSticker].stickerHeight =  stickerList[currentIndexOfSticker].stickerHeight! + 5;
+    stickerList[currentIndexOfSticker].stickerWeight =    stickerList[currentIndexOfSticker].stickerWeight! + 5;
+    update();
+  }
+
+  decreaseSizeOfSticker() {
+    stickerList[currentIndexOfSticker].stickerHeight =  stickerList[currentIndexOfSticker].stickerHeight! - 5;
+    stickerList[currentIndexOfSticker].stickerWeight =    stickerList[currentIndexOfSticker].stickerWeight! - 5;
+    update();
   }
 
 // ----------------------------=== ===================== ===------------------------
@@ -348,7 +444,7 @@ class CreateNewDesignController extends GetxController {
   // --- ===  add Sticker on short from TextField === ---
   addNewImage()  {
     imageList.add(ImageFromGalleryAndCamModel(
-        image: imageFromGallery ?? imageFromCam ,left: 80,top: 75, imageUrl: '',imagePrice: imagePrice
+        image: imageFromGallery ?? imageFromCam ,left: 135,top: 84, imageUrl: '',imagePrice: imagePrice,imageHeight: 70,imageWeight: 70
     ));
 
     imageFromGallery != null ? addImagesPriceOnFirImage() : imageFromCam != null ? addImagesPriceOnFirImage() : null;
@@ -357,6 +453,21 @@ class CreateNewDesignController extends GetxController {
     update();
     imageFromGallery = null;
     imageFromCam = null;
+  }
+
+  int currentIndexOfImage = 0;
+  bool imageSelected = false;
+
+  increaseSizeOfImage() {
+    imageList[currentIndexOfImage].imageHeight =    imageList[currentIndexOfImage].imageHeight! + 5;
+    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! + 5;
+    update();
+  }
+
+  decreaseSizeOfImage() {
+    imageList[currentIndexOfImage].imageHeight =    imageList[currentIndexOfImage].imageHeight! - 5;
+    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! - 5;
+    update();
   }
 
   //   ---  == remove text ==  ---
@@ -394,9 +505,9 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add text on short from TextField === ---
   addNewTextSecondImage() {
-    textListForSecondImage.add(TextModel(color: colorSecondImage, top: 75, text: textControllerForSecondImage.text,
+    textListForSecondImage.add(TextModel(color: colorSecondImage, top: 84, text: textControllerForSecondImage.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImage,
-      left: 78,fontSize: 18,fontWeight: FontWeight.normal, textPrice: textPrice));
+      left: 135,fontSize: 18,fontWeight: FontWeight.normal, textPrice: textPrice));
     update();
     HomeController homeController = Get.find<HomeController>();
     textControllerForSecondImage.text.isNotEmpty ? homeController.newDesignPrice = homeController.newDesignPrice! + textPrice!
@@ -490,7 +601,9 @@ class CreateNewDesignController extends GetxController {
 
   // --- ===  add Sticker on short from TextField === ---
   addNewStickerSecondImage () {
-    stickerListSecondImage.add(StickerModel(sticker: selectedStickerSecondImage, left: 90,top: 75,title: '',stickerPrice: stickerPrice));
+    stickerListSecondImage.add(StickerModel(sticker: selectedStickerSecondImage,left: 135,top: 84,title: '',stickerPrice: stickerPrice,
+        stickerHeight: 50, stickerWeight: 50
+    ));
 
     update();
     HomeController homeController = Get.find<HomeController>();
@@ -511,6 +624,20 @@ class CreateNewDesignController extends GetxController {
     homeController.update();
   }
 
+  int currentIndexOfStickerOfSecImage = 0;
+
+  increaseSizeOfStickerSI() {
+    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerHeight =  stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerHeight! + 5;
+    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerWeight! + 5;
+    update();
+  }
+
+  decreaseSizeOfStickerSI() {
+    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerHeight =  stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerHeight! - 5;
+    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImage[currentIndexOfStickerOfSecImage].stickerWeight! - 5;
+    update();
+  }
+
 
 // ----------------------------=== ======================================= ===------------------------
 // ----------------------------===    Choose Image From Cam And Gallery Second Image   ===------------------------
@@ -523,6 +650,8 @@ class CreateNewDesignController extends GetxController {
     homeController.newDesignPrice = homeController.newDesignPrice! + imagePrice!;
     update();
   }
+
+
   //  ---------------- get the image from gallery ---------------------
   void getImageFromGallerySecondImage() async {
     final picker = ImagePicker();
@@ -547,7 +676,10 @@ class CreateNewDesignController extends GetxController {
   // --- ===  add Sticker on short from TextField === ---
   addNewImageSecondImage() {
     imageListSecondImage.add(ImageFromGalleryAndCamModel(
-      image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 80,top: 75,imageUrl: '',imagePrice: imagePrice));
+      image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 135,top: 84,imageUrl: '',imagePrice: imagePrice,
+        imageHeight: 70, imageWeight: 70
+
+    ));
 
     imageFromGallerySecondImage != null ? addImagesPriceOnSecImage() : imageFromCamSecondImage != null ? addImagesPriceOnSecImage() : null;
 
@@ -555,6 +687,20 @@ class CreateNewDesignController extends GetxController {
     update();
     imageFromGallerySecondImage = null;
     imageFromCamSecondImage = null;
+  }
+
+  int currentIndexOfImageOfSI = 0;
+
+  increaseSizeOfImageSI() {
+    imageListSecondImage[currentIndexOfImageOfSI].imageHeight =    imageListSecondImage[currentIndexOfImageOfSI].imageHeight! + 5;
+    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! + 5;
+    update();
+  }
+
+  decreaseSizeOfImageSI() {
+    imageListSecondImage[currentIndexOfImageOfSI].imageHeight =    imageListSecondImage[currentIndexOfImageOfSI].imageHeight! - 5;
+    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! - 5;
+    update();
   }
 
   //   ---  == remove text ==  ---
@@ -667,6 +813,8 @@ class CreateNewDesignController extends GetxController {
 
       for (StickerModel stickerData in stickerList) {
         _stickerOfFirstImage.add({
+          "stickerWeight": stickerData.stickerWeight,
+          "stickerHeight": stickerData.stickerHeight,
           "sticker": stickerData.sticker,
           "left": stickerData.left,
           "top": stickerData.top,
@@ -679,6 +827,8 @@ class CreateNewDesignController extends GetxController {
 
       for (StickerModel stickerData in stickerListSecondImage) {
         _stickerListSecondImage.add({
+          "stickerWeight": stickerData.stickerWeight,
+          "stickerHeight": stickerData.stickerHeight,
           "sticker": stickerData.sticker,
           "left": stickerData.left,
           "top": stickerData.top,
@@ -740,6 +890,8 @@ class CreateNewDesignController extends GetxController {
           imageUrl = await firebaseStorageRef.getDownloadURL();
 
           _imageListOfFirstImage.add({
+            "imageWeight": textData.imageWeight,
+            "imageHeight": textData.imageHeight,
             "left": textData.left,
             "top": textData.top,
             "image": "",
@@ -769,6 +921,8 @@ class CreateNewDesignController extends GetxController {
           imageUrl = await firebaseStorageRef.getDownloadURL();
 
           _imageListOfSecondImage.add({
+            "imageWeight": textData.imageWeight,
+            "imageHeight": textData.imageHeight,
             "left": textData.left,
             "top": textData.top,
             "image": "",

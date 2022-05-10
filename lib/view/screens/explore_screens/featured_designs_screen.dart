@@ -83,9 +83,9 @@ class FeaturedDesignsScreen extends StatelessWidget{
                                   openedDesignController.selectedColorsForShirtSecondImage = homeController.featuredDesignDataList[index].secondShirtColor;
                                   openedDesignController.hexToColorForSecondShort();
 
-                                  homeController.newDesignPriceForOD = 0;
+                                  homeController.newDesignPrice = 0;
                                   homeController.update();
-                                  homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.featuredDesignDataList[index].totalPrice!;
+                                  homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.featuredDesignDataList[index].totalPrice!;
                                   homeController.update();
 
 

@@ -249,10 +249,14 @@ class StickerModel {
   double? top;
   String? title;
   double? stickerPrice;
-  StickerModel({this.sticker,this.title,this.top,this.left,this.stickerPrice});
+  double? stickerHeight;
+  double? stickerWeight;
+  StickerModel({this.sticker,this.title,this.top,this.left,this.stickerPrice,this.stickerHeight,this.stickerWeight});
 
   StickerModel.fromMap(Map<String, dynamic> data){
     sticker = data["sticker"];
+    stickerHeight = data["stickerHeight"];
+    stickerWeight = data["stickerWeight"];
     left = data["left"];
     top = data["top"];
     title = data["title"];
@@ -271,13 +275,17 @@ class ImageFromGalleryAndCamModel {
   double? top;
   String? imageUrl;
   double? imagePrice;
+  double? imageHeight;
+  double? imageWeight;
 
   ImageFromGalleryAndCamModel({
-    this.image, this.imagePrice,
+    this.image, this.imagePrice, this.imageHeight,this.imageWeight,
     this.top,this.left,this.imageUrl});
 
   ImageFromGalleryAndCamModel.fromMap(Map<String, dynamic> data){
     // image = data["image"];
+    imageHeight = data["imageHeight"];
+    imageWeight = data["imageWeight"];
     left = data["left"];
     top = data["top"];
     imageUrl = data["imageUrl"];

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
-
 import '../model/shipping_model.dart';
 
 class ShippingController extends GetxController {

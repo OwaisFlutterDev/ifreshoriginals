@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/create_new_design_screens/create_new_design_screen.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
    HomeController homeController = Get.put(HomeController());
    OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -117,9 +119,9 @@ class HomeScreen extends StatelessWidget {
                                            homeController.update();
 
                                            //-=-= payment details =-=-
-                                           homeController.newDesignPriceForOD = 0;
+                                           homeController.newDesignPrice = 0;
                                            homeController.update();
-                                           homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.savedDesignDataList[index].totalPrice!;
+                                           homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.savedDesignDataList[index].totalPrice!;
                                            homeController.update();
 
                                            openedDesignController.selectedColorsForShirt = homeController.savedDesignDataList[index].firstShirtColor;
@@ -161,7 +163,6 @@ class HomeScreen extends StatelessWidget {
 
                                            Get.to(() => OpenedDesignScreen());
 
-
                                          }
                                        ),
                                        SizedBox(width: 60.w,)
@@ -196,7 +197,7 @@ class HomeScreen extends StatelessWidget {
                      //     ),
                      //   ],
                      // ),
-
+                     //  Text("ss" , style: GoogleFonts.lacquer(),)
                            ],),
                )),),
     );

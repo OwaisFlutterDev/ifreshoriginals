@@ -66,9 +66,9 @@ class ExploreScreen extends StatelessWidget {
                                               homeController.update();
 
                                               //-=-= payment details =-=-
-                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.newDesignPrice = 0;
                                               homeController.update();
-                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.popularDesignLimitedDataList[index].totalPrice!;
+                                              homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.popularDesignLimitedDataList[index].totalPrice!;
                                               homeController.update();
 
 
@@ -157,9 +157,9 @@ class ExploreScreen extends StatelessWidget {
                                               homeController.update();
 
                                               //-=-= payment details =-=-
-                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.newDesignPrice = 0;
                                               homeController.update();
-                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.featuredDesignLimitedDataList[index].totalPrice!;
+                                              homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.featuredDesignLimitedDataList[index].totalPrice!;
                                               homeController.update();
 
                                               openedDesignController.selectedColorsForShirt = homeController.featuredDesignLimitedDataList[index].firstShirtColor;
@@ -252,9 +252,9 @@ class ExploreScreen extends StatelessWidget {
                                               openedDesignController.selectedColorsForShirtSecondImage = homeController.allDesignLimitedDataList[index].secondShirtColor;
                                               openedDesignController.hexToColorForSecondShort();
 
-                                              homeController.newDesignPriceForOD = 0;
+                                              homeController.newDesignPrice = 0;
                                               homeController.update();
-                                              homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.allDesignLimitedDataList[index].totalPrice!;
+                                              homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.allDesignLimitedDataList[index].totalPrice!;
                                               homeController.update();
 
                                               // --------= -=-=-= clear lists =-=-=- =--------

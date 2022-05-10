@@ -85,9 +85,9 @@ class SavedDesignsScreen extends StatelessWidget{
                             openedDesignController.hexToColorForSecondShort();
 
                             //-=-= payment details =-=-
-                            homeController.newDesignPriceForOD = 0;
+                            homeController.newDesignPrice = 0;
                             homeController.update();
-                            homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.savedDesignDataList[index].totalPrice!;
+                            homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.savedDesignDataList[index].totalPrice!;
                             homeController.update();
 
                             // --------= -=-=-= clear lists =-=-=- =--------

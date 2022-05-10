@@ -218,3 +218,85 @@ Widget frontTextEditorWidgetOfOd(OpenedDesignController controller) {
     ),
   );
 }
+
+// -=-=-============-=-= sticker editor =-=-==============-=-=-=
+Widget frontStickerEditorWidgetOfOd(OpenedDesignController controller) {
+  FunctionalityOnOpenedDesignController functionalityOnImageController = Get.put(FunctionalityOnOpenedDesignController());
+
+  return SizedBox(
+    height: 60,
+    child:
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            functionalityOnImageController.flipCarControllerOfOD.state!.isFront ?
+            controller.increaseSizeOfSticker() : controller.increaseSizeOfStickerSI();
+          },
+          // onPressed: increaseFontSize,
+          tooltip: 'Increase font size',
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.remove,
+            color: Colors.black,
+          ),
+          onPressed: () { functionalityOnImageController.flipCarControllerOfOD.state!.isFront ?
+          controller.decreaseSizeOfSticker() : controller.decreaseSizeOfStickerSI();
+          },
+          // onPressed: decreaseFontSize,
+          tooltip: 'Decrease font size',
+        ),
+      ],
+    ),
+  );
+}
+
+// -=-=-============-=-= image editor =-=-==============-=-=-=
+Widget frontImageEditorWidgetOfOd(OpenedDesignController controller) {
+  FunctionalityOnOpenedDesignController functionalityOnImageController = Get.put(FunctionalityOnOpenedDesignController());
+
+  return SizedBox(
+    height: 60,
+    child:
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          icon: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            functionalityOnImageController.flipCarControllerOfOD.state!.isFront ?
+            controller.increaseSizeOfImage() : controller.increaseSizeOfImageSI();
+          },
+          // onPressed: increaseFontSize,
+          tooltip: 'Increase font size',
+        ),
+        SizedBox(
+          width: 20,
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.remove,
+            color: Colors.black,
+          ),
+          onPressed: () { functionalityOnImageController.flipCarControllerOfOD.state!.isFront ?
+          controller.decreaseSizeOfImage() : controller.decreaseSizeOfImageSI();
+          },
+          // onPressed: decreaseFontSize,
+          tooltip: 'Decrease font size',
+        ),
+      ],
+    ),
+  );
+}

@@ -83,9 +83,9 @@ class AllDesignsScreen extends StatelessWidget{
                                   openedDesignController.selectedColorsForShirtSecondImage = homeController.allDesignDataList[index].secondShirtColor;
                                   openedDesignController.hexToColorForSecondShort();
 
-                                  homeController.newDesignPriceForOD = 0;
+                                  homeController.newDesignPrice = 0;
                                   homeController.update();
-                                  homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.allDesignDataList[index].totalPrice!;
+                                  homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.allDesignDataList[index].totalPrice!;
                                   homeController.update();
 
                                   // --------= -=-=-= clear lists =-=-=- =--------

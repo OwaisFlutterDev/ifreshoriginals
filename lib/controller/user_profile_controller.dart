@@ -15,7 +15,7 @@ class UserProfileController extends GetxController {
   final GlobalKey<FormState> editProfileFormKey = GlobalKey<FormState>();
   final GlobalKey<FormState> changeProfileFormKey = GlobalKey<FormState>();
 
-  final CartController cartController  = Get.put(CartController());
+  // final CartController cartController  = Get.put(CartController());
 
   //   ----- ========== Text Editing Controller ========== -----
 
@@ -38,6 +38,7 @@ class UserProfileController extends GetxController {
   // ------- to get user data -------
   Future getUserData() async {
     final currentUser = FirebaseAuth.instance.currentUser;
+    final CartController cartController  = Get.put(CartController());
 
     try {
       DocumentSnapshot _doc = await FirebaseFirestore.instance.collection(

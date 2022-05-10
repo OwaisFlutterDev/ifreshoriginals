@@ -147,7 +147,7 @@ class FunctionalityOnOpenedDesignController extends GetxController{
 
       update();
       // print("after update");
-      Get.to(() => SelectSizeAndQuantityScreen());
+      Get.to(() => SelectSizeAndQuantityScreenForOD());
     }
 
   }

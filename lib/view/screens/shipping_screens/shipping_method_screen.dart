@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/payment_method_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/payment_methods_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
@@ -9,7 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class ShippingMethodScreen extends StatelessWidget{
-  const ShippingMethodScreen({Key? key}) : super(key: key);
+   ShippingMethodScreen({Key? key}) : super(key: key);
+  final PaymentMethodController _paymentMethodController = Get.put(PaymentMethodController());
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +164,8 @@ class ShippingMethodScreen extends StatelessWidget{
                   buttonWidth: 1.sw,
                     textColor: whiteColor,
                   onTap: () {
-                    Get.to(() => PaymentMethodsScreen());
+                    _paymentMethodController.startCardEntryFlowMethod();
+                    // Get.to(() => PaymentMethodsScreen());
                   }
                 )
 

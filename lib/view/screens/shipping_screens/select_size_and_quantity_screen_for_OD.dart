@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
@@ -16,7 +17,7 @@ import 'package:screenshot/screenshot.dart';
 class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
   SelectSizeAndQuantityScreenForOD({Key? key}) : super(key: key);
 
-  // final ShippingController _shippingController = Get.put(ShippingController());
+  final ShippingController _shippingController = Get.put(ShippingController());
    final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
   final HomeController homeController = Get.find<HomeController>();
 
@@ -284,6 +285,8 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                                         onTap: () {
                                           controller.selectedQuantityIndex = index;
                                           controller.selectedQuantity = controller.selectQuantityList[index].quantity!;
+                                          controller.discount =  controller.selectQuantityList[index].discount!;
+                                          controller.calculationFun();
                                           print( controller.selectedQuantity);
                                           controller.update();
                                         },
@@ -466,7 +469,7 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                                 fontWeight: FontWeight.w500
                             ),
                             smallText(
-                                title: "\$10.00",
+                                title: "\$${controller.discountPer}",
                                 color: Colors.black87,
                                 fontWeight: FontWeight.w500
                             ),
@@ -482,7 +485,7 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                                 fontWeight: FontWeight.w700
                             ),
                             largeText(
-                                title: "\$23.23",
+                                title: "\$${controller.totalPrice}",
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700
                             ),
@@ -494,17 +497,22 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
                         // -----=--======= Add To Cart Button ========--=-----
                         // -----------------------------------------------------
                         SizedBox(height: 60.h,),
-                        commonButton(
-                            buttonName: "Add To Cart",
-                            textColor: whiteColor,
-                            onTap: (){
-                              // functionalityOnImageController.createDesignBool = false;
-                              // functionalityOnImageController.update();
-                              Get.to(() => CartScreen());
-                            },
-                            buttonColor: redColor,
+                        GetBuilder<CartController>(
+                            init: CartController(),
+                            builder: (controller) {
+                              return controller.addToCartBool == false ? commonButton(
+                                  buttonName: "Add To Cart",
+                                  textColor: whiteColor,
+                                  onTap: (){
 
-                            buttonWidth: 1.sw
+                                    controller.addCartDataOfOD();
+
+                                  },
+                                  buttonColor: redColor,
+
+                                  buttonWidth: 1.sw
+                              ) : CircularProgressIndicator();
+                            }
                         )
                       ],
                     ),

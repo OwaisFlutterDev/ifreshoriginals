@@ -20,8 +20,8 @@ Widget frontImageOfNewDesign( context) {
       return RepaintBoundary(
         key: functionalityOnImageController.frontGlobalKey,
         child: Container(
-          height: 280,
-          width: 700.w,
+          height: 360,
+          width: 940.w,
           decoration: BoxDecoration(
               color: Colors.transparent,
               // border: Border.all(color: blackColor,width: 1),
@@ -43,15 +43,12 @@ Widget frontImageOfNewDesign( context) {
               //     ],
               //   ),
               // ),
-              // Padding(
-              //   padding:  EdgeInsets.only(bottom: 16),
-              //   child: Center(
-              //     child: Container(
-              //       width: 105,
-              //         height: 120,
-              //         decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
-              //       child: Center(child: Text(".")),
-              //     ),
+              // Center(
+              //   child: Container(
+              //     width: 140,
+              //       height: 190,
+              //       decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
+              //     child: Center(child: Text(".")),
               //   ),
               // ),
 
@@ -105,27 +102,44 @@ Widget frontImageOfNewDesign( context) {
                             // controller.textList[i].top = off.dy - 159;
                             // controller.textList[i].left = off.dx - 60;
 
-                            if(off.dy > 300 ){
-                              controller.textList[i].top = 160;
+
+                            if(off.dy > 400 ){
+                              controller.textList[i].top = 243;
                               // controller.update();
                             }else if(off.dy < 230){
-                              controller.textList[i].top = 70;
+                              controller.textList[i].top = 80;
                               // controller.update();
                             }else{
                               controller.textList[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-                            if(off.dx > 160 ){
-                              controller.textList[i].left = 105;
-                              // controller.update();
+                            if(
+                              controller.textList[i].fontSize! >= 10 ? off.dx > 235 :
+                              controller.textList[i].fontSize! >= 20 ? off.dx > 190 :
+                              controller.textList[i].fontSize! >= 30 ? off.dx > 160 :
+                              controller.textList[i].fontSize! >= 40 ? off.dx > 125 :
+                              controller.textList[i].fontSize! >= 50 ? off.dx > 105 :
+                              off.dx > 270
+                            )
+                            {
+                              controller.textList[i].fontSize! >= 55 ?  controller.textList[i].left = 75 :
+                              controller.textList[i].fontSize! >= 40 ?  controller.textList[i].left = 100 :
+                              controller.textList[i].fontSize! >= 30 ?  controller.textList[i].left = 142 :
+                              controller.textList[i].fontSize! >= 20 ?  controller.textList[i].left = 155 :
+                              controller.textList[i].fontSize! >= 10 ?  controller.textList[i].left = 175 :
+                              controller.textList[i].left = 200;
+                            // controller.imageList[i].left = 160;
+                            print("${  controller.textList[i].fontSize!}");
+
                             }else if(off.dx < 140){
-                              controller.textList[i].left = 68;
+                              controller.textList[i].left = 84;
                               // controller.update();
                             }else{
                               controller.textList[i].left =  off.dx-60;
                               // controller.update();
                             }
+
 
                             controller.update();
 
@@ -154,19 +168,24 @@ Widget frontImageOfNewDesign( context) {
                           controller.update();
                           controller.removeSticker();
                         },
+                        onTap: (){
+                          controller.stickerSelected = true;
+                          controller.currentIndexOfSticker = i;
+                          controller.update();
+                        },
 
                         child: Draggable(
                           feedback:   Container(
-                            height: 150.w,
-                            width: 150.h,
+                            height: controller.stickerList[i].stickerHeight,
+                            width: controller.stickerList[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: AssetImage("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: AssetImage("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown,)),
                           ),
 
                           child:   Container(
-                            height: 150.w,
-                            width: 150.h,
+                            height: controller.stickerList[i].stickerHeight,
+                            width: controller.stickerList[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 image: DecorationImage(image: AssetImage("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown)),
@@ -181,23 +200,44 @@ Widget frontImageOfNewDesign( context) {
                             //  controller.stickerList[i].left =  off.dx - 60;
                             // controller.update();
 
-                            if(off.dy > 300 ){
-                              controller.stickerList[i].top = 140;
+                            if(
+                            controller.stickerList[i].stickerHeight! >= 50 ? off.dy > 400 :
+                            controller.stickerList[i].stickerHeight! >= 70 ? off.dy > 360 :
+                            controller.stickerList[i].stickerHeight! >= 90 ? off.dy > 320 :
+                            controller.stickerList[i].stickerHeight! >= 110 ? off.dy > 300 :
+                            off.dy > 450
+                            )
+                            {
+                              controller.stickerList[i].stickerHeight! >= 110 ? controller.stickerList[i].top = 170 :
+                              controller.stickerList[i].stickerHeight! >= 90 ? controller.stickerList[i].top = 190 :
+                              controller.stickerList[i].stickerHeight! >= 70 ? controller.stickerList[i].top = 210 :
+                              controller.stickerList[i].stickerHeight! >= 50 ? controller.stickerList[i].top = 230 :
+                              controller.stickerList[i].top = 256;
                               // controller.update();
-                            }else if(off.dy < 210){
-                              controller.stickerList[i].top = 70;
+                              print("${controller.stickerList[i].stickerHeight!}");
+                            }else if(off.dy < 230){
+                              controller.stickerList[i].top = 80;
                               // controller.update();
                             }else{
                               controller.stickerList[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-
-                            if(off.dx > 200 ){
-                              controller.stickerList[i].left = 117;
+                            if( controller.stickerList[i].stickerWeight! >= 50 ? off.dx > 235 :
+                                controller.stickerList[i].stickerWeight! >= 70 ? off.dx > 205 :
+                                controller.stickerList[i].stickerWeight! >= 90 ? off.dx > 180 :
+                                controller.stickerList[i].stickerWeight! >= 110 ? off.dx > 145 :
+                                off.dx > 270
+                            )
+                            {
+                              controller.stickerList[i].stickerWeight! >= 110 ?  controller.stickerList[i].left = 116 :
+                              controller.stickerList[i].stickerWeight! >= 90 ?  controller.stickerList[i].left = 140 :
+                              controller.stickerList[i].stickerWeight! >= 70 ?  controller.stickerList[i].left = 155 :
+                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 176 :
+                              controller.stickerList[i].left = 200;
                               // controller.update();
                             }else if(off.dx < 140){
-                              controller.stickerList[i].left = 65;
+                              controller.stickerList[i].left = 84;
                               // controller.update();
                             }else{
                               controller.stickerList[i].left =  off.dx-60;
@@ -229,11 +269,16 @@ Widget frontImageOfNewDesign( context) {
                           controller.update();
                           controller.removeImage();
                         },
+                        onTap: (){
+                          controller.imageSelected = true;
+                          controller.currentIndexOfImage = i;
+                          controller.update();
+                        },
 
                         child: Draggable(
                           feedback:   controller.imageList[i].image == null ? Container() :  Container(
-                            height: 200.w,
-                            width: 200.h,
+                            height: controller.imageList[i].imageHeight,
+                            width: controller.imageList[i].imageWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 image: DecorationImage(image: FileImage(controller.imageList[i].image!),fit: BoxFit.fill)),
@@ -241,8 +286,8 @@ Widget frontImageOfNewDesign( context) {
 
 
                           child: controller.imageList[i].image == null ? Container() : Container(
-                            height: 200.w,
-                            width: 200.h,
+                            height: controller.imageList[i].imageHeight,
+                            width: controller.imageList[i].imageWeight,
                             decoration: BoxDecoration(
                                 image: DecorationImage(image: FileImage(controller.imageList[i].image! ),fit: BoxFit.fill),
                                 color: Colors.transparent),
@@ -255,28 +300,57 @@ Widget frontImageOfNewDesign( context) {
                             // controller.imageList[i].top = off.dy - 159;
                             // controller.imageList[i].left = off.dx - 60;
 
-                            if(off.dy > 280 ){
-                              controller.imageList[i].top = 110;
+                            if(
+                            controller.imageList[i].imageHeight! >= 50 ? off.dy > 400 :
+                            controller.imageList[i].imageHeight! >= 70 ? off.dy > 360 :
+                            controller.imageList[i].imageHeight! >= 90 ? off.dy > 320 :
+                            controller.imageList[i].imageHeight! >= 110 ? off.dy > 300 :
+                            controller.imageList[i].imageHeight! >= 130 ?off.dy > 280  :
+                            off.dy > 450
+                            )
+                            {
+                              controller.imageList[i].imageHeight! >= 130 ? controller.imageList[i].top = 160 :
+                              controller.imageList[i].imageHeight! >= 110 ? controller.imageList[i].top = 185 :
+                              controller.imageList[i].imageHeight! >= 90 ? controller.imageList[i].top = 210 :
+                              controller.imageList[i].imageHeight! >= 70 ? controller.imageList[i].top = 230 :
+                              controller.imageList[i].imageHeight! >= 50 ? controller.imageList[i].top = 240 :
+                              controller.imageList[i].top = 256;
+                              print("${controller.imageList[i].imageHeight!}");
                               // controller.update();
                             }else if(off.dy < 240){
-                              controller.imageList[i].top = 75;
+                              controller.imageList[i].top = 80;
                               // controller.update();
                             }else{
                               controller.imageList[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-
-                            if(off.dx > 180 ){
-                              controller.imageList[i].left = 110;
+                            if(
+                            controller.imageList[i].imageWeight! >= 50 ? off.dx > 235 :
+                            controller.imageList[i].imageWeight! >= 70 ? off.dx > 190 :
+                            controller.imageList[i].imageWeight! >= 90 ? off.dx > 160 :
+                            controller.imageList[i].imageWeight! >= 110 ? off.dx > 125 :
+                            controller.imageList[i].imageWeight! >= 130 ? off.dx > 105 :
+                            off.dx > 270
+                            )
+                            {
+                              controller.imageList[i].imageWeight! >= 130 ?  controller.imageList[i].left = 95 :
+                              controller.imageList[i].imageWeight! >= 110 ?  controller.imageList[i].left = 116 :
+                              controller.imageList[i].imageWeight! >= 90 ?  controller.imageList[i].left = 140 :
+                              controller.imageList[i].imageWeight! >= 70 ?  controller.imageList[i].left = 155 :
+                              controller.imageList[i].imageWeight! >= 50 ?  controller.imageList[i].left = 176 :
+                              controller.imageList[i].left = 195;
+                              // controller.imageList[i].left = 160;
+                              print("${  controller.imageList[i].imageWeight!}");
                               // controller.update();
                             }else if(off.dx < 140){
-                              controller.imageList[i].left = 55;
+                              controller.imageList[i].left = 84;
                               // controller.update();
                             }else{
                               controller.imageList[i].left =  off.dx-60;
                               // controller.update();
                             }
+
                             controller.update();
 
                           },
@@ -284,14 +358,6 @@ Widget frontImageOfNewDesign( context) {
                       ),
                     )
                 ),
-
-              // controller.createTextController.text.isNotEmpty ? Positioned(
-              //     left: 0,
-              //     bottom: 0,
-              //     child: Text(controller.createTextController.text,
-              //      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black.withOpacity(0.3) ),
-              //     )) : const SizedBox.shrink()
-
             ],
           )
         ),

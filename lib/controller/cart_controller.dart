@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/model/user_profile_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -54,7 +55,9 @@ class CartController extends GetxController{
       ShippingController shippingController = Get.put(ShippingController());
       HomeController homeController = Get.find<HomeController>();
       FunctionalityOnImageController funcOnImageController = Get.put(FunctionalityOnImageController());
+      FunctionalityOnOpenedDesignController funcOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
       final user =  FirebaseAuth.instance.currentUser;
+
 
       try{
 
@@ -145,6 +148,107 @@ class CartController extends GetxController{
          update();
          print(e);
       }
+   }
+
+   // ------==== =-=-=-=-===============----==   add to cart of open design data   =----==================---=-=-=-=-======-----
+   Future addCartDataOfOD() async {
+     addToCartBool = true;
+     update();
+     ShippingController shippingController = Get.put(ShippingController());
+     HomeController homeController = Get.find<HomeController>();
+     FunctionalityOnOpenedDesignController funcOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
+     final user =  FirebaseAuth.instance.currentUser;
+
+
+     try{
+
+       Uuid itemId = Uuid();
+       print(itemId.v1());
+
+       // ------ == -- == ---==========  Save Front Image Design In FireStorage  =========----- == -- == -------
+       String? frontImageDesignUrl;
+       ByteData? frontByteImage;
+
+       String? backImageDesignUrl;
+       ByteData? backByteImage;
+
+       frontByteImage =  funcOnOpenedDesignController.frontByteImageOfOD;
+       backByteImage = funcOnOpenedDesignController.backByteImageOfOD;
+
+       // ------------ saving first image -----------------
+
+       final tempDir = await getTemporaryDirectory();
+       File frontImageFile = await File('${tempDir.path}/${user!.uid + DateTime.now().toString()}.png').create();
+       frontImageFile.writeAsBytesSync(frontByteImage!.buffer.asUint8List());
+
+       String filePath = basename(frontImageFile.path);
+
+       Reference firebaseStorageRef = FirebaseStorage.instance.ref().child(
+           'shirt_design_images/$filePath');
+       UploadTask uploadTask = firebaseStorageRef.putFile(frontImageFile);
+       await uploadTask.whenComplete(() =>
+           () {
+         print("Front Image Upload SuccessFully");
+       });
+
+       frontImageDesignUrl = await firebaseStorageRef.getDownloadURL();
+
+       // ------------ saving second image -----------------
+
+       final tempDire = await getTemporaryDirectory();
+       File backImageFile = await File('${tempDire.path}/${user.uid + "h" + DateTime.now().toString()}.png').create();
+       backImageFile.writeAsBytesSync(backByteImage!.buffer.asUint8List());
+
+       String filePathBI = basename(backImageFile.path);
+
+       Reference firebaseStorageRefBI = FirebaseStorage.instance.ref().child(
+           'shirt_design_images/$filePathBI');
+       UploadTask uploadTaskBI = firebaseStorageRefBI.putFile(backImageFile);
+
+       await uploadTaskBI.whenComplete(() =>
+           () {
+         print("Front Image Upload SuccessFully");
+       });
+
+       backImageDesignUrl = await firebaseStorageRefBI.getDownloadURL();
+
+       // --=-=-=-============= add data to Firestore ==============-=-=-=-=--
+
+       await FirebaseFirestore.instance.collection("users").doc(user.uid).update({
+
+         "cart": FieldValue.arrayUnion([
+           {
+             "id": itemId.v1(),
+             "frontImage": frontImageDesignUrl,
+             "backImage": backImageDesignUrl,
+             "designType": homeController.selectedShirtTypeOfOpenedDesign,
+             "selectedSizedIndex": shippingController.selectedSizedIndex,
+             "selectedQuantity": shippingController.selectedQuantity,
+             "selectedSize": shippingController.selectedSize,
+             "discountNo":  shippingController.discount,
+             "perShirtPrice": homeController.newDesignPrice ?? 0,
+             "subTotal": shippingController.subTotal,
+             "currentDate": DateTime.now(),
+
+             "totalDiscount": shippingController.discountPer,
+             "totalPrice": shippingController.totalPrice,
+           }
+         ])
+       }).then((_) => {
+         print("Cart Data Added"),
+         addToCartBool = false,
+         update(),
+         Get.to(() => CartScreen())
+       }).catchError((onError) => print(onError.toString()));
+       addToCartBool = false;
+       makeSum();
+       update();
+
+     } catch(e){
+       addToCartBool = false;
+       update();
+       print(e);
+     }
    }
 
    // ----------------------------------------------------------------------------------------------------

@@ -75,7 +75,7 @@ Widget zoomAndChangeImageSideWidgetOfOpenedDesign() {
                       ),
                       smallText(
                         color: redColor,
-                        title: "${controller.newDesignPriceForOD}" ,
+                        title: "${controller.newDesignPrice}" ,
                         textAlign: TextAlign.center,
                       ),
                     ],

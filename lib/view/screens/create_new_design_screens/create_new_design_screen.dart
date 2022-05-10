@@ -62,6 +62,8 @@ class CreateNewDesignScreen extends StatelessWidget{
               return GestureDetector(
                 onTap: () {
                   controller.textSelected = false;
+                  controller.stickerSelected = false;
+                  controller.imageSelected = false;
                   controller.update();
                 },
                 child: Column(children: [
@@ -69,8 +71,11 @@ class CreateNewDesignScreen extends StatelessWidget{
                   // -----------------------------------------------------
                   // -----=--======= save image function ========--=-----
                   // -----------------------------------------------------
-                  controller.textSelected == false ? saveImageWidget(context) :
-                   frontTextEditorWidget(controller),
+                  controller.textSelected == true ? frontTextEditorWidget(controller) :
+                  controller.stickerSelected == true ? frontStickerEditorWidget(controller)  :
+                  controller.imageSelected == true ? frontImageEditorWidget(controller) :
+                  saveImageWidget(context),
+
 
                   SizedBox(height: 30.h,),
                   // -----------------------------------------------------
@@ -80,7 +85,7 @@ class CreateNewDesignScreen extends StatelessWidget{
                     init: CreateNewDesignController(),
                     builder: (controller) {
                       return  Container(
-                          height: 340,
+                          height: 400,
                           width: 1.sw,
                           color: Color(0xffE2E2E2),
                           child: Center(
@@ -98,7 +103,7 @@ class CreateNewDesignScreen extends StatelessWidget{
                                 // -----------------------------------------------------
                                 // -----=--======= back image of Shirt ========--=-----
                                 // -----------------------------------------------------
-                                backWidget: backImageOfNewDesign(context),
+                                backWidget:  backImageOfNewDesign(context),
                               ),
                             )
 
@@ -203,8 +208,7 @@ class CreateNewDesignScreen extends StatelessWidget{
                                     textColor: whiteColor,
                                     onTap: (){
                                       controller.calculationFun();
-                                      functionalityOnImageController.createDesignBool = true;
-                                      functionalityOnImageController.update();
+
                                       functionalityOnImageController.getByteImages(createNewDesignController);
 
                                       },

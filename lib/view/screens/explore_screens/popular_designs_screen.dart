@@ -83,9 +83,9 @@ class PopularDesignsScreen extends StatelessWidget{
                                   openedDesignController.selectedColorsForShirtSecondImage = homeController.popularDesignDataList[index].secondShirtColor;
                                   openedDesignController.hexToColorForSecondShort();
 
-                                  homeController.newDesignPriceForOD = 0;
+                                  homeController.newDesignPrice = 0;
                                   homeController.update();
-                                  homeController.newDesignPriceForOD =  homeController.newDesignPriceForOD! + homeController.popularDesignDataList[index].totalPrice!;
+                                  homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.popularDesignDataList[index].totalPrice!;
                                   homeController.update();
 
                                   // --------= -=-=-= clear lists =-=-=- =--------

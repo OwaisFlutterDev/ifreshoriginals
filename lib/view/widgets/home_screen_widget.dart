@@ -54,7 +54,7 @@ Widget cartButtonWidget() {
           width: 90.w,
           color: Colors.transparent,
           child: Image(image: AssetImage("assets/Asset 67.png"),
-            color: redColor, fit: BoxFit.scaleDown,),
+             fit: BoxFit.scaleDown,),
         ),
       ) :  InkWell(
         onTap: () => Get.to(() => CartScreen()),

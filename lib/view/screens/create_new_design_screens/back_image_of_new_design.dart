@@ -20,8 +20,8 @@ Widget backImageOfNewDesign(context) {
       return RepaintBoundary(
         key: functionalityOnImageController.backGlobalKey,
         child: Container(
-            height: 280,
-            width: 700.w,
+            height: 360,
+            width: 940.w,
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
@@ -43,15 +43,12 @@ Widget backImageOfNewDesign(context) {
               //     ],
               //   ),
               // ),
-              // Padding(
-              //   padding:  EdgeInsets.only(bottom: 16),
-              //   child: Center(
-              //     child: Container(
-              //       width: 105,
-              //       height: 120,
-              //       decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
-              //       child: Center(child: Text(".")),
-              //     ),
+              // Center(
+              //   child: Container(
+              //     width: 140,
+              //     height: 190,
+              //     decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
+              //     child: Center(child: Text(".")),
               //   ),
               // ),
 
@@ -103,22 +100,37 @@ Widget backImageOfNewDesign(context) {
                             // controller.textList[i].top = off.dy - 159;
                             // controller.textList[i].left = off.dx - 60;
 
-                            if(off.dy > 300 ){
-                              controller.textListForSecondImage[i].top = 160;
+                            if(off.dy > 400 ){
+                              controller.textListForSecondImage[i].top = 243;
                               // controller.update();
                             }else if(off.dy < 230){
-                              controller.textListForSecondImage[i].top = 70;
+                              controller.textListForSecondImage[i].top = 80;
                               // controller.update();
                             }else{
                               controller.textListForSecondImage[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-                            if(off.dx > 160 ){
-                              controller.textListForSecondImage[i].left = 105;
-                              // controller.update();
+                            if(
+                            controller.textListForSecondImage[i].fontSize! >= 10 ? off.dx > 235 :
+                            controller.textListForSecondImage[i].fontSize! >= 20 ? off.dx > 190 :
+                            controller.textListForSecondImage[i].fontSize! >= 30 ? off.dx > 160 :
+                            controller.textListForSecondImage[i].fontSize! >= 40 ? off.dx > 125 :
+                            controller.textListForSecondImage[i].fontSize! >= 50 ? off.dx > 105 :
+                            off.dx > 270
+                            )
+                            {
+                              controller.textListForSecondImage[i].fontSize! >= 55 ?  controller.textListForSecondImage[i].left = 75 :
+                              controller.textListForSecondImage[i].fontSize! >= 40 ?  controller.textListForSecondImage[i].left = 100 :
+                              controller.textListForSecondImage[i].fontSize! >= 30 ?  controller.textListForSecondImage[i].left = 142 :
+                              controller.textListForSecondImage[i].fontSize! >= 20 ?  controller.textListForSecondImage[i].left = 155 :
+                              controller.textListForSecondImage[i].fontSize! >= 10 ?  controller.textListForSecondImage[i].left = 175 :
+                              controller.textListForSecondImage[i].left = 200;
+                              // controller.imageList[i].left = 160;
+                              print("${  controller.textListForSecondImage[i].fontSize!}");
+
                             }else if(off.dx < 140){
-                              controller.textListForSecondImage[i].left = 68;
+                              controller.textListForSecondImage[i].left = 84;
                               // controller.update();
                             }else{
                               controller.textListForSecondImage[i].left =  off.dx-60;
@@ -152,19 +164,24 @@ Widget backImageOfNewDesign(context) {
                           controller.update();
                           controller.removeStickerSecondImage();
                         },
+                        onTap: (){
+                          controller.stickerSelected = true;
+                          controller.currentIndexOfStickerOfSecImage = i;
+                          controller.update();
+                        },
 
                         child: Draggable(
                           feedback:   Container(
-                            height: 150.w,
-                            width: 150.h,
+                            height: controller.stickerListSecondImage[i].stickerHeight,
+                            width: controller.stickerListSecondImage[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 image: DecorationImage(image: AssetImage("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
                           ),
 
                           child:   Container(
-                            height: 150.w,
-                            width: 150.h,
+                            height: controller.stickerListSecondImage[i].stickerHeight,
+                            width: controller.stickerListSecondImage[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 image: DecorationImage(image: AssetImage("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
@@ -179,29 +196,52 @@ Widget backImageOfNewDesign(context) {
                             //  controller.stickerList[i].left =  off.dx - 60;
                             // controller.update();
 
-                            if(off.dy > 300 ){
-                              controller.stickerListSecondImage[i].top = 140;
+
+                            if(
+                            controller.stickerListSecondImage[i].stickerHeight! >= 50 ? off.dy > 400 :
+                            controller.stickerListSecondImage[i].stickerHeight! >= 70 ? off.dy > 360 :
+                            controller.stickerListSecondImage[i].stickerHeight! >= 90 ? off.dy > 320 :
+                            controller.stickerListSecondImage[i].stickerHeight! >= 110 ? off.dy > 300 :
+                            off.dy > 450
+                            )
+                            {
+                              controller.stickerListSecondImage[i].stickerHeight! >= 110 ? controller.stickerListSecondImage[i].top = 170 :
+                              controller.stickerListSecondImage[i].stickerHeight! >= 90 ? controller.stickerListSecondImage[i].top = 190 :
+                              controller.stickerListSecondImage[i].stickerHeight! >= 70 ? controller.stickerListSecondImage[i].top = 210 :
+                              controller.stickerListSecondImage[i].stickerHeight! >= 50 ? controller.stickerListSecondImage[i].top = 230 :
+                              controller.stickerListSecondImage[i].top = 256;
                               // controller.update();
-                            }else if(off.dy < 210){
-                              controller.stickerListSecondImage[i].top = 70;
+                              print("${controller.stickerListSecondImage[i].stickerHeight!}");
+                            }else if(off.dy < 230){
+                              controller.stickerListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
                               controller.stickerListSecondImage[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-
-                            if(off.dx > 200 ){
-                              controller.stickerListSecondImage[i].left = 117;
+                            if( controller.stickerListSecondImage[i].stickerWeight! >= 50 ? off.dx > 235 :
+                            controller.stickerListSecondImage[i].stickerWeight! >= 70 ? off.dx > 205 :
+                            controller.stickerListSecondImage[i].stickerWeight! >= 90 ? off.dx > 180 :
+                            controller.stickerListSecondImage[i].stickerWeight! >= 110 ? off.dx > 145 :
+                            off.dx > 270
+                            )
+                            {
+                              controller.stickerListSecondImage[i].stickerWeight! >= 110 ?  controller.stickerListSecondImage[i].left = 116 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 90 ?  controller.stickerListSecondImage[i].left = 140 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 70 ?  controller.stickerListSecondImage[i].left = 155 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 50 ?  controller.stickerListSecondImage[i].left = 176 :
+                              controller.stickerListSecondImage[i].left = 200;
                               // controller.update();
                             }else if(off.dx < 140){
-                              controller.stickerListSecondImage[i].left = 65;
+                              controller.stickerListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
                               controller.stickerListSecondImage[i].left =  off.dx-60;
                               // controller.update();
                             }
                             controller.update();
+
                           },
                         ),
                       ),
@@ -227,20 +267,24 @@ Widget backImageOfNewDesign(context) {
                           controller.update();
                           controller.removeImageSecondImage();
                         },
+                        onTap: (){
+                          controller.imageSelected = true;
+                          controller.currentIndexOfImageOfSI = i;
+                          controller.update();
+                        },
 
                         child: Draggable(
-                          feedback:   controller.imageListSecondImage[i].image == null ? Container() :  Container(
-                            height: 200.w,
-                            width: 200.h,
+                            feedback:   controller.imageListSecondImage[i].image == null ? Container() :  Container(
+                            height: controller.imageListSecondImage[i].imageHeight,
+                            width: controller.imageListSecondImage[i].imageWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
                                 image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image!),fit: BoxFit.fill)),
                           ),
 
-
                           child: controller.imageListSecondImage[i].image == null ? Container() : Container(
-                            height: 200.w,
-                            width: 200.h,
+                            height: controller.imageListSecondImage[i].imageHeight,
+                            width: controller.imageListSecondImage[i].imageWeight,
                             decoration: BoxDecoration(
                                 image: DecorationImage(image: FileImage(controller.imageListSecondImage[i].image! ),fit: BoxFit.fill),
                                 color: Colors.transparent),
@@ -250,26 +294,52 @@ Widget backImageOfNewDesign(context) {
                             final renderBox = context.findRenderObject() as RenderBox;
                             Offset off = renderBox.globalToLocal(drag.offset);
 
-                            // controller.imageList[i].top = off.dy - 159;
-                            // controller.imageList[i].left = off.dx - 60;
 
-                            if(off.dy > 280 ){
-                              controller.imageListSecondImage[i].top = 110;
+                            if(
+                            controller.imageListSecondImage[i].imageHeight! >= 50 ? off.dy > 400 :
+                            controller.imageListSecondImage[i].imageHeight! >= 70 ? off.dy > 360 :
+                            controller.imageListSecondImage[i].imageHeight! >= 90 ? off.dy > 320 :
+                            controller.imageListSecondImage[i].imageHeight! >= 110 ? off.dy > 300 :
+                            controller.imageListSecondImage[i].imageHeight! >= 130 ?off.dy > 280  :
+                            off.dy > 450
+                            )
+                            {
+                              controller.imageListSecondImage[i].imageHeight! >= 130 ? controller.imageListSecondImage[i].top = 160 :
+                              controller.imageListSecondImage[i].imageHeight! >= 110 ? controller.imageListSecondImage[i].top = 185 :
+                              controller.imageListSecondImage[i].imageHeight! >= 90 ? controller.imageListSecondImage[i].top = 210 :
+                              controller.imageListSecondImage[i].imageHeight! >= 70 ? controller.imageListSecondImage[i].top = 230 :
+                              controller.imageListSecondImage[i].imageHeight! >= 50 ? controller.imageListSecondImage[i].top = 240 :
+                              controller.imageListSecondImage[i].top = 256;
+                              print("${controller.imageListSecondImage[i].imageHeight!}");
                               // controller.update();
                             }else if(off.dy < 240){
-                              controller.imageListSecondImage[i].top = 75;
+                              controller.imageListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
                               controller.imageListSecondImage[i].top =  off.dy-159;
                               // controller.update();
                             }
 
-
-                            if(off.dx > 180 ){
-                              controller.imageListSecondImage[i].left = 110;
+                            if(
+                            controller.imageListSecondImage[i].imageWeight! >= 50 ? off.dx > 235 :
+                            controller.imageListSecondImage[i].imageWeight! >= 70 ? off.dx > 190 :
+                            controller.imageListSecondImage[i].imageWeight! >= 90 ? off.dx > 160 :
+                            controller.imageListSecondImage[i].imageWeight! >= 110 ? off.dx > 125 :
+                            controller.imageListSecondImage[i].imageWeight! >= 130 ? off.dx > 105 :
+                            off.dx > 270
+                            )
+                            {
+                              controller.imageListSecondImage[i].imageWeight! >= 130 ?  controller.imageListSecondImage[i].left = 95 :
+                              controller.imageListSecondImage[i].imageWeight! >= 110 ?  controller.imageListSecondImage[i].left = 116 :
+                              controller.imageListSecondImage[i].imageWeight! >= 90 ?  controller.imageListSecondImage[i].left = 140 :
+                              controller.imageListSecondImage[i].imageWeight! >= 70 ?  controller.imageListSecondImage[i].left = 155 :
+                              controller.imageListSecondImage[i].imageWeight! >= 50 ?  controller.imageListSecondImage[i].left = 176 :
+                              controller.imageListSecondImage[i].left = 195;
+                              // controller.imageList[i].left = 160;
+                              print("${  controller.imageListSecondImage[i].imageWeight!}");
                               // controller.update();
                             }else if(off.dx < 140){
-                              controller.imageListSecondImage[i].left = 55;
+                              controller.imageListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
                               controller.imageListSecondImage[i].left =  off.dx-60;

@@ -502,11 +502,9 @@ class SelectSizeAndQuantityScreen extends StatelessWidget{
                               buttonName: "Add To Cart",
                               textColor: whiteColor,
                               onTap: (){
-
+                                   // functionalityOnImageController.createDesignBool = false;
+                                   // functionalityOnImageController.update();
                                    controller.addCartData();
-                                   functionalityOnImageController.createDesignBool = false;
-                                   functionalityOnImageController.update();
-
                               },
                               buttonColor: redColor,
 

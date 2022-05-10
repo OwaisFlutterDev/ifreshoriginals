@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/back_image_of_opened_design_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/front_image_of_opened_design_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
@@ -63,6 +64,8 @@ class OpenedDesignScreen extends StatelessWidget{
                 return GestureDetector(
                   onTap: () {
                     controller.textSelectedOfOd = false;
+                    controller.stickerSelected = false;
+                    controller.imageSelected = false;
                     controller.update();
                   },
                   child: Column(children: [
@@ -70,8 +73,10 @@ class OpenedDesignScreen extends StatelessWidget{
                     // -----------------------------------------------------
                     // -----=--======= save image function ========--=-----
                     // -----------------------------------------------------
-                    controller.textSelectedOfOd == false ?  saveImageWidgetOfOpenedDesign(context) :
-                    frontTextEditorWidgetOfOd(controller),
+                    controller.textSelectedOfOd == true ? frontTextEditorWidgetOfOd(controller)  :
+                    controller.stickerSelected == true ? frontStickerEditorWidgetOfOd(controller)  :
+                    controller.imageSelected == true ? frontImageEditorWidgetOfOd(controller) :
+                     saveImageWidgetOfOpenedDesign(context) ,
 
                     SizedBox(height: 30.h,),
                     // -----------------------------------------------------
@@ -81,7 +86,7 @@ class OpenedDesignScreen extends StatelessWidget{
                         init: OpenedDesignController(),
                         builder: (controller) {
                           return  Container(
-                            height: 340,
+                            height: 400,
                             width: 1.sw,
                             color: Color(0xffE2E2E2),
                             child: Center(
@@ -194,18 +199,24 @@ class OpenedDesignScreen extends StatelessWidget{
                           // -----------------------------------------------------
                           // -----=--======= Proceed Button ========--=-----
                           // -----------------------------------------------------
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: 20.w),
-                            child: commonButton(
-                                buttonName: "Proceed",
-                                textColor: whiteColor,
-                                onTap: (){
-                                  functionalityOnOpenedDesignController.getByteImagesOfOD(openedDesignController);
-                                },
-                                buttonColor: redColor,
-                                buttonWidth: 1.sw
-                            ),
-                          )
+                          GetBuilder<ShippingController>(
+                          init: ShippingController() ,
+                          builder: (controller) {
+                           return Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              child: commonButton(
+                                  buttonName: "Proceed",
+                                  textColor: whiteColor,
+                                  onTap: () {
+                                    controller.calculationFun();
+                                    functionalityOnOpenedDesignController.getByteImagesOfOD(
+                                        openedDesignController);
+                                  },
+                                  buttonColor: redColor,
+                                  buttonWidth: 1.sw
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
