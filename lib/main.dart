@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/splash_screen.dart';
-import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/welcome_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
