@@ -27,6 +27,7 @@ class PaymentMethodController extends GetxController {
   // }
 
   void startCardEntryFlowMethod(){
+
     InAppPayments.setSquareApplicationId("sandbox-sq0idb-DmyyChN1jRRS7sq8M3e_XQ");
     InAppPayments.startCardEntryFlow(
         onCardNonceRequestSuccess: onCardNonceRequestSuccess,
@@ -51,10 +52,11 @@ class PaymentMethodController extends GetxController {
               ),
               body: {
                 'nonce': result.nonce,
-                // 'totalAmount': "400",
+                'amount': "50", //   support only int type of data
               });
           if (response.statusCode == 200) {
             print("response: 200");
+
           }
 
           print(":response:  ${response.statusCode}");

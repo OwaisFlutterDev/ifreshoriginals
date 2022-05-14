@@ -1,5 +1,10 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and set up triggers.
 const functions = require('firebase-functions');
+//const crypto = require('crypto');
+//
+//exports.helloWorld = functions.https.onRequest((request, response) => {
+// response.send("Hello from Firebase!");
+//});
 
 // The Firebase Admin SDK to access Firestore.
 const admin = require('firebase-admin');
@@ -21,9 +26,9 @@ const { paymentsApi, ordersApi } = defaultClient;
 
 exports.chargeForShirt = functions.https.onRequest( async (request, response) => {
 
-//    const requestBody = request.body;
-   const nonce = request.body.nonce;
-//   const totalAmount = request.body.totalAmount;
+      const requestBody = request.body;
+//      const nonceFromApp = request.body.quantity;
+
     try {
       const locationId =  'LT74CKGPBFMJC';
       const createOrderRequest = getOrderRequest(locationId);
@@ -31,7 +36,7 @@ exports.chargeForShirt = functions.https.onRequest( async (request, response) =>
 
       const createPaymentRequest = {
         idempotencyKey: crypto.randomBytes(12).toString('hex'),
-        sourceId: nonce,
+        sourceId: requestBody.nonce,
         amountMoney: {
           ...createOrderResponse.result.order.totalMoney,
         },
@@ -41,13 +46,31 @@ exports.chargeForShirt = functions.https.onRequest( async (request, response) =>
       };
       const createPaymentResponse = await paymentsApi.createPayment(createPaymentRequest);
 //      console.log("Testing.......");
-      console.log(createPaymentResponse.result.payment);
-      response.status(200).json(createPaymentResponse.result.payment);
+//      console.log(createPaymentResponse.result.payment);
+      response.status(200).send("Successfully");
+//      response.status(200).json(createPaymentResponse.result.payment);
+  function getOrderRequest(locationId) {
+    return {
+      idempotencyKey: crypto.randomBytes(12).toString('hex'),
+      order: {
+        locationId: locationId,
+        lineItems: [
+          {
+            name: "Shirts",
+            quantity: "1",
+            basePriceMoney: {
+              amount: requestBody.amount,
+              currency: "USD"
+            }
+          }
+        ]
+      }
+    }
+  }
     } catch (e) {
 //      console.log(e);
       console.log(
         `[Error] Status:${e.statusCode}, Messages: ${JSON.stringify(e.errors, null, 2)}`);
-
       sendErrorMessage(e.errors, response);
     }
   });
