@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
@@ -8,13 +10,15 @@ import 'package:http/http.dart' as http;
 class PaymentMethodController extends GetxController {
   double totalForPay = 0;
   double deliveryCharge = 0;
+
   void startCardEntryFlowMethod(){
 
     InAppPayments.setSquareApplicationId("sandbox-sq0idb-DmyyChN1jRRS7sq8M3e_XQ");
     InAppPayments.startCardEntryFlow(
         onCardNonceRequestSuccess: onCardNonceRequestSuccess,
-        onCardEntryCancel: onCardEntryCancel
+        onCardEntryCancel: onCardEntryCancel,
     );
+
   }
 
   void onCardEntryCancel() {
