@@ -11,7 +11,7 @@ class FormValidationController extends GetxController{
 
 
   //   ----- ========== Text Editing Controller ========== -----
-  late TextEditingController usernameController, emailController, passwordController,
+  late  TextEditingController usernameController, emailController, passwordController,
       conformPasswordController, newPasswordController, newConformPasswordController;
 
   String? smsCode;

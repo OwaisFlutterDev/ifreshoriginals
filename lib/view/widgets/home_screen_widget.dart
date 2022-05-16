@@ -127,7 +127,7 @@ Widget savedAndDesignHistoryWidget({void Function()? onTap, String? image,String
           decoration: BoxDecoration(
               color: whiteColor,
               borderRadius: BorderRadius.circular(30.r),
-            boxShadow: const <BoxShadow>[
+              boxShadow: const <BoxShadow>[
               BoxShadow(
                   color: Colors.black12,
                   blurRadius: 4.0,

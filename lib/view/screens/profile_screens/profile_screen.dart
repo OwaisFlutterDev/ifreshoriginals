@@ -1,3 +1,5 @@
+// @dart=2.9
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -5,9 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_auth_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_profile_controller.dart';
+import 'package:ifreshoriginals_userapp/model/order_model.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/opened_design_screen.dart';
+import 'package:ifreshoriginals_userapp/view/screens/profile_screens/order_history_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/profile_screens/saved_designs_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/profile_screens/edit_profile_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
@@ -16,9 +21,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/home_screen_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({Key? key}) : super(key: key);
+   ProfileScreen({Key key}) : super(key: key);
    final HomeController homeController = Get.find<HomeController>();
-   OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
+   final OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
+   final OrderController orderController = Get.put(OrderController());
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             child: GetBuilder<UserAuthController>(
               init: UserAuthController(),
               builder: (controller) {
-                return FirebaseAuth.instance.currentUser!.isAnonymous ?
+                return FirebaseAuth.instance.currentUser.isAnonymous ?
                 //-------------------------------------------------------------
                 //     ------ ========== If SignIn Anonymously   ======== ------
                 //-------------------------------------------------------------
@@ -104,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           color: Colors.blue,
                                           shape: BoxShape.circle,
-                                          image: DecorationImage(image: NetworkImage(controller.userProfileModel.image!),fit: BoxFit.cover)
+                                          image: DecorationImage(image: NetworkImage(controller.userProfileModel.image),fit: BoxFit.cover)
                                       ),
                                     ),
                                   ),
@@ -142,39 +148,14 @@ class ProfileScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              //-------------------------------------------------
-                              //     ------ ========== Order History section ======== ------
-                              //-------------------------------------------------
-                              // -- == section title == ---
-                              // sectionTitleWidget(
-                              //     title: "Order History",
-                              //     onTap: () => Get.to(() => OrderHistoryScreen())
-                              // ),
-                              // SizedBox(height: 50.h,),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //   children: [
-                              //     savedAndDesignHistoryWidget(
-                              //       image: "https://tinyurl.com/y9ax33uv",
-                              //       name: "Football Love",
-                              //     ),
-                              //     savedAndDesignHistoryWidget(
-                              //       image: "https://tinyurl.com/ybp5syc4",
-                              //       name: "Sports",
-                              //     ),
-                              //     savedAndDesignHistoryWidget(
-                              //       image: "https://tinyurl.com/y8hy8lal",
-                              //       name: "Animal Kingdom",
-                              //     ),
-                              //   ],
-                              // ),
+
 
                               //-------------------------------------------------
                               //     ------ ========== Saved Designs section ======== ------
                               //-------------------------------------------------
                               // SizedBox(height: 90.h,),
                               // -- == section title == ---
-                           Obx(
+                              Obx(
                                 () => homeController.savedDesignDataList.isNotEmpty ? sectionTitleWidget(
                                   title: "Saved Designs",
                                   onTap: () => Get.to(() => SavedDesignsScreen())
@@ -219,22 +200,22 @@ class ProfileScreen extends StatelessWidget {
 
                                                   openedDesignController.docID = homeController.savedDesignDataList[index].id;
                                                   openedDesignController.userID = homeController.savedDesignDataList[index].userId;
-                                                  openedDesignController.designNameControllerOfOd.text = homeController.savedDesignDataList[index].designName!;
+                                                  openedDesignController.designNameControllerOfOd.text = homeController.savedDesignDataList[index].designName;
 
                                                   // --------= -=-=-= adding value to lists =-=-=- =--------
-                                                  openedDesignController.stickerListFirstImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfFirstImage!);
-                                                  openedDesignController.stickerListSecondImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfSecondImage!);
+                                                  openedDesignController.stickerListFirstImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfFirstImage);
+                                                  openedDesignController.stickerListSecondImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfSecondImage);
 
-                                                  openedDesignController.imageListOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfFirstImage!);
-                                                  openedDesignController.imageListSecondImageOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfSecondImage!);
+                                                  openedDesignController.imageListOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfFirstImage);
+                                                  openedDesignController.imageListSecondImageOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfSecondImage);
 
-                                                  openedDesignController.textListOfOd.addAll(homeController.savedDesignDataList[index].textsOfFirstImage!);
-                                                  openedDesignController.textListForSecondImageOfOd.addAll(homeController.savedDesignDataList[index].textsOfSecondImage!);
+                                                  openedDesignController.textListOfOd.addAll(homeController.savedDesignDataList[index].textsOfFirstImage);
+                                                  openedDesignController.textListForSecondImageOfOd.addAll(homeController.savedDesignDataList[index].textsOfSecondImage);
 
                                                   homeController.popularityCountInt = homeController.savedDesignDataList[index].popularityCount;
 
-                                                  int? popularityCount;
-                                                  popularityCount = homeController.popularityCountInt! + 1;
+                                                  int popularityCount;
+                                                  popularityCount = homeController.popularityCountInt + 1;
 
                                                   openedDesignController.update();
                                                   await FirebaseFirestore.instance.collection("NewShirtDesign").doc(openedDesignController.docID).update({
@@ -252,9 +233,123 @@ class ProfileScreen extends StatelessWidget {
                                 ) : Container(),
                               ),
                               SizedBox(height: 30.h,),
-                          ],),
-                        )
 
+                              //-------------------------------------------------
+                              //     ------ ========== Order History section ======== ------
+                              //-------------------------------------------------
+                              // -- == section title == ---
+                              sectionTitleWidget(
+                                  title: "Order History",
+                                  // onTap: () => Get.to(() => OrderHistoryScreen())
+                              ),
+                              SizedBox(height: 50.h,),
+                              InkWell(
+                                onTap: (){
+                                  Get.to(OrderHistoryScreen());
+                                },
+                                child: Padding(
+                                  padding:  EdgeInsets.symmetric(horizontal: 7),
+                                  child: Container(
+                                    height: 310,
+                                    width: 1.sw,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30.r),
+                                      boxShadow: const <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 4.0,
+                                          offset: Offset(0, 5,),
+                                        )
+                                      ],
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                      child: Column(
+                                        children: [
+                                         smallText(
+                                           title: "Click On The Card To See More Details",
+                                           textAlign: TextAlign.center,
+                                           color: Colors.black,
+                                           fontWeight: FontWeight.w500
+                                         ),
+                                          SizedBox(height: 50,),
+                                          Container(
+                                              color: Colors.transparent,
+                                              height: 100,
+                                              width: 0.9.sw,
+                                              child: GetBuilder<OrderController>(
+                                                  builder: (controller) {
+                                                  return  Container(
+                                                      child: CarouselSlider.builder(
+                                                          itemCount: controller.orderHistoryList.length,
+                                                          options: CarouselOptions(
+                                                          autoPlay: true,
+                                                          aspectRatio: 2.0,
+                                                          enlargeCenterPage: true,
+                                                      ),
+                                                            itemBuilder: (context, index, realIdx) {
+                                                          for(ProductModel img in controller.orderHistoryList[index].productList) {
+                                                            return Container(
+                                                               child: Center(
+                                                                 child: Image.network(img.frontImage,
+                                                                 fit: BoxFit.cover, width: 1000)),
+                                                          );
+                                                          }
+                                                        },
+                                                    ));}
+                                              )),
+
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              smallText(
+                                                title: "Delivery Time",
+                                                color: blackColor,
+                                              ),
+                                              smallText(
+                                                title: "Delivery Time",
+                                                color: blackColor,
+                                                  fontWeight: FontWeight.w600
+                                              ),
+                                          ],),
+                                          SizedBox(height: 15,),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              smallText(
+                                                title: "Delivery Charges",
+                                                color: blackColor,
+                                              ),
+                                              smallText(
+                                                title: "Delivery Charges",
+                                                color: blackColor,
+                                                fontWeight: FontWeight.w600
+                                              ),
+                                            ],),
+                                          SizedBox(height: 15,),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              smallText(
+                                                title: "Payed Amount",
+                                                color: blackColor,
+                                              ),
+                                              smallText(
+                                                title: "Payed Amount",
+                                                color: blackColor,
+                                                  fontWeight: FontWeight.w600
+                                              ),
+                                            ],),
+                                      ],),
+                                    ),
+                                  ),
+                                ),
+                              )
+                          ],),
+                        ),
+                    SizedBox(height: 20,),
                     ]);
               }
             )),

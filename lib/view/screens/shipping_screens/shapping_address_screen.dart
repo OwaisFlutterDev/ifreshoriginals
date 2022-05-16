@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/constant/form_validator_constant.dart';
+import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/shipping_method_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShippingAddressScreen extends StatelessWidget{
-  const ShippingAddressScreen({Key? key}) : super(key: key);
+  ShippingAddressScreen({Key? key}) : super(key: key);
+
+  final OrderController orderController = Get.put(OrderController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -38,51 +42,77 @@ class ShippingAddressScreen extends StatelessWidget{
                     color: blackColor, fontWeight: FontWeight.w600),
                 SizedBox(height: 70.h,),
                 Form(
+                  key: orderController.orderFormKey,
                   child: Column(
                     children: [
                       commonTextFormField(
                         hintText: "Email",
                         prefixIcon: (CupertinoIcons.mail),
+                        controller: orderController.emailController,
+                        validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormField(
                         hintText: "Username",
                         prefixIcon: (CupertinoIcons.person),
+                        controller: orderController.usernameController,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormField(
                         hintText: "Phone Number",
                         prefixIcon: (CupertinoIcons.phone),
+                        controller: orderController.phoneController,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormField(
                         hintText: "Address",
                         prefixIcon: (CupertinoIcons.location),
+                        controller: orderController.addressController,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormField(
                         hintText: "City",
                         prefixIcon: (CupertinoIcons.building_2_fill),
+                          controller: orderController.cityController,
+                          validator: FormValidatorConstant.commonValidator
+
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormFieldForImage(
                         hintText: "Country",
                         prefixIcon: "assets/Asset 71.png",
+                          controller: orderController.countryController,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormFieldForImage(
                         hintText: "State",
                         prefixIcon: "assets/Asset 72.png",
+                        controller: orderController.stateController,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormFieldForImage(
                         hintText: "Zip Code",
                         prefixIcon: "assets/Asset 73.png",
+                        controller: orderController.zipCodeController,
+                        keyboardType: TextInputType.number,
+                          validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 90.h,),
                       commonButton(
                         onTap: (){
-                          Get.to(() => ShippingMethodScreen());
+                          if (orderController.orderFormKey.currentState!.validate()) {
+                            Get.to(() => ShippingMethodScreen());
+                          } else {
+                            Get.snackbar("Shipping Address",
+                                "Please Fill All The Fields",
+                                duration: Duration(seconds: 3));
+                          }
+
                         },
                         buttonWidth: 1.sw,
 

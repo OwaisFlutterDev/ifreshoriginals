@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/payment_method_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/payment_methods_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ShippingMethodScreen extends StatelessWidget{
    ShippingMethodScreen({Key? key}) : super(key: key);
   final PaymentMethodController _paymentMethodController = Get.put(PaymentMethodController());
+  final OrderController orderController = Get.find<OrderController>();
+  final CartController cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class ShippingMethodScreen extends StatelessWidget{
                 Wrap(
                   children: [
                     smallText(
-                      title: "loremipsum@gmail.com"
+                      title: orderController.emailController.text
                     ),
                   ],
                 ),
@@ -70,7 +73,7 @@ class ShippingMethodScreen extends StatelessWidget{
                 Wrap(
                   children: [
                     smallText(
-                        title: "871 E, Lorem Street, Washington DC, USA"
+                        title: "${orderController.addressController.text},  ${orderController.cityController.text}, ${orderController.countryController.text}"
                     ),
                   ],
                 ),
@@ -110,7 +113,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                  fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                              )),
                              SizedBox(width: 35.w,),
-                             smallText(title: "\$14.99",fontWeight: FontWeight.w700,)
+                             smallText(title: "\$14",fontWeight: FontWeight.w700,)
 
                            ],),
                             SizedBox(height: 40.h,),
@@ -129,7 +132,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),
-                              smallText(title: "\$17.99",fontWeight: FontWeight.w700,)
+                              smallText(title: "\$17",fontWeight: FontWeight.w700,)
                             ],),
                             SizedBox(height: 40.h,),
                             //  ---- ==== checkbox One ==== ----
@@ -147,7 +150,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),
-                              smallText(title: "\$21.99",fontWeight: FontWeight.w700,)
+                              smallText(title: "\$21",fontWeight: FontWeight.w700,)
 
                             ],),
                             SizedBox(height: 40.h,)
@@ -158,14 +161,30 @@ class ShippingMethodScreen extends StatelessWidget{
 
                 // =-----= ===== Proceed Button  ===== =-----=
                 SizedBox(height: 90.h,),
-                commonButton(
-                  buttonName: "Proceed",
-                  buttonColor: redColor,
-                  buttonWidth: 1.sw,
-                    textColor: whiteColor,
-                  onTap: () {
-                    _paymentMethodController.startCardEntryFlowMethod();
-                    // Get.to(() => PaymentMethodsScreen());
+                GetBuilder<ShippingController>(
+                  builder: (controller) {
+                    return controller.isCheckedOne || controller.isCheckedTwo || controller.isCheckedThree ?
+                    commonButton(
+                      buttonName: "Proceed",
+                      buttonColor: redColor,
+                      buttonWidth: 1.sw,
+                        textColor: whiteColor,
+                      onTap: () {
+                        _paymentMethodController.totalForPay = controller.isCheckedOne ? cartController.sumOfTotal! + 14 :
+                                                    controller.isCheckedTwo ?  cartController.sumOfTotal! + 17 :
+                                                    cartController.sumOfTotal! + 21 ;
+                        _paymentMethodController.deliveryCharge = controller.isCheckedOne ? 14 :
+                                                    controller.isCheckedTwo ?   17 : 21 ;
+                        _paymentMethodController.startCardEntryFlowMethod();
+
+                        // Get.to(() => PaymentMethodsScreen());
+                      }
+                    ) : commonButton(
+                        buttonName: "Proceed",
+                        buttonColor: whiteColor,
+                        buttonWidth: 1.sw,
+                        textColor: blackColor,
+                    );
                   }
                 )
 

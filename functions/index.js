@@ -47,7 +47,7 @@ exports.chargeForShirt = functions.https.onRequest( async (request, response) =>
       const createPaymentResponse = await paymentsApi.createPayment(createPaymentRequest);
 //      console.log("Testing.......");
 //      console.log(createPaymentResponse.result.payment);
-      response.status(200).send("Successfully");
+      response.status(200).send("You Have Successfully Payed, Check Your Order Detail In Order History.");
 //      response.status(200).json(createPaymentResponse.result.payment);
   function getOrderRequest(locationId) {
     return {

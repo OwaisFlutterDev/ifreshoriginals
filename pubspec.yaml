@@ -66,6 +66,8 @@ dependencies:
   http: ^0.13.4
   cloud_functions: ^3.2.13
 
+  carousel_slider: ^4.1.1
+
 
 dev_dependencies:
   flutter_test:

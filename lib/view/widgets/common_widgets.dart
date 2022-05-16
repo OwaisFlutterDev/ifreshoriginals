@@ -122,10 +122,11 @@ Widget commonButton({ Function()? onTap, Color? buttonColor,Color? textColor, do
 //                        ================================
 Widget commonTextFormFieldForImage({void Function(String?)? onSaved,String? Function(dynamic)? validator,
   bool obscureText = false,TextEditingController? controller , String? hintText, Function()? onTap,
-  bool readOnly = false, String? initialValue, String? prefixIcon, Widget? suffixIcon, Widget? widget
+  bool readOnly = false, String? initialValue, String? prefixIcon, Widget? suffixIcon, Widget? widget,
+  TextInputType? keyboardType
 }) {
   return TextFormField(
-
+    keyboardType: keyboardType,
     style: TextStyle(color: Colors.black,),
     decoration: InputDecoration(
         prefixIcon:  Container(
@@ -149,6 +150,7 @@ Widget commonTextFormFieldForImage({void Function(String?)? onSaved,String? Func
         suffixIcon: suffixIcon,
         hintStyle: TextStyle(color: Color(0xff000000)),
         hintText: hintText,
+
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(

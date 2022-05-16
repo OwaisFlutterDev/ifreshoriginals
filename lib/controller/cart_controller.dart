@@ -28,26 +28,6 @@ class CartController extends GetxController{
       cartList.bindStream(listenToUser());
    }
 
-   // @override
-   // void onReady() {
-   //    super.onReady();
-   //    firebaseUser = Rx<User>(auth.currentUser!);
-   //    // firebaseUser.bindStream(auth.userChanges());
-   //    ever(firebaseUser, _setInitialScreen);
-   //    print("Cart Controller is Ready");
-   // }
-   //
-   // _setInitialScreen(User user) {
-   //
-   //    if (user == null) {
-   //       // Get.off(() => LoginScreen());
-   //    } else {
-   //       cartList.bindStream(listenToUser());
-   //
-   //       // Get.off(() => BottomNavigationBarScreen());
-   //    }
-   // }
-
    bool addToCartBool = false;
    Future addCartData() async {
       addToCartBool = true;
