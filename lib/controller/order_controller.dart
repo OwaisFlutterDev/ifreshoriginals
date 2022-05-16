@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
@@ -37,16 +38,17 @@ class OrderController extends GetxController{
   }
 
   CollectionReference collectionReference = FirebaseFirestore.instance.collection("OrderDetails");
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   Stream<List<OrderModel>> getOrderData() =>
-      collectionReference.orderBy("currentDate", descending: true).limit(5).snapshots()
+      collectionReference.where("uId", isEqualTo: currentUser!.uid.toString()).orderBy("currentDate", descending: true).limit(3).snapshots()
           .map((query) =>
           query.docs.map((item) =>
               OrderModel.fromDocumentSnapshot(item)).toList());
 
 
   Stream<List<OrderModel>> getAllOrderData() =>
-      collectionReference.orderBy("currentDate", descending: true).snapshots()
+      collectionReference.where("uId", isEqualTo: currentUser!.uid.toString()).orderBy("currentDate", descending: true).snapshots()
           .map((query) =>
           query.docs.map((item) =>
               OrderModel.fromDocumentSnapshot(item)).toList());
@@ -58,6 +60,8 @@ class OrderController extends GetxController{
 
       final CartController cartController = Get.put(CartController());
       List _productItemList = [];
+
+      final currentUser = FirebaseAuth.instance.currentUser;
 
 
       for (CartModel productItemList in cartController.cartList.value.cart!) {
@@ -81,6 +85,7 @@ class OrderController extends GetxController{
       await addOrder.set({
 
         "id": addOrder.id,
+        "uId": currentUser!.uid ,
         "email": emailController.text,
         "username": usernameController.text,
         "phoneNo": phoneController.text,
