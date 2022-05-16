@@ -35,27 +35,8 @@ class OrderController extends GetxController{
     zipCodeController = TextEditingController();
 
   }
-  late QuerySnapshot snapshotOfOrderHistory;
 
-  Future searchProduct(String productName) async {
-
-    try{
-      await FirebaseFirestore.instance.collection('OrderDetails').where('productName', isEqualTo: productName).get().then((value) {
-        snapshotOfOrderHistory = value;
-      });
-
-      print("length of Order ${snapshotOfOrderHistory.docs.length}");
-      update();
-
-    }
-    catch(e)
-    {
-      print(e);
-    }
-  }
-
-
-  CollectionReference collectionReference = FirebaseFirestore.instance.collection("OderHistory");
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection("OrderDetails");
 
   Stream<List<OrderModel>> getOrderData() =>
       collectionReference.orderBy("currentDate", descending: true).limit(5).snapshots()

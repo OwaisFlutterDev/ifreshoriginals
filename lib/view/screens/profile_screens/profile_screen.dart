@@ -1,4 +1,3 @@
-// @dart=2.9
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +20,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../widgets/home_screen_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-   ProfileScreen({Key key}) : super(key: key);
+   ProfileScreen({Key? key}) : super(key: key);
    final HomeController homeController = Get.find<HomeController>();
    final OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
    final OrderController orderController = Get.put(OrderController());
@@ -35,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
             child: GetBuilder<UserAuthController>(
               init: UserAuthController(),
               builder: (controller) {
-                return FirebaseAuth.instance.currentUser.isAnonymous ?
+                return FirebaseAuth.instance.currentUser!.isAnonymous ?
                 //-------------------------------------------------------------
                 //     ------ ========== If SignIn Anonymously   ======== ------
                 //-------------------------------------------------------------
@@ -110,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                           color: Colors.blue,
                                           shape: BoxShape.circle,
-                                          image: DecorationImage(image: NetworkImage(controller.userProfileModel.image),fit: BoxFit.cover)
+                                          image: DecorationImage(image: NetworkImage(controller.userProfileModel.image!),fit: BoxFit.cover)
                                       ),
                                     ),
                                   ),
@@ -200,22 +199,22 @@ class ProfileScreen extends StatelessWidget {
 
                                                   openedDesignController.docID = homeController.savedDesignDataList[index].id;
                                                   openedDesignController.userID = homeController.savedDesignDataList[index].userId;
-                                                  openedDesignController.designNameControllerOfOd.text = homeController.savedDesignDataList[index].designName;
+                                                  openedDesignController.designNameControllerOfOd.text = homeController.savedDesignDataList[index].designName!;
 
                                                   // --------= -=-=-= adding value to lists =-=-=- =--------
-                                                  openedDesignController.stickerListFirstImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfFirstImage);
-                                                  openedDesignController.stickerListSecondImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfSecondImage);
+                                                  openedDesignController.stickerListFirstImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfFirstImage!);
+                                                  openedDesignController.stickerListSecondImageOfOD.addAll(homeController.savedDesignDataList[index].stickersOfSecondImage!);
 
-                                                  openedDesignController.imageListOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfFirstImage);
-                                                  openedDesignController.imageListSecondImageOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfSecondImage);
+                                                  openedDesignController.imageListOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfFirstImage!);
+                                                  openedDesignController.imageListSecondImageOfOd.addAll(homeController.savedDesignDataList[index].galleryImagesOfSecondImage!);
 
-                                                  openedDesignController.textListOfOd.addAll(homeController.savedDesignDataList[index].textsOfFirstImage);
-                                                  openedDesignController.textListForSecondImageOfOd.addAll(homeController.savedDesignDataList[index].textsOfSecondImage);
+                                                  openedDesignController.textListOfOd.addAll(homeController.savedDesignDataList[index].textsOfFirstImage!);
+                                                  openedDesignController.textListForSecondImageOfOd.addAll(homeController.savedDesignDataList[index].textsOfSecondImage!);
 
                                                   homeController.popularityCountInt = homeController.savedDesignDataList[index].popularityCount;
 
-                                                  int popularityCount;
-                                                  popularityCount = homeController.popularityCountInt + 1;
+                                                  int? popularityCount;
+                                                  popularityCount = homeController.popularityCountInt! + 1;
 
                                                   openedDesignController.update();
                                                   await FirebaseFirestore.instance.collection("NewShirtDesign").doc(openedDesignController.docID).update({
@@ -243,110 +242,119 @@ class ProfileScreen extends StatelessWidget {
                                   // onTap: () => Get.to(() => OrderHistoryScreen())
                               ),
                               SizedBox(height: 50.h,),
-                              InkWell(
-                                onTap: (){
-                                  Get.to(OrderHistoryScreen());
-                                },
-                                child: Padding(
-                                  padding:  EdgeInsets.symmetric(horizontal: 7),
-                                  child: Container(
-                                    height: 310,
-                                    width: 1.sw,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30.r),
-                                      boxShadow: const <BoxShadow>[
-                                        BoxShadow(
-                                          color: Colors.black12,
-                                          blurRadius: 4.0,
-                                          offset: Offset(0, 5,),
-                                        )
-                                      ],
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                                      child: Column(
-                                        children: [
-                                         smallText(
-                                           title: "Click On The Card To See More Details",
-                                           textAlign: TextAlign.center,
-                                           color: Colors.black,
-                                           fontWeight: FontWeight.w500
-                                         ),
-                                          SizedBox(height: 50,),
-                                          Container(
-                                              color: Colors.transparent,
-                                              height: 100,
-                                              width: 0.9.sw,
-                                              child: GetBuilder<OrderController>(
-                                                  builder: (controller) {
-                                                  return  Container(
-                                                      child: CarouselSlider.builder(
-                                                          itemCount: controller.orderHistoryList.length,
-                                                          options: CarouselOptions(
-                                                          autoPlay: true,
-                                                          aspectRatio: 2.0,
-                                                          enlargeCenterPage: true,
-                                                      ),
-                                                            itemBuilder: (context, index, realIdx) {
-                                                          for(ProductModel img in controller.orderHistoryList[index].productList) {
-                                                            return Container(
-                                                               child: Center(
-                                                                 child: Image.network(img.frontImage,
-                                                                 fit: BoxFit.cover, width: 1000)),
-                                                          );
+                              orderController.orderHistoryList.isNotEmpty ?
+                              Container(
+                                width: 1.sw,
+                                height: 500,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  physics: ScrollPhysics(),
+                                  itemCount: orderController.orderHistoryList.length,
+                                  itemBuilder: (BuildContext context,int index){
+                                    return InkWell(
+                                      onTap: (){
+                                        // Get.to(OrderHistoryScreen());
+                                      },
+                                      child: Padding(
+                                        padding:  EdgeInsets.symmetric(horizontal: 7),
+                                        child: Container(
+                                          height: 310,
+                                          width: 1.sw,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(30.r),
+                                            boxShadow: const <BoxShadow>[
+                                              BoxShadow(
+                                                color: Colors.black12,
+                                                blurRadius: 4.0,
+                                                offset: Offset(0, 5,),
+                                              )
+                                            ],
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                                            child: Column(
+                                              children: [
+                                               smallText(
+                                                 title: "Click On The Card To See More Details",
+                                                 textAlign: TextAlign.center,
+                                                 color: Colors.black,
+                                                 fontWeight: FontWeight.w500
+                                               ),
+                                                SizedBox(height: 50,),
+                                                 for(ProductModel img in orderController.orderHistoryList[index].productList!)
+                                                 Container(
+                                                    color: Colors.transparent,
+                                                    height: 100,
+                                                    width: 0.9.sw,
+                                                    child: CarouselSlider.builder(
+                                                      itemCount: orderController.orderHistoryList[index].productList!.length,
+                                                      options: CarouselOptions(
+                                                      autoPlay: true,
+                                                      aspectRatio: 2.0,
+                                                      enlargeCenterPage: true,
+                                                          ),
+                                                     itemBuilder: (context, index, realIdx) {
+                                                          return Container(
+                                                           child: Center(
+                                                             child: Image.network(img.frontImage!,
+                                                             fit: BoxFit.cover, width: 1000)),
+                                                      );
+
                                                           }
-                                                        },
-                                                    ));}
-                                              )),
+                                                    ),),
 
 
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              smallText(
-                                                title: "Delivery Time",
-                                                color: blackColor,
-                                              ),
-                                              smallText(
-                                                title: "Delivery Time",
-                                                color: blackColor,
-                                                  fontWeight: FontWeight.w600
-                                              ),
-                                          ],),
-                                          SizedBox(height: 15,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              smallText(
-                                                title: "Delivery Charges",
-                                                color: blackColor,
-                                              ),
-                                              smallText(
-                                                title: "Delivery Charges",
-                                                color: blackColor,
-                                                fontWeight: FontWeight.w600
-                                              ),
-                                            ],),
-                                          SizedBox(height: 15,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              smallText(
-                                                title: "Payed Amount",
-                                                color: blackColor,
-                                              ),
-                                              smallText(
-                                                title: "Payed Amount",
-                                                color: blackColor,
-                                                  fontWeight: FontWeight.w600
-                                              ),
-                                            ],),
-                                      ],),
-                                    ),
-                                  ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    smallText(
+                                                      title: "Delivery Time",
+                                                      color: blackColor,
+                                                    ),
+                                                    smallText(
+                                                      title: "Delivery Time",
+                                                      color: blackColor,
+                                                        fontWeight: FontWeight.w600
+                                                    ),
+                                                ],),
+                                                SizedBox(height: 15,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    smallText(
+                                                      title: "Delivery Charges",
+                                                      color: blackColor,
+                                                    ),
+                                                    smallText(
+                                                      title: "Delivery Charges",
+                                                      color: blackColor,
+                                                      fontWeight: FontWeight.w600
+                                                    ),
+                                                  ],),
+                                                SizedBox(height: 15,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    smallText(
+                                                      title: "Payed Amount",
+                                                      color: blackColor,
+                                                    ),
+                                                    smallText(
+                                                      title: "Payed Amount",
+                                                      color: blackColor,
+                                                        fontWeight: FontWeight.w600
+                                                    ),
+                                                  ],),
+                                                 ],),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 ),
-                              )
+                              ) : commonText(title: "OOOO data")
                           ],),
                         ),
                     SizedBox(height: 20,),
