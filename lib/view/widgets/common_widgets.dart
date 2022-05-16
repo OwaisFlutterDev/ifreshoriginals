@@ -189,3 +189,19 @@ AppBar appBar({String? title, Widget? leadingWidget , List<Widget>? action }) {
   );
 }
 
+Row textOrderWidget({String? title, String? value}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      smallText(
+        title: title,
+        color: blackColor,
+      ),
+      smallText(
+          title: value,
+          color: blackColor,
+          fontWeight: FontWeight.w600
+      ),
+    ],);
+}
+

@@ -90,7 +90,7 @@ class UserAuthController extends GetxController{
         Get.back();
 
         Get.snackbar(
-          "Create Account Notification",
+          "Create Account:",
           "Your Account is Created Successfully",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 5),
@@ -99,7 +99,7 @@ class UserAuthController extends GetxController{
       } else { createAccountBool = false;
       update();
         Get.snackbar(
-          "Create Account Notification",
+          "Create Account:",
           "Account creation field!  please check your email or password",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 5),
@@ -182,8 +182,8 @@ class UserAuthController extends GetxController{
         Get.to(() => BottomNavigationBarScreen());
 
         Get.snackbar(
-          "Sign In Notification",
-          "You are successfully Sign In",
+          "Sign In:",
+          "Welcome...",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 3),
         );
@@ -193,8 +193,8 @@ class UserAuthController extends GetxController{
         signInBool = false;
         update();
         Get.snackbar(
-          "Sign In Notification",
-          "No user found for that email.",
+          "Sign In:",
+          "No user found for that Email.",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 3),
         );
@@ -202,7 +202,7 @@ class UserAuthController extends GetxController{
         signInBool = false;
         update();
         Get.snackbar(
-          "Sign In Notification",
+          "Sign In:",
           "Wrong password provided for that user.",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 3),
@@ -288,7 +288,7 @@ class UserAuthController extends GetxController{
         googleSignInBool = false;
         update();
         Get.to(() => BottomNavigationBarScreen());
-        Get.snackbar("Login Message", "You are successfully Sign In",
+        Get.snackbar("Log In:", "Welcome...",
           duration: Duration(seconds: 3),);
 
       }
@@ -331,7 +331,7 @@ class UserAuthController extends GetxController{
 
     try {
       await _auth.sendPasswordResetEmail(email: _formValidationController.emailController.text.trim());
-      Get.snackbar("Reset Password Screen",
+      Get.snackbar("Reset Password:",
           "The mail is send to ${_formValidationController.emailController.text.trim()} please reset the Password",
           duration: Duration(seconds: 5));
       _formValidationController.clearTextField();
@@ -339,8 +339,8 @@ class UserAuthController extends GetxController{
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Get.snackbar(
-          "Reset Password Notification",
-          "No user found for that email.",
+          "Reset Password:",
+          "No user found for that Email.",
           snackPosition: SnackPosition.TOP,
           duration: Duration(seconds: 5),
         );

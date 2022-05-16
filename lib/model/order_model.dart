@@ -9,22 +9,24 @@ class OrderModel {
   String? city;
   String? country;
   String? state;
-  int? zipCode;
+  String? zipCode;
   String? payedAmount;
   String? deliveryTime;
   int? deliveryCharge;
+  String? uId;
   Timestamp? currentDate;
   bool? status;
   List<ProductModel>? productList;
 
 
-  OrderModel({this.email, this.username,this.phoneNo, this.address,this.currentDate,
+  OrderModel({this.uId, this.email, this.username,this.phoneNo, this.address,this.currentDate,
               this.city,this.country,this.state,this.zipCode,this.productList,this.status,
               this.id,this.payedAmount,this.deliveryCharge,this.deliveryTime
   });
 
   OrderModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     id = doc["id"];
+    uId = doc["uId"];
     username = doc["username"];
     email = doc["email"];
     phoneNo = doc["phoneNo"];
@@ -61,7 +63,7 @@ class ProductModel {
   String? backImage;
   String? selectedSize;
   double? perShirtPrice;
-  double? selectedQuantity;
+  int? selectedQuantity;
   double? totalDiscount;
   double? totalPrice;
   double? subTotal;
