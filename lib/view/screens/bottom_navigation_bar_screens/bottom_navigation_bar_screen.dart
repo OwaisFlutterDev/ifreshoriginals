@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +58,7 @@ class BottomNavigationBarScreen extends StatelessWidget {
 
 
         actions: [
-          cartButtonWidget(),
+          FirebaseAuth.instance.currentUser!.isAnonymous ? Container() : cartButtonWidget(),
           SizedBox(width: 40.w,)
         ]
         // leadingWidth: 200.w,

@@ -226,7 +226,7 @@ Widget alertDialogWidget() {
             SizedBox(height: 50.h,),
             Center(child: Wrap(
               children: [
-                smallText(title: "In order to checkout please Sign In to your account",textAlign: TextAlign.center),
+                smallText(title: "In order to Proceed please Sign In to your account",textAlign: TextAlign.center),
               ],
             )),
             SizedBox(height: 90.h,),

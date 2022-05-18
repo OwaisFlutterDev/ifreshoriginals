@@ -148,9 +148,8 @@ Widget commonTextFormFieldForImage({void Function(String?)? onSaved,String? Func
             ],),
         ),
         suffixIcon: suffixIcon,
-        hintStyle: TextStyle(color: Color(0xff000000)),
         hintText: hintText,
-
+        hintStyle: TextStyle(color: Colors.black54),
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(

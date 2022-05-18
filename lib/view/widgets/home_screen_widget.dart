@@ -6,7 +6,7 @@ import '../../constant/constants.dart';
 import 'common_widgets.dart';
 import 'package:get/get.dart';
 
-// final CartController cartController = Get.put(CartController());
+final CartController cartController = Get.put(CartController());
 
 // ---- =======  Drawer Button Widget ====== ------
 Widget drawerButtonWidget({void Function()? onTap}) {
@@ -41,12 +41,10 @@ Widget drawerButtonWidget({void Function()? onTap}) {
 //   );
 // }
 Widget cartButtonWidget() {
-  return  GetBuilder<CartController>(
-    init: CartController(),
-    builder: (controller) {
-      return controller.cartList.value.cart!.isNotEmpty ? InkWell(
+  return Obx(
+          () =>  cartController.cartList.value.cart!.isNotEmpty ? InkWell(
         onTap: () {
-          controller.makeSum();
+          cartController.makeSum();
           Get.to(() => CartScreen());
           } ,
         child: Container(
@@ -56,7 +54,8 @@ Widget cartButtonWidget() {
           child: Image(image: AssetImage("assets/Asset 67.png"),
              fit: BoxFit.scaleDown,),
         ),
-      ) :  InkWell(
+      ) :
+      InkWell(
         onTap: () => Get.to(() => CartScreen()),
         child: Container(
           height: 90.h,
@@ -65,9 +64,8 @@ Widget cartButtonWidget() {
           child: Image(image: AssetImage("assets/Asset 23.png"),
             color: blackColor, fit: BoxFit.scaleDown,),
         ),
-      );
-    }
-  );
+      ) );
+
 }
 
 

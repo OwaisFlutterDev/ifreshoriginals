@@ -359,6 +359,7 @@ class UserAuthController extends GetxController{
     try{
 
       UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
+      // print("signInAnonymously Id ${userCredential.user!.uid.toString()}");
 
       print( FirebaseAuth.instance.currentUser!.isAnonymous ? 'Yes, Its Anonymous ' : "No, Its Not Anonymous");
 

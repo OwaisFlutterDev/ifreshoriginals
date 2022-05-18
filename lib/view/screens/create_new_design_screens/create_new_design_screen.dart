@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -5,6 +6,7 @@ import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/create_new_design_screens/front_image_of_new_design.dart';
+import 'package:ifreshoriginals_userapp/view/widgets/card_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/front_image_text_editor_widget.dart';
@@ -50,7 +52,7 @@ class CreateNewDesignScreen extends StatelessWidget{
             ),
           ),
           action: [
-            cartButtonWidget(),
+            FirebaseAuth.instance.currentUser!.isAnonymous ? Container() : cartButtonWidget(),
             SizedBox(width: 40.w,)
           ]
       ),
@@ -207,11 +209,16 @@ class CreateNewDesignScreen extends StatelessWidget{
                                     buttonName: "Proceed",
                                     textColor: whiteColor,
                                     onTap: (){
-                                      controller.calculationFun();
+                                      FirebaseAuth.instance.currentUser!.isAnonymous ?
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget();
+                                          }) :
+                                        functionalityOnImageController.getByteImages(createNewDesignController);
+                                        controller.calculationFun();
 
-                                      functionalityOnImageController.getByteImages(createNewDesignController);
-
-                                      },
+                                    },
                                     buttonColor: redColor,
                                     buttonWidth: 1.sw
                                   ),
