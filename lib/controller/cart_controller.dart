@@ -25,7 +25,11 @@ class CartController extends GetxController{
    @override
    void onInit(){
       super.onInit();
-      cartList.bindStream(listenToUser());
+      if(FirebaseAuth.instance.currentUser!.isAnonymous) {
+      } else {cartList.bindStream(listenToUser());}
+
+      // print("Cart List Value: ${ cartList.value.email}");
+
    }
 
    bool addToCartBool = false;
@@ -37,7 +41,6 @@ class CartController extends GetxController{
       FunctionalityOnImageController funcOnImageController = Get.put(FunctionalityOnImageController());
       FunctionalityOnOpenedDesignController funcOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
       final user =  FirebaseAuth.instance.currentUser;
-
 
       try{
 

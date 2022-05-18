@@ -38,11 +38,18 @@ class UserProfileController extends GetxController {
   // ------- to get user data -------
   Future getUserData() async {
     final currentUser = FirebaseAuth.instance.currentUser;
-    final CartController cartController  = Get.put(CartController());
+     // print("current User Email: ${currentUser!.email}");
+     if( currentUser!.isAnonymous) {
+       print("I am IsAnonymous User From User Profile Controller");
+     } else {
+       print("Google User");
+       final CartController cartController  = Get.put(CartController());
+     }
+
 
     try {
       DocumentSnapshot _doc = await FirebaseFirestore.instance.collection(
-          'users').doc(currentUser!.uid).get();
+          'users').doc(currentUser.uid).get();
       // ------ ===== condition to check the data is get  or not =====  ------
       _doc != null ? print("Get Data from firebase") : print("Get null Data from firebase");
 

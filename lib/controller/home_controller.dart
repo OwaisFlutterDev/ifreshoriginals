@@ -7,7 +7,7 @@ import '../model/create_new_design_models.dart';
 
 class HomeController extends GetxController {
 
-  final CartController cartController = Get.put(CartController(),permanent: true);
+  final CartController cartController = Get.put(CartController());
 
   // ------------------------------------------------------------------------------
   // ---=-=-=========== -=-=        create new design price =-=- ==========-=-=----
