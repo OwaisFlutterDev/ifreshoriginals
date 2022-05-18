@@ -13,7 +13,7 @@ class OrderController extends GetxController{
   RxList<OrderModel> orderHistoryList = RxList<OrderModel>([]);
   RxList<OrderModel> allOrderHistoryList = RxList<OrderModel>([]);
   //   ----- ========== Text Editing Controller ========== -----
-  late  TextEditingController emailController,  usernameController, phoneController,
+  late  TextEditingController emailController,  firstNameController, lastNameController, phoneController,
       addressController, cityController, countryController, stateController, zipCodeController;
 
   @override
@@ -24,7 +24,8 @@ class OrderController extends GetxController{
     allOrderHistoryList.bindStream(getAllOrderData());
 
     emailController = TextEditingController();
-    usernameController = TextEditingController();
+    firstNameController = TextEditingController();
+    lastNameController = TextEditingController();
 
     phoneController = TextEditingController();
     addressController = TextEditingController();
@@ -80,14 +81,14 @@ class OrderController extends GetxController{
             "currentDate": productItemList.currentDate,
           });
         }
-
+      String username = "${firstNameController.text} ${lastNameController.text}";
       final addOrder = FirebaseFirestore.instance.collection("OrderDetails").doc();
       await addOrder.set({
 
         "id": addOrder.id,
         "uId": currentUser!.uid ,
         "email": emailController.text,
-        "username": usernameController.text,
+        "username": username,
         "phoneNo": phoneController.text,
         "address": addressController.text,
         "city": cityController.text,

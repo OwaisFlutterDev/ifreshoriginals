@@ -128,7 +128,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                     controller.update();
                                   }),
                               SizedBox(width: 20.w,),
-                              commonText(title: "Standard (Est Delivery in 4-8 Business Days)", textStyle: TextStyle(
+                              commonText(title: "Expedite (Est Delivery in 4-8 Business Days)", textStyle: TextStyle(
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),
@@ -146,7 +146,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                     controller.update();
                                   }),
                               SizedBox(width: 20.w,),
-                              commonText(title: "Standard (Est Delivery in 3-6 Business Days)", textStyle: TextStyle(
+                              commonText(title: "On-Demand (Est Delivery in 3-6 Business Days)", textStyle: TextStyle(
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),

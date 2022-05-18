@@ -53,9 +53,16 @@ class ShippingAddressScreen extends StatelessWidget{
                       ),
                       SizedBox(height: 50.h,),
                       commonTextFormField(
-                        hintText: "Username",
+                        hintText: "First Name",
                         prefixIcon: (CupertinoIcons.person),
-                        controller: orderController.usernameController,
+                        controller: orderController.firstNameController,
+                          validator: FormValidatorConstant.commonValidator
+                      ),
+                      SizedBox(height: 50.h,),
+                      commonTextFormField(
+                          hintText: "Last Name",
+                          prefixIcon: (CupertinoIcons.person),
+                          controller: orderController.lastNameController,
                           validator: FormValidatorConstant.commonValidator
                       ),
                       SizedBox(height: 50.h,),

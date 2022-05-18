@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +32,7 @@ class DesignsHistoryScreen extends StatelessWidget{
             ),
           ),
           action: [
-            cartButtonWidget(),
+            FirebaseAuth.instance.currentUser!.isAnonymous ? Container() : cartButtonWidget(),
             SizedBox(width: 40.w,)
           ]
       ),

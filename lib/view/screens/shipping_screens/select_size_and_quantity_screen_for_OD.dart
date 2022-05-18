@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -38,7 +39,7 @@ class SelectSizeAndQuantityScreenForOD extends StatelessWidget{
             ),
           ),
           action: [
-            cartButtonWidget(),
+            FirebaseAuth.instance.currentUser!.isAnonymous ? Container() : cartButtonWidget(),
             SizedBox(width: 40.w,)
           ]
       ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -5,6 +6,7 @@ import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/back_image_of_opened_design_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/front_image_of_opened_design_screen.dart';
+import 'package:ifreshoriginals_userapp/view/widgets/card_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/front_image_text_editor_widget.dart';
@@ -52,7 +54,7 @@ class OpenedDesignScreen extends StatelessWidget{
             ),
           ),
           action: [
-            cartButtonWidget(),
+            FirebaseAuth.instance.currentUser!.isAnonymous ? Container() : cartButtonWidget(),
             SizedBox(width: 40.w,)
           ]
       ),
@@ -208,9 +210,14 @@ class OpenedDesignScreen extends StatelessWidget{
                                   buttonName: "Proceed",
                                   textColor: whiteColor,
                                   onTap: () {
+                                    FirebaseAuth.instance.currentUser!.isAnonymous ?
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return alertDialogWidget();
+                                        }) :
+                                    functionalityOnOpenedDesignController.getByteImagesOfOD(openedDesignController);
                                     controller.calculationFun();
-                                    functionalityOnOpenedDesignController.getByteImagesOfOD(
-                                        openedDesignController);
                                   },
                                   buttonColor: redColor,
                                   buttonWidth: 1.sw
