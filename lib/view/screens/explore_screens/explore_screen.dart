@@ -7,7 +7,6 @@ import 'package:ifreshoriginals_userapp/view/screens/explore_screens/all_designs
 import 'package:ifreshoriginals_userapp/view/screens/explore_screens/featured_designs_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/explore_screens/popular_designs_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/opened_design_screen.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,8 +15,8 @@ import '../../widgets/home_screen_widget.dart';
 class ExploreScreen extends StatelessWidget {
   ExploreScreen({Key? key}) : super(key: key);
 
-  HomeController homeController  = Get.find<HomeController>();
-  OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
+  final HomeController homeController  = Get.find<HomeController>();
+  final OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
 
   @override
   Widget build(BuildContext context) {

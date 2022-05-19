@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({Key? key}) : super(key: key);
 
-  UserProfileController userProfileController = Get.put(UserProfileController());
+  final UserProfileController userProfileController = Get.put(UserProfileController());
 
   @override
   Widget build(BuildContext context) {

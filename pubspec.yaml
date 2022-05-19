@@ -67,6 +67,7 @@ dependencies:
   cloud_functions: ^3.2.13
 
   carousel_slider: ^4.1.1
+  flutterfire_ui: ^0.4.1
 
 
 dev_dependencies:

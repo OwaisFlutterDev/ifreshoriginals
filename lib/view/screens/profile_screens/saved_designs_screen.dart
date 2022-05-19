@@ -14,8 +14,8 @@ import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 class SavedDesignsScreen extends StatelessWidget{
   SavedDesignsScreen({Key? key}) : super(key: key);
 
-   HomeController homeController  = Get.find<HomeController>();
-   OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
+   final HomeController homeController  = Get.find<HomeController>();
+   final OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
 
   @override
   Widget build(BuildContext context) {

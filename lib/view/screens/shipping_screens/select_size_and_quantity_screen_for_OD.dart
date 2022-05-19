@@ -6,7 +6,6 @@ import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/cart_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';

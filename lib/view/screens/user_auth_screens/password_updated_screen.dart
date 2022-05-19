@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class PasswordUpdatedScreen extends StatelessWidget {
   const PasswordUpdatedScreen({Key? key}) : super(key: key);

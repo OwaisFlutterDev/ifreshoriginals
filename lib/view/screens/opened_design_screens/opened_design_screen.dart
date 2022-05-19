@@ -9,7 +9,6 @@ import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/front
 import 'package:ifreshoriginals_userapp/view/widgets/card_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/create_new_design_screen_widget.dart';
-import 'package:ifreshoriginals_userapp/view/widgets/create_new_design_widgets/front_image_text_editor_widget.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/home_screen_widget.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

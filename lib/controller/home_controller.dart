@@ -24,13 +24,13 @@ class HomeController extends GetxController {
   RxList<NewShirtDesignModel> savedDesignAllDataList = RxList<NewShirtDesignModel>([]);
 
   RxList<NewShirtDesignModel> allDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
-  RxList<NewShirtDesignModel> allDesignDataList = RxList<NewShirtDesignModel>([]);
+  // RxList<NewShirtDesignModel> allDesignDataList = RxList<NewShirtDesignModel>([]);
   // 127.0.0.1:59915
   RxList<NewShirtDesignModel> featuredDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
-  RxList<NewShirtDesignModel> featuredDesignDataList = RxList<NewShirtDesignModel>([]);
+  // RxList<NewShirtDesignModel> featuredDesignDataList = RxList<NewShirtDesignModel>([]);
 
   RxList<NewShirtDesignModel> popularDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
-  RxList<NewShirtDesignModel> popularDesignDataList = RxList<NewShirtDesignModel>([]);
+  // RxList<NewShirtDesignModel> popularDesignDataList = RxList<NewShirtDesignModel>([]);
 
 
   CollectionReference collectionReference = FirebaseFirestore.instance.collection("NewShirtDesign");
@@ -45,13 +45,13 @@ class HomeController extends GetxController {
     savedDesignAllDataList.bindStream(getAllSavedDesignData());
 
     allDesignLimitedDataList.bindStream(getAllDesignLimitedData());
-    allDesignDataList.bindStream(getAllDesignData());
+    // allDesignDataList.bindStream(getAllDesignData());
 
     featuredDesignLimitedDataList.bindStream(getFeaturedDesignLimitedData());
-    featuredDesignDataList.bindStream(getFeaturedDesignData());
+    // featuredDesignDataList.bindStream(getFeaturedDesignData());
 
     popularDesignLimitedDataList.bindStream(getPopularDesignLimitedData());
-    popularDesignDataList.bindStream(getPopularDesignData());
+    // popularDesignDataList.bindStream(getPopularDesignData());
 
   }
 
@@ -99,6 +99,29 @@ class HomeController extends GetxController {
   ];
 
   //           ===============================================================================
+  // -------------- ==========    Pagination On AllDesign, Featured and Popular design   ========== --------------
+  //           ===============================================================================
+
+  final allDesignQuery = FirebaseFirestore.instance.collection('NewShirtDesign')
+      .withConverter<NewShirtDesignModel>(
+    fromFirestore: (snapshot, _) => NewShirtDesignModel.fromDocumentSnapshot(snapshot),
+    toFirestore: (data, _) => data.toJson(),
+  );
+
+  final featuredDesignQuery = FirebaseFirestore.instance.collection('NewShirtDesign').orderBy("currentDateTime", descending: false,)
+      .withConverter<NewShirtDesignModel>(
+    fromFirestore: (snapshot, _) => NewShirtDesignModel.fromDocumentSnapshot(snapshot),
+    toFirestore: (data, _) => data.toJson(),
+  );
+
+  final popularDesignQuery = FirebaseFirestore.instance.collection('NewShirtDesign').orderBy("popularityCount", descending: true,)
+      .withConverter<NewShirtDesignModel>(
+    fromFirestore: (snapshot, _) => NewShirtDesignModel.fromDocumentSnapshot(snapshot),
+    toFirestore: (data, _) => data.toJson(),
+  );
+
+
+  //           ===============================================================================
   // -------------- ==========    Get Saved design of current user data from Firestore    ========== --------------
   //           ===============================================================================
   User? user = FirebaseAuth.instance.currentUser;
@@ -128,11 +151,11 @@ class HomeController extends GetxController {
               NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
 
-  Stream<List<NewShirtDesignModel>> getAllDesignData() =>
-      collectionReference.snapshots()
-          .map((query) =>
-          query.docs.map((item) =>
-              NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
+  // Stream<List<NewShirtDesignModel>> getAllDesignData() =>
+  //     collectionReference.snapshots()
+  //         .map((query) =>
+  //         query.docs.map((item) =>
+  //             NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
 
   //           ===============================================================================
@@ -145,11 +168,11 @@ class HomeController extends GetxController {
               NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
 
-  Stream<List<NewShirtDesignModel>> getFeaturedDesignData() =>
-      collectionReference.orderBy("currentDateTime", descending: false,).snapshots()
-          .map((query) =>
-          query.docs.map((item) =>
-              NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
+  // Stream<List<NewShirtDesignModel>> getFeaturedDesignData() =>
+  //     collectionReference.orderBy("currentDateTime", descending: false,).snapshots()
+  //         .map((query) =>
+  //         query.docs.map((item) =>
+  //             NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
 
   //           ===============================================================================
@@ -161,9 +184,9 @@ class HomeController extends GetxController {
           query.docs.map((item) =>
               NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 
-  Stream<List<NewShirtDesignModel>> getPopularDesignData() =>
-      collectionReference.orderBy("popularityCount", descending: true,).snapshots()
-          .map((query) =>
-          query.docs.map((item) =>
-              NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
+  // Stream<List<NewShirtDesignModel>> getPopularDesignData() =>
+  //     collectionReference.orderBy("popularityCount", descending: true,).snapshots()
+  //         .map((query) =>
+  //         query.docs.map((item) =>
+  //             NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
 }

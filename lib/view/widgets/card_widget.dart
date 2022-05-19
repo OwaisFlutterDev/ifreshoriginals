@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
-import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/shapping_address_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/welcome_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';

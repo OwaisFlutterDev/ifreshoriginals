@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
-import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:get/get.dart';
 import '../../../constant/form_validator_constant.dart';
-import '../../../controller/create_new_design_controller.dart';
 
 final OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
 final FunctionalityOnOpenedDesignController functionalityOnImageController = Get.put(FunctionalityOnOpenedDesignController());

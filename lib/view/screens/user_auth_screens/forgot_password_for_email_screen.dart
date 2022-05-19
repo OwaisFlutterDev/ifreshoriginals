@@ -4,7 +4,6 @@ import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/constant/form_validator_constant.dart';
 import 'package:ifreshoriginals_userapp/controller/form_validation_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_auth_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/forgot_password_for_code_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/user_auth_screen_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

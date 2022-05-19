@@ -47,6 +47,28 @@ class NewShirtDesignModel {
   int? popularityCount;
   double?  totalPrice;
 
+  // NewShirtDesignModel.fromJson(Map<String, Object?> json)
+  //     : this(
+  //   id: json['id']! as String,
+  //   userId: json['userId']! as String,
+  //   popularityCount : json['popularityCount']! as int,
+  //   frontImage : json['frontImage']! as String,
+  //   backImage : json['backImage']! as String,
+  //   firstShirtColor : json['firstShirtColor']! as int,
+  //   secondShirtColor: json['secondShirtColor']! as int,
+  //   shirtType : json['shirtType']! as String,
+  //   designName : json['designName']! as String,
+  //   currentDateTime : json['currentDateTime']! as Timestamp,
+  //   frontImageOfDesign : json['frontImageOfDesign']! as String,
+  //   totalPrice : json['totalPrice']! as double,
+  //   galleryImagesOfFirstImage: (json["galleryImagesOfFirstImage"]! ?? []) as List<ImageFromGalleryAndCamModel>? ,
+  //   galleryImagesOfSecondImage: _imagesOfSecondImageItems(doc["galleryImagesOfSecondImage"] ?? []),
+  //   // stickersOfFirstImage =   _stickersOfFirstImageItems(doc["stickersOfFirstImage"] ?? []),
+  //   // stickersOfSecondImage =   _stickersOfSecondImageItems(doc["stickersOfSecondImage"] ?? []),
+  //   // textsOfFirstImage = _textOfFirstImageItems(doc["textsOfFirstImage"] ?? []),
+  //   // textsOfSecondImage =   _textOfSecondImageItems(doc["textsOfSecondImage"] ?? []),
+  // );
+
   NewShirtDesignModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     id = doc["id"];
     userId = doc["userId"];
@@ -68,6 +90,31 @@ class NewShirtDesignModel {
     totalPrice = doc["totalPrice"];
 
   }
+
+  Map<String, Object?> toJson() {
+    return {
+      'id': id,
+      "userId" : userId,
+      "popularityCount": popularityCount,
+      "frontImage": frontImage,
+      "backImage":backImage,
+      "firstShirtColor": firstShirtColor,
+      "secondShirtColor" :secondShirtColor,
+      "shirtType" :shirtType,
+      "designName" :designName,
+      "currentDateTime" :currentDateTime,
+      "frontImageOfDesign": frontImageOfDesign,
+      "totalPrice": totalPrice,
+      "galleryImagesOfFirstImage" :galleryImagesOfFirstImage,
+      "galleryImagesOfSecondImage": galleryImagesOfSecondImage,
+      "stickersOfFirstImage" :   stickersOfFirstImage,
+      "stickersOfSecondImage" :  stickersOfSecondImage,
+      "textsOfFirstImage" : textsOfFirstImage,
+      "textsOfSecondImage" :  textsOfSecondImage,
+    };
+  }
+}
+
   // ------= -=-== convert text of first image ==-=- =------
   List<TextModel> _textOfFirstImageItems(List textFromDB){
     List<TextModel> _result = [];
@@ -134,7 +181,7 @@ class NewShirtDesignModel {
     return _result;
   }
 
-}
+
 
 // ---------------------====================================-------------------------
 //    ------------------ ==== shirt Model  ==== ------------------

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/form_validation_controller.dart';
-import 'package:ifreshoriginals_userapp/view/screens/bottom_navigation_bar_screens/bottom_navigation_bar_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/forgot_password_for_email_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/user_auth_screens/signup_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';

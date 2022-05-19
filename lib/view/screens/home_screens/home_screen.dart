@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/create_new_design_screens/create_new_design_screen.dart';
@@ -16,8 +14,9 @@ import '../profile_screens/saved_designs_screen.dart';
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
-   HomeController homeController = Get.put(HomeController());
-   OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
+
+   final HomeController homeController = Get.put(HomeController());
+   final OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
 
 
   @override

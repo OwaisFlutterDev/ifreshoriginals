@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
@@ -9,7 +8,6 @@ import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart
 import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_auth_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/user_profile_controller.dart';
-import 'package:ifreshoriginals_userapp/model/order_model.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/opened_design_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/profile_screens/order_history_screen.dart';
 import 'package:ifreshoriginals_userapp/view/screens/profile_screens/saved_designs_screen.dart';

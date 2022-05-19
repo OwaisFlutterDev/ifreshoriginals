@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
-import 'package:ifreshoriginals_userapp/controller/create_new_design_controller.dart';
-import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 
