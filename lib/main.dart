@@ -22,14 +22,17 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: Size(1080, 1920),
               minTextAdapt: true,
-              builder: () => GetMaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Flutter Demo',
-                theme: ThemeData(
-                primarySwatch: Colors.blue,
-                ),
-                home: SplashScreen(),
-              )
+              builder: (context , child) {
+                return GetMaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Flutter Demo',
+                  theme: ThemeData(
+                    primarySwatch: Colors.blue,
+                  ),
+                  home: SplashScreen(),
+                );
+              }
     );
+
   }
 }
