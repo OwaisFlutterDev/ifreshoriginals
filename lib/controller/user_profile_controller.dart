@@ -146,34 +146,36 @@ class UserProfileController extends GetxController {
     update();
   }
 
-  void changePassword() async {
-    final User? currentUser =  FirebaseAuth.instance.currentUser;
-    try{
-      var authCredential = EmailAuthProvider.credential(
-          email: userProfileModel.email!, password: currentPasswordProfileController.text);
 
-      var authResult = await currentUser!.reauthenticateWithCredential(authCredential);
+  //  ---------------- update or change password ---------------------
 
-      if(authResult != null) {
-         currentUser.updatePassword(newPasswordProfileController.text);
-         clearTextField();
-         Get.snackbar(
-           "Change Password Notification",
-           "Your password is changed Successfully",
-           snackPosition: SnackPosition.TOP,
-           duration: Duration(seconds: 5),
-         );
-       }
-    }
-    catch(e){
-      Get.snackbar(
+  successMessage(){
+    Get.snackbar(
         "Change Password Notification",
-        "The password is invalid or the user does not have a password.",
+        "Your password is changed Successfully",
         snackPosition: SnackPosition.TOP,
-        duration: Duration(seconds: 5),
-      );
-      print(e);
-    }
+        duration: Duration(seconds: 5));
+    clearTextField();
+  }
+  String? errorMassage = "No Massage";
+
+  void changePassword() async {
+
+      final userr = FirebaseAuth.instance.currentUser;
+      final cred =EmailAuthProvider.credential(
+          email: userr!.email.toString(), password: currentPasswordProfileController.text);
+      userr.reauthenticateWithCredential(cred).then((value) {
+        userr.updatePassword(newPasswordProfileController.text).whenComplete(() => successMessage());
+            }).catchError((err) {
+            Get.snackbar(
+              "Change Password Notification",
+              "The password is invalid or the user does not have a password.",
+              snackPosition: SnackPosition.TOP,
+              duration: Duration(seconds: 5),
+            );
+        print("2ND ONE: ${err.toString()}");
+        // Show.showErrorSnackBar("title", err.toString());
+      });
   }
 
 

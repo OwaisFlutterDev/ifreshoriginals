@@ -54,9 +54,11 @@ class ChangePasswordScreen extends StatelessWidget {
                             commonTextFormField(
                                 prefixIcon: (Icons.lock_outline_rounded),
                                 hintText: "New Password",
-                                validator:  FormValidatorConstant.commonValidator,
-                                controller: userProfileController.newPasswordProfileController
+                                validator:  FormValidatorConstant.newPasswordValidator,
+                                controller: userProfileController.newPasswordProfileController,
+
                             ),
+
                             SizedBox(height: 50.h,),
                             commonTextFormField(
                                 prefixIcon: (Icons.lock_outline_rounded),

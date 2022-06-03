@@ -189,4 +189,36 @@ class HomeController extends GetxController {
   //         .map((query) =>
   //         query.docs.map((item) =>
   //             NewShirtDesignModel.fromDocumentSnapshot(item)).toList());
+
+  // void _changePassword(String password) async {
+  //   FirebaseUser user = await FirebaseAuth.instance.currentUser();
+  //   String email = user.email;
+  //
+  //   //Create field for user to input old password
+  //
+  //   //pass the password here
+  //   String password = "password";
+  //   String newPassword = "password";
+  //
+  //   try {
+  //     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: email,
+  //       password: password,
+  //     );
+  //
+  //     user.updatePassword(newPassword).then((_){
+  //       print("Successfully changed password");
+  //     }).catchError((error){
+  //       print("Password can't be changed" + error.toString());
+  //       //This might happen, when the wrong password is in, the user isn't found, or if the user hasn't logged in recently.
+  //     });
+  //   } on FirebaseAuthException catch (e) {
+  //     if (e.code == 'user-not-found') {
+  //       print('No user found for that email.');
+  //     } else if (e.code == 'wrong-password') {
+  //       print('Wrong password provided for that user.');
+  //     }
+  //   }
+  // }
+
 }

@@ -22,4 +22,9 @@ class FormValidatorConstant{
   static MultiValidator commonValidator = MultiValidator([
     RequiredValidator(errorText: 'fill the required field'),
   ]);
+  static MultiValidator newPasswordValidator = MultiValidator([
+    RequiredValidator(errorText: 'password is required'),
+    MinLengthValidator(6, errorText: 'password must be at least 6 digits long'),
+    // PatternValidator(r'(?=.*?[#?!@$%^&*-])', errorText: 'passwords must have at least one special character')
+  ]);
 }

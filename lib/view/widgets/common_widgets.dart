@@ -71,7 +71,6 @@ Widget commonButton({ Function()? onTap, Color? buttonColor,Color? textColor, do
     bool readOnly = false, String? initialValue, IconData? prefixIcon, Widget? suffixIcon,
   }) {
     return TextFormField(
-
       style: TextStyle(color: Colors.black,),
       decoration: InputDecoration(
           prefixIcon:  Container(
@@ -93,9 +92,11 @@ Widget commonButton({ Function()? onTap, Color? buttonColor,Color? textColor, do
               ],),
           ),
           suffixIcon: suffixIcon,
+
           hintStyle: TextStyle(color: Colors.black54),
           hintText: hintText,
           filled: true,
+
           fillColor: Colors.white,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40.r),

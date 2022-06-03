@@ -79,7 +79,6 @@ class SavedDesignsScreen extends StatelessWidget{
                             homeController.selectedShirtTypeOfOpenedDesign =   homeController.savedDesignAllDataList[index].shirtType;
                             homeController.update();
 
-
                             openedDesignController.selectedColorsForShirt = homeController.savedDesignAllDataList[index].firstShirtColor;
                             openedDesignController.hexToColor();
                             openedDesignController.selectedColorsForShirtSecondImage = homeController.savedDesignAllDataList[index].secondShirtColor;
@@ -124,7 +123,6 @@ class SavedDesignsScreen extends StatelessWidget{
                             });
 
                             Get.to(() => OpenedDesignScreen());
-
 
                           }
                       );
