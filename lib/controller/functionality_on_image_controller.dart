@@ -1,4 +1,4 @@
-import 'dart:io';
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -100,7 +100,7 @@ class FunctionalityOnImageController extends GetxController{
     final name = "ss_$time";
 
     final result = await ImageGallerySaver.saveImage(bytes,name: name);
-    return result['filePath'];
+    return result['filePath'].toString();
 
   }
 

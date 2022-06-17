@@ -1,3 +1,5 @@
+import 'dart:core';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OrderModel {
@@ -10,18 +12,19 @@ class OrderModel {
   String? country;
   String? state;
   String? zipCode;
-  String? payedAmount;
+  int? payedAmount;
   String? deliveryTime;
   int? deliveryCharge;
   String? uId;
   Timestamp? currentDate;
   bool? status;
+  String? todayDate;
   List<ProductModel>? productList;
 
 
   OrderModel({this.uId, this.email, this.username,this.phoneNo, this.address,this.currentDate,
               this.city,this.country,this.state,this.zipCode,this.productList,this.status,
-              this.id,this.payedAmount,this.deliveryCharge,this.deliveryTime
+              this.id,this.payedAmount,this.deliveryCharge,this.deliveryTime,this.todayDate
   });
 
   OrderModel.fromDocumentSnapshot(DocumentSnapshot doc) {
@@ -40,6 +43,7 @@ class OrderModel {
     deliveryTime = doc["deliveryTime"];
     currentDate = doc["currentDate"];
     status = doc["status"];
+    todayDate = doc["todayDate"];
     productList = _productItems(doc["productList"] ?? []);
   }
   // ------= -=-== convert text of first image ==-=- =------
@@ -62,11 +66,11 @@ class ProductModel {
   String? frontImage;
   String? backImage;
   String? selectedSize;
-  double? perShirtPrice;
+  int? perShirtPrice;
   int? selectedQuantity;
-  double? totalDiscount;
-  double? totalPrice;
-  double? subTotal;
+  int? totalDiscount;
+  int? totalPrice;
+  int? subTotal;
   Timestamp?  currentDate;
 
   ProductModel({

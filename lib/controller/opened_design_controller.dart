@@ -21,9 +21,23 @@ class OpenedDesignController extends GetxController{
   // ----------------------------===            Price  details            ===------------------------
   // ----------------------------=== ==================================== ===------------------------
 
-  double? stickerPriceForOD = 4;
-  double? textPriceForOD = 2;
-  double? imagePriceForOD = 7;
+  int? stickerPriceForOD = 4;
+  int? textPriceForOD = 2;
+  int? imagePriceForOD = 7;
+  String? id = "WgnBHn01s1w09e0SGB4p";
+  Future getAllPriceData() async{
+
+    var collection = FirebaseFirestore.instance.collection('price');
+    var querySnapshot = await collection.where('id', isEqualTo: id).get();
+
+    for (var queryDocumentSnapshot in querySnapshot.docs) {
+      Map<String, dynamic> data = queryDocumentSnapshot.data();
+      textPriceForOD = data["textPrice"];
+      stickerPriceForOD = data["stickerPrice"];
+      imagePriceForOD = data["imageOnShirtPrice"];
+      update();
+    }
+  }
 
   List<ColorsModel> colorsListOfOd = [
     ColorsModel(
@@ -131,7 +145,8 @@ class OpenedDesignController extends GetxController{
   String? selectedStickerOfOD;
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewStickerOfOD() {
+  Future addNewStickerOfOD() async {
+    await getAllPriceData();
     stickerListFirstImageOfOD.add(StickerModel(sticker: selectedStickerOfOD, left: 135,top: 84,title: '',
     stickerHeight: 50, stickerWeight: 50,
     ));
@@ -160,7 +175,8 @@ class OpenedDesignController extends GetxController{
 
   //   ---  == remove text ==  ---
   int? removeStickerIndexOfOD = 0;
-  removeStickerOfOD(){
+  Future removeStickerOfOD() async{
+    await getAllPriceData();
     stickerListFirstImageOfOD.removeAt(removeStickerIndexOfOD!);
     update();
 
@@ -181,7 +197,8 @@ class OpenedDesignController extends GetxController{
   File? imageFromGalleryOfOd;
   String? imageFromGalleryToStringOfOd;
 
-  addImagesPriceOnFirImage(){
+   addImagesPriceOnFirImage() {
+
     HomeController homeController = Get.find<HomeController>();
     homeController.newDesignPrice = homeController.newDesignPrice! + imagePriceForOD!;
     homeController.update();
@@ -209,7 +226,8 @@ class OpenedDesignController extends GetxController{
   List<ImageFromGalleryAndCamModel> imageListOfOd = [];
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewImageOfOd() {
+  Future addNewImageOfOd() async{
+    await getAllPriceData();
     imageListOfOd.add(ImageFromGalleryAndCamModel(
         image: imageFromGalleryOfOd ?? imageFromCamOfOd ,left: 135,top: 84, imageUrl: null,imageWeight: 70,imageHeight: 70));
 
@@ -238,7 +256,8 @@ class OpenedDesignController extends GetxController{
 
   //   ---  == remove text ==  ---
   int? removeImageIndexOfOd = 0;
-  removeImageOfOd(){
+  Future removeImageOfOd() async{
+    await getAllPriceData();
     imageListOfOd.removeAt(removeImageIndexOfOd!);
     update();
 
@@ -309,8 +328,6 @@ class OpenedDesignController extends GetxController{
     ),
     FontFamilyModel(
       name: "Bahianita",
-    ),FontFamilyModel(
-      name: "Baloo",
     ),
     FontFamilyModel(
       name: "Barriecito",
@@ -367,7 +384,8 @@ class OpenedDesignController extends GetxController{
 
 
   // --- ===  add text on short from TextField === ---
-  addNewTextOfOd() {
+  Future addNewTextOfOd() async{
+    await getAllPriceData();
     textListOfOd.add(TextModel(color: colorOfOd, top: 84, text: textControllerOfOd.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal,
       left: 135,fontSize: 18,fontWeight: FontWeight.normal,  fontFamily: fontFamilyOfOd ,
@@ -384,7 +402,8 @@ class OpenedDesignController extends GetxController{
 
   //   ---  == remove text ==  ---
   int? removeTextIndexOfOd = 0;
-  removeTextOfOd(){
+  Future removeTextOfOd() async{
+    await getAllPriceData();
     textListOfOd.removeAt(removeTextIndexOfOd!);
     update();
 
@@ -479,7 +498,8 @@ class OpenedDesignController extends GetxController{
 
 
   // --- ===  add text on short from TextField === ---
-  addNewTextSecondImageOfOd() {
+  Future addNewTextSecondImageOfOd() async{
+    await getAllPriceData();
     textListForSecondImageOfOd.add(TextModel(color: colorSecondImageOfOd, top: 84, text: textControllerForSecondImageOfOd.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImageOfOd,
       left: 135,fontSize: 18,fontWeight: FontWeight.normal,));
@@ -495,7 +515,8 @@ class OpenedDesignController extends GetxController{
 
   //   ---  == remove text ==  ---
   int? removeTextIndexSecondImageOfOd = 0;
-  removeTextSecondImageOfOd(){
+  Future removeTextSecondImageOfOd() async{
+    await getAllPriceData();
     textListForSecondImageOfOd.removeAt(removeTextIndexSecondImageOfOd!);
     update();
 
@@ -597,7 +618,8 @@ class OpenedDesignController extends GetxController{
   String? selectedStickerSecondImageOfOD ;
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewStickerSecondImageOfOD () {
+  Future addNewStickerSecondImageOfOD () async{
+    await getAllPriceData();
     stickerListSecondImageOfOD.add(StickerModel(
         sticker: selectedStickerSecondImageOfOD,  left: 135,top: 84,title: '',
         stickerWeight: 50,stickerHeight: 50,
@@ -614,7 +636,8 @@ class OpenedDesignController extends GetxController{
 
   int currentIndexOfStickerOfSecImage = 0;
 
-  increaseSizeOfStickerSI() {
+   increaseSizeOfStickerSI() {
+
     stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight =  stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight! + 5;
     stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight! + 5;
     update();
@@ -629,7 +652,8 @@ class OpenedDesignController extends GetxController{
   //   ---  == remove text ==  ---
   int? removeStickerIndexSecondImageOfOD  = 0;
   // double? subStickerPrice = 0;
-  removeStickerSecondImageOfOD (){
+  Future removeStickerSecondImageOfOD () async{
+    await getAllPriceData();
     stickerListSecondImageOfOD.removeAt(removeStickerIndexSecondImageOfOD !);
     update();
 
@@ -674,7 +698,8 @@ class OpenedDesignController extends GetxController{
   List<ImageFromGalleryAndCamModel> imageListSecondImageOfOd = [];
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewImageSecondImageOfOd() {
+  Future addNewImageSecondImageOfOd() async {
+    await getAllPriceData();
     imageListSecondImageOfOd.add(ImageFromGalleryAndCamModel(
         image: imageFromGallerySecondImageOfOd ?? imageFromCamSecondImageOfOd ,
         imageHeight: 70, imageWeight: 70,
@@ -704,7 +729,8 @@ class OpenedDesignController extends GetxController{
 
   //   ---  == remove text ==  ---
   int? removeImageIndexSecondImageOfOd = 0;
-  removeImageSecondImageOfOd(){
+  Future removeImageSecondImageOfOd() async{
+    await getAllPriceData();
     imageListSecondImageOfOd.removeAt(removeImageIndexSecondImageOfOd!);
     update();
 

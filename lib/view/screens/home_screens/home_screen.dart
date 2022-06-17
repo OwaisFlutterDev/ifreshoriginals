@@ -46,40 +46,38 @@ class HomeScreen extends StatelessWidget {
                      SizedBox(height: 70.h,),
                      headerThree(title: "Create New Design",color: blackColor,fontWeight: FontWeight.w500),
                      SizedBox(height: 50.h,),
-                     GetBuilder<HomeController>(
-                       init: HomeController(),
-                       builder: (controller) {
-                         return Container(
-                           height: 420.h,
-                           color: Colors.transparent,
-                           child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: ScrollPhysics(),
-                              itemCount: homeController.createNewDesignList.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext context,int index){
-                              return  Padding(
-                                padding:  EdgeInsets.only(right: 50.w),
-                                child: createNewDesignWidget(
-                                    onTap: () {
-                                      homeController.selectedFrontImage =  homeController.createNewDesignList[index].frontImage;
-                                      homeController.selectedBackImage =   homeController.createNewDesignList[index].backImage;
-                                      homeController.selectedDesignType =   homeController.createNewDesignList[index].title;
-                                      homeController.newDesignPrice = 0;
-                                      homeController.update();
-                                      homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.createNewDesignList[index].shirtPrice!;
-                                      homeController.shirtPrice = homeController.createNewDesignList[index].shirtPrice!;
-                                      homeController.update();
-                                      Get.to(() => CreateNewDesignScreen());
-                                    },
-                                    image: "${homeController.createNewDesignList[index].frontImage}",
-                                    name: "${homeController.createNewDesignList[index].title}"
-                                ),
-                              );
-                            } ),
-                         );
-                       }
-                     ),
+
+                     Obx(() => Container(
+                       height: 420.h,
+                       color: Colors.transparent,
+                       child: ListView.builder(
+                           shrinkWrap: true,
+                           physics: ScrollPhysics(),
+                           itemCount: homeController.shirtImageList.length,
+                           scrollDirection: Axis.horizontal,
+                           itemBuilder: (BuildContext context,int index){
+                             return  Padding(
+                               padding:  EdgeInsets.only(right: 50.w),
+                               child: createNewDesignWidget(
+                                   onTap: () {
+                                     homeController.selectedFrontImage =  homeController.shirtImageList[index].frontImage;
+                                     homeController.selectedBackImage =   homeController.shirtImageList[index].backImage;
+                                     homeController.selectedDesignType =   homeController.shirtImageList[index].shirtName;
+                                     homeController.newDesignPrice = 0;
+                                     homeController.update();
+                                     homeController.newDesignPrice =  homeController.newDesignPrice! + homeController.shirtImageList[index].shirtPrice!;
+                                     homeController.shirtPrice = homeController.shirtImageList[index].shirtPrice!;
+                                     homeController.update();
+                                     Get.to(() => CreateNewDesignScreen());
+                                   },
+                                   image: "${homeController.shirtImageList[index].frontImage}",
+
+                                   name: "${homeController.shirtImageList[index].shirtName}"
+                               ),
+                             );
+                           } ),
+                     )) ,
+
 
                      //-------------------------------------------------------------
                      //     ------ ========== Saved Design Section ======== ------

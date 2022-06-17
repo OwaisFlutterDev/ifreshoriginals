@@ -25,7 +25,7 @@ Widget backImageOfNewDesign(context) {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
-                image: DecorationImage(image: AssetImage("${homeController.selectedBackImage}",),
+                image: DecorationImage(image: NetworkImage("${homeController.selectedBackImage}",),
                     fit: BoxFit.fill,
                     colorFilter: ColorFilter.mode(controller.convertedColorForSecondShirt ?? whiteColor, BlendMode.modulate)
                 )

@@ -101,11 +101,11 @@ class ShippingMethodScreen extends StatelessWidget{
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
                              Checkbox(
-                                 value: controller.isCheckedOne,
+                                 value: controller.deliveryStandardBool,
                                  onChanged: (check) {
-                                   controller.isCheckedOne = check!;
-                                   controller.isCheckedThree = false;
-                                   controller.isCheckedTwo = false;
+                                   controller.deliveryStandardBool = check!;
+                                   controller.deliveryOnDemandBool = false;
+                                   controller.deliveryExpediteBool = false;
                                    controller.update();
                                  }),
                              SizedBox(width: 20.w,),
@@ -113,18 +113,18 @@ class ShippingMethodScreen extends StatelessWidget{
                                  fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                              )),
                              SizedBox(width: 35.w,),
-                             smallText(title: "\$14",fontWeight: FontWeight.w700,)
+                             smallText(title: "\$${controller.deliveryStandardPrice}",fontWeight: FontWeight.w700,)
 
                            ],),
                             SizedBox(height: 40.h,),
                             //  ---- ==== checkbox One ==== ----
                             Row(children: [
                               Checkbox(
-                                  value: controller.isCheckedTwo,
+                                  value: controller.deliveryExpediteBool,
                                   onChanged: (check) {
-                                    controller.isCheckedTwo = check!;
-                                    controller.isCheckedThree = false;
-                                    controller.isCheckedOne = false;
+                                    controller.deliveryExpediteBool = check!;
+                                    controller.deliveryStandardBool = false;
+                                    controller.deliveryOnDemandBool = false;
                                     controller.update();
                                   }),
                               SizedBox(width: 20.w,),
@@ -132,17 +132,17 @@ class ShippingMethodScreen extends StatelessWidget{
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),
-                              smallText(title: "\$17",fontWeight: FontWeight.w700,)
+                              smallText(title: "\$${controller.deliveryExpeditePrice}",fontWeight: FontWeight.w700,)
                             ],),
                             SizedBox(height: 40.h,),
                             //  ---- ==== checkbox One ==== ----
                             Row(children: [
                               Checkbox(
-                                  value: controller.isCheckedThree,
+                                  value: controller.deliveryOnDemandBool,
                                   onChanged: (check) {
-                                    controller.isCheckedThree = check!;
-                                    controller.isCheckedTwo = false;
-                                    controller.isCheckedOne = false;
+                                    controller.deliveryOnDemandBool = check!;
+                                    controller.deliveryStandardBool = false;
+                                    controller.deliveryExpediteBool = false;
                                     controller.update();
                                   }),
                               SizedBox(width: 20.w,),
@@ -150,7 +150,7 @@ class ShippingMethodScreen extends StatelessWidget{
                                   fontSize: 28.sp,color: Colors.black,fontWeight: FontWeight.w600
                               )),
                               SizedBox(width: 35.w,),
-                              smallText(title: "\$21",fontWeight: FontWeight.w700,)
+                              smallText(title: "\$${controller.deliveryOnDemandPrice}",fontWeight: FontWeight.w700,)
 
                             ],),
                             SizedBox(height: 40.h,)
@@ -163,18 +163,18 @@ class ShippingMethodScreen extends StatelessWidget{
                 SizedBox(height: 90.h,),
                 GetBuilder<ShippingController>(
                   builder: (controller) {
-                    return controller.isCheckedOne || controller.isCheckedTwo || controller.isCheckedThree ?
+                    return controller.deliveryStandardBool || controller.deliveryExpediteBool || controller.deliveryOnDemandBool ?
                     commonButton(
                       buttonName: "Proceed",
                       buttonColor: redColor,
                       buttonWidth: 1.sw,
                         textColor: whiteColor,
                       onTap: () {
-                        _paymentMethodController.totalForPay = controller.isCheckedOne ? cartController.sumOfTotal! + 14 :
-                                                    controller.isCheckedTwo ?  cartController.sumOfTotal! + 17 :
-                                                    cartController.sumOfTotal! + 21 ;
-                        _paymentMethodController.deliveryCharge = controller.isCheckedOne ? 14 :
-                                                    controller.isCheckedTwo ?   17 : 21 ;
+                        _paymentMethodController.totalForPay = controller.deliveryStandardBool ? cartController.sumOfTotal! + controller.deliveryStandardPrice! :
+                                                    controller.deliveryExpediteBool ?  cartController.sumOfTotal! + controller.deliveryExpeditePrice! :
+                                                    cartController.sumOfTotal! + controller.deliveryOnDemandPrice! ;
+                        _paymentMethodController.deliveryCharge = controller.deliveryStandardBool ? controller.deliveryStandardPrice!  :
+                                                    controller.deliveryExpediteBool ?   controller.deliveryExpeditePrice! : controller.deliveryOnDemandPrice! ;
                         _paymentMethodController.startCardEntryFlowMethod();
 
                         // Get.to(() => PaymentMethodsScreen());

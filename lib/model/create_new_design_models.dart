@@ -45,7 +45,7 @@ class NewShirtDesignModel {
   List<TextModel>? textsOfFirstImage;
   List<TextModel>? textsOfSecondImage;
   int? popularityCount;
-  double?  totalPrice;
+  int?  totalPrice;
 
   // NewShirtDesignModel.fromJson(Map<String, Object?> json)
   //     : this(
@@ -190,7 +190,7 @@ class ShirtModel{
   String? frontImage;
   String? backImage;
   String? title;
-  double? shirtPrice;
+  int? shirtPrice;
 
   ShirtModel({this.frontImage,this.title, this.backImage,this.shirtPrice});
 }
@@ -231,7 +231,7 @@ class TextModel {
   FontStyle? fontStyle;
   TextAlign? textAlign;
   String? fontFamily;
-  double? textPrice;
+  int? textPrice;
 
   TextModel(
       {
@@ -295,7 +295,7 @@ class StickerModel {
   double? left;
   double? top;
   String? title;
-  double? stickerPrice;
+  int? stickerPrice;
   double? stickerHeight;
   double? stickerWeight;
   StickerModel({this.sticker,this.title,this.top,this.left,this.stickerPrice,this.stickerHeight,this.stickerWeight});
@@ -312,6 +312,25 @@ class StickerModel {
 
 }
 
+class StickerDataModel {
+  String? id;
+  String? stickerImage;
+  String? stickerName;
+
+  StickerDataModel({
+    this.id,
+    this.stickerImage,
+    this.stickerName,
+  });
+
+  StickerDataModel.fromDocumentSnapshot(DocumentSnapshot doc) {
+    id = doc["id"];
+    stickerImage = doc["stickerImage"];
+    stickerName = doc["stickerName"];
+  }
+
+}
+
 // ---------------------========================-------------------------
 //    ------------------ ==== Image From Gallery And Cam Model ==== ------------------
 // ---------------------========================-------------------------
@@ -321,7 +340,7 @@ class ImageFromGalleryAndCamModel {
   double? left;
   double? top;
   String? imageUrl;
-  double? imagePrice;
+  int? imagePrice;
   double? imageHeight;
   double? imageWeight;
 

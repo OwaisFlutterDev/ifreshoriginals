@@ -60,7 +60,7 @@ class CartController extends GetxController{
          // ------------ saving first image -----------------
 
          final tempDir = await getTemporaryDirectory();
-         File frontImageFile = await File('${tempDir.path}/${user!.uid + DateTime.now().toString()}.png').create();
+         File frontImageFile = await File('${tempDir.path}/${user!.uid + DateTime.now().toString()}').create();
          frontImageFile.writeAsBytesSync(frontByteImage!.buffer.asUint8List());
 
          String filePath = basename(frontImageFile.path);
@@ -78,13 +78,14 @@ class CartController extends GetxController{
          // ------------ saving second image -----------------
 
          final tempDire = await getTemporaryDirectory();
-         File backImageFile = await File('${tempDire.path}/${user.uid + "h" + DateTime.now().toString()}.png').create();
+         File backImageFile = await File('${tempDire.path}/${user.uid + "h" + DateTime.now().toString()}').create();
          backImageFile.writeAsBytesSync(backByteImage!.buffer.asUint8List());
 
          String filePathBI = basename(backImageFile.path);
 
          Reference firebaseStorageRefBI = FirebaseStorage.instance.ref().child(
              'shirt_design_images/$filePathBI');
+
          UploadTask uploadTaskBI = firebaseStorageRefBI.putFile(backImageFile);
 
          await uploadTaskBI.whenComplete(() =>
@@ -268,18 +269,18 @@ class CartController extends GetxController{
    String? selectedSizeCart = "S" ;
 
    int? selectedQuantityIndexCart = 0;
-   num? selectedQuantityCart = 1;
-   num? discountCart = 0;
+   int? selectedQuantityCart = 1;
+   int? discountCart = 0;
 
    String? frontImage;
    String? backImage;
    String? id;
    String? designType;
-   num? perShirtPrice;
+   int? perShirtPrice;
 
-   num? subTotalCart = 0;
-   num? discountPerCart = 0;
-   num? totalPriceCart = 0;
+   int? subTotalCart = 0;
+   int? discountPerCart = 0;
+   int? totalPriceCart = 0;
 
    Future updateItemFromCart(CartModel cartData) async {
 
@@ -287,7 +288,7 @@ class CartController extends GetxController{
 
      try{
        subTotalCart = perShirtPrice! * selectedQuantityCart!;
-       discountPerCart = subTotalCart! / 100 * discountCart! ;
+       discountPerCart = (subTotalCart! / 100 * discountCart!).toInt() ;
        totalPriceCart = subTotalCart! - discountPerCart!;
 
        // --=-=-=-============= Delete Item From Cart Firestore ==============-=-=-=-=--
@@ -349,9 +350,9 @@ class CartController extends GetxController{
 // -------------- ===========    Make sum of total sub total and discount   ========== --------------
 //    =========================================================================
 
-   num? sumOfSubTotal = 0;
-   num? sumOfDiscount = 0;
-   num? sumOfTotal = 0;
+   int? sumOfSubTotal = 0;
+   int? sumOfDiscount = 0;
+   int? sumOfTotal = 0;
 
    makeSum() {
 

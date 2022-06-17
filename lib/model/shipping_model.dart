@@ -4,12 +4,7 @@ class SizeModel{
 }
 
 class QuantityModel{
-  num?  quantity;
-  num? discount;
+  int?  quantity;
+  int? discount;
   QuantityModel({this.quantity, this.discount});
-}
-
-class  DiscountModel{
-  num  discount;
-  DiscountModel({required this.discount});
 }

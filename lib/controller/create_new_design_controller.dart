@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_image_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/shirt_and _sticker_controller.dart';
 import 'package:ifreshoriginals_userapp/model/create_new_design_models.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -29,9 +30,30 @@ class CreateNewDesignController extends GetxController {
   // ----------------------------===            Price  details            ===------------------------
   // ----------------------------=== ==================================== ===------------------------
 
-  double? stickerPrice = 4;
-  double? textPrice = 2;
-  double? imagePrice = 7;
+  String? id = "WgnBHn01s1w09e0SGB4p";
+  int? textPrice;
+  int? stickerPrice;
+  int? imagePrice;
+
+
+  Future getAllPriceData() async{
+
+    var collection = FirebaseFirestore.instance.collection('price');
+    var querySnapshot = await collection.where('id', isEqualTo: id).get();
+
+    for (var queryDocumentSnapshot in querySnapshot.docs) {
+      Map<String, dynamic> data = queryDocumentSnapshot.data();
+      textPrice = data["textPrice"];
+      stickerPrice = data["stickerPrice"];
+      imagePrice = data["imageOnShirtPrice"];
+      update();
+    }
+  }
+
+
+  // int? stickerPrice = priceController.stickerPrice;
+  // int? textPrice = 1;
+  // int? imagePrice = 4;
 
 
   // ----------------------------=== ==================================== ===------------------------
@@ -137,8 +159,6 @@ class CreateNewDesignController extends GetxController {
     ),
     FontFamilyModel(
       name: "Bahianita",
-    ),FontFamilyModel(
-      name: "Baloo",
     ),
     FontFamilyModel(
       name: "Barriecito",
@@ -194,7 +214,8 @@ class CreateNewDesignController extends GetxController {
 
 
   // --- ===  add text on short from TextField === ---
-  addNewText() {
+  Future addNewText() async{
+    await getAllPriceData();
     try{
       HomeController homeController = Get.find<HomeController>();
 
@@ -216,7 +237,8 @@ class CreateNewDesignController extends GetxController {
   
   //   ---  == remove text ==  ---
   int? removeTextIndex = 0;
-  removeText(){
+  Future removeText() async{
+    await getAllPriceData();
     textList.removeAt(removeTextIndex!);
     update();
 
@@ -343,7 +365,8 @@ class CreateNewDesignController extends GetxController {
   String? selectedSticker;
 
   // --- ===  add Sticker on short from TextField === ---
-   addNewSticker() {
+   Future addNewSticker() async{
+     await getAllPriceData();
      HomeController homeController = Get.find<HomeController>();
 
     try{
@@ -363,7 +386,8 @@ class CreateNewDesignController extends GetxController {
 
   //   ---  == remove text ==  ---
   int? removeStickerIndex = 0;
-  removeSticker(){
+  Future removeSticker() async{
+    await getAllPriceData();
     stickerList.removeAt(removeStickerIndex!);
     update();
 
@@ -442,7 +466,8 @@ class CreateNewDesignController extends GetxController {
   List<ImageFromGalleryAndCamModel> imageList = [];
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewImage()  {
+  Future addNewImage()  async{
+    await getAllPriceData();
     imageList.add(ImageFromGalleryAndCamModel(
         image: imageFromGallery ?? imageFromCam ,left: 135,top: 84, imageUrl: '',imagePrice: imagePrice,imageHeight: 70,imageWeight: 70
     ));
@@ -472,7 +497,8 @@ class CreateNewDesignController extends GetxController {
 
   //   ---  == remove text ==  ---
   int? removeImageIndex = 0;
-  removeImage(){
+  Future removeImage() async{
+    await getAllPriceData();
     imageList.removeAt(removeImageIndex!);
     update();
 
@@ -504,7 +530,8 @@ class CreateNewDesignController extends GetxController {
 
 
   // --- ===  add text on short from TextField === ---
-  addNewTextSecondImage() {
+  Future addNewTextSecondImage() async{
+    await getAllPriceData();
     textListForSecondImage.add(TextModel(color: colorSecondImage, top: 84, text: textControllerForSecondImage.text,
       textAlign: TextAlign.center, fontStyle: FontStyle.normal, fontFamily: fontFamilySecImage,
       left: 135,fontSize: 18,fontWeight: FontWeight.normal, textPrice: textPrice));
@@ -518,7 +545,8 @@ class CreateNewDesignController extends GetxController {
 
   //   ---  == remove text ==  ---
   int? removeTextIndexSecondImage = 0;
-  removeTextSecondImage(){
+  Future removeTextSecondImage() async{
+    await getAllPriceData();
     textListForSecondImage.removeAt(removeTextIndexSecondImage!);
     update();
     HomeController homeController = Get.find<HomeController>();
@@ -600,7 +628,8 @@ class CreateNewDesignController extends GetxController {
   String? selectedStickerSecondImage ;
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewStickerSecondImage () {
+  Future addNewStickerSecondImage()  async {
+    await getAllPriceData();
     stickerListSecondImage.add(StickerModel(sticker: selectedStickerSecondImage,left: 135,top: 84,title: '',stickerPrice: stickerPrice,
         stickerHeight: 50, stickerWeight: 50
     ));
@@ -616,7 +645,8 @@ class CreateNewDesignController extends GetxController {
 
   //   ---  == remove text ==  ---
   int? removeStickerIndexSecondImage  = 0;
-  removeStickerSecondImage (){
+  Future removeStickerSecondImage() async {
+    await getAllPriceData();
     stickerListSecondImage.removeAt(removeStickerIndexSecondImage !);
     update();
     HomeController homeController = Get.find<HomeController>();
@@ -674,7 +704,8 @@ class CreateNewDesignController extends GetxController {
   List<ImageFromGalleryAndCamModel> imageListSecondImage = [];
 
   // --- ===  add Sticker on short from TextField === ---
-  addNewImageSecondImage() {
+  Future addNewImageSecondImage() async{
+    await getAllPriceData();
     imageListSecondImage.add(ImageFromGalleryAndCamModel(
       image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 135,top: 84,imageUrl: '',imagePrice: imagePrice,
         imageHeight: 70, imageWeight: 70
@@ -705,7 +736,8 @@ class CreateNewDesignController extends GetxController {
 
   //   ---  == remove text ==  ---
   int? removeImageIndexSecondImage = 0;
-  removeImageSecondImage(){
+  Future removeImageSecondImage() async{
+    await getAllPriceData();
     imageListSecondImage.removeAt(removeImageIndexSecondImage!);
     update();
     HomeController homeController = Get.find<HomeController>();
@@ -930,7 +962,6 @@ class CreateNewDesignController extends GetxController {
             "imagePrice" : textData.imagePrice
           });
         }
-
       }
 
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
 import 'package:ifreshoriginals_userapp/constant/form_validator_constant.dart';
 import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/shipping_screens/shipping_method_screen.dart';
 import 'package:ifreshoriginals_userapp/view/widgets/common_widgets.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class ShippingAddressScreen extends StatelessWidget{
   ShippingAddressScreen({Key? key}) : super(key: key);
 
   final OrderController orderController = Get.put(OrderController(), permanent: true);
+  final ShippingController shippingController = Get.put(ShippingController());
 
   @override
   Widget build(BuildContext context) {
@@ -113,16 +115,15 @@ class ShippingAddressScreen extends StatelessWidget{
                       commonButton(
                         onTap: (){
                           if (orderController.orderFormKey.currentState!.validate()) {
+                            shippingController.getAllPriceData();
                             Get.to(() => ShippingMethodScreen());
                           } else {
                             Get.snackbar("Shipping Address",
                                 "Please Fill All The Fields",
                                 duration: Duration(seconds: 3));
                           }
-
                         },
                         buttonWidth: 1.sw,
-
                         buttonColor: redColor,
                         buttonName: "Proceed",
                         textColor: whiteColor,

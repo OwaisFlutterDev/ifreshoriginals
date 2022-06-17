@@ -8,7 +8,6 @@ import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:widget_to_image/widget_to_image.dart';
-import '../view/screens/shipping_screens/select_size_and_quantity_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../view/widgets/common_widgets.dart';
 
@@ -74,6 +73,7 @@ class FunctionalityOnOpenedDesignController extends GetxController{
   saveImageOfOD(context) async {
 
     final image = await screenshotControllerForSelectedSAQOfOD.capture();
+    print(image.toString());
     await saveImageToGalleryOfOD(image!);
     update();
     //  ---- === SnackBar === ----
@@ -96,9 +96,10 @@ class FunctionalityOnOpenedDesignController extends GetxController{
     final time = DateTime.now()
         .toIso8601String().replaceAll('.', '-')..replaceAll(':', '-');
     final name = "ss_$time";
+    print(time);
 
     final result = await ImageGallerySaver.saveImage(bytes,name: name);
-    return result['filePath'];
+    return result['filePath'].toString();
 
   }
 

@@ -104,19 +104,19 @@ class WelcomeScreen extends StatelessWidget {
                 GetBuilder<UserAuthController>(
                   init: UserAuthController(),
                   builder: (controller) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                         InkWell(
-                           onTap: () {
-                             controller.signInAnonymously();
-                           },
-                           child: largeText(
+                    return InkWell(
+                      onTap: () {
+                        controller.signInAnonymously();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                           largeText(
                                title: 'Continue without login',
                                color: redColor,
-                           ),
-                         )
-                    ],);
+                           )
+                      ],),
+                    );
                   }
                 ),
                 SizedBox(

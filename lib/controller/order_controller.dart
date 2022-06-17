@@ -3,8 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
+import 'package:ifreshoriginals_userapp/controller/shipping_controller.dart';
 import 'package:ifreshoriginals_userapp/model/order_model.dart';
 import 'package:ifreshoriginals_userapp/model/user_profile_model.dart';
+import 'package:intl/intl.dart';
 
 class OrderController extends GetxController{
 
@@ -58,12 +60,12 @@ class OrderController extends GetxController{
   Future addOrderDetails(int totalAmount, int deliveryCharge) async {
 
     try{
+      final ShippingController shippingController = Get.put(ShippingController());
 
       final CartController cartController = Get.put(CartController());
       List _productItemList = [];
 
       final currentUser = FirebaseAuth.instance.currentUser;
-
 
       for (CartModel productItemList in cartController.cartList.value.cart!) {
           print(productItemList.currentDate);
@@ -84,7 +86,6 @@ class OrderController extends GetxController{
       String username = "${firstNameController.text} ${lastNameController.text}";
       final addOrder = FirebaseFirestore.instance.collection("OrderDetails").doc();
       await addOrder.set({
-
         "id": addOrder.id,
         "uId": currentUser!.uid ,
         "email": emailController.text,
@@ -95,10 +96,12 @@ class OrderController extends GetxController{
         "country": countryController.text,
         "state": stateController.text,
         "zipCode": zipCodeController.text,
-        "payedAmount": totalAmount.toString(),
+        "payedAmount": totalAmount,
         "currentDate": DateTime.now(),
+        "todayDate": DateFormat("dd-MM-yyyy").format(DateTime.now()),
         "status":  false,
-        "deliveryTime": deliveryCharge == 14 ? "Est Delivery in 8-10 Business Days" : deliveryCharge == 17 ?
+        // ignore: unrelated_type_equality_checks
+        "deliveryTime": shippingController.deliveryStandardBool == true ? "Est Delivery in 8-10 Business Days" : shippingController.deliveryExpediteBool == true?
                          "Est Delivery in 4-8 Business Days" : "Est Delivery in 3-6 Business Days",
         "deliveryCharge": deliveryCharge,
         "productList": _productItemList

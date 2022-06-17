@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
@@ -99,7 +100,7 @@ Widget createNewDesignWidget({void Function()? onTap, String? image,String? name
                 shape: BoxShape.circle,
                   // image: DecorationImage(image: AssetImage(image!),fit: BoxFit.scaleDown,),
               ),
-              child: Image(image: AssetImage(image!),fit: BoxFit.scaleDown,)),
+              child: Image(image: NetworkImage(image!),fit: BoxFit.scaleDown,)),
             ),
           ),
         SizedBox(height: 28.h,),

@@ -47,12 +47,12 @@ class CartModel {
   String? frontImage;
   String? backImage;
   String? selectedSize;
-  num? perShirtPrice;
-  num? selectedQuantity;
-  num? discountNo;
-  num? totalDiscount;
-  num? totalPrice;
-  num? subTotal;
+  int? perShirtPrice;
+  int? selectedQuantity;
+  int? discountNo;
+  int? totalDiscount;
+  int? totalPrice;
+  int? subTotal;
   int? selectedSizedIndex;
   Timestamp?  currentDate;
 

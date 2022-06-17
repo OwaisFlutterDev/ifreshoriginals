@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:ifreshoriginals_userapp/controller/cart_controller.dart';
 import '../model/create_new_design_models.dart';
+import '../model/shirt_image_model.dart';
 
 
 class HomeController extends GetxController {
@@ -12,8 +13,8 @@ class HomeController extends GetxController {
   // ------------------------------------------------------------------------------
   // ---=-=-=========== -=-=        create new design price =-=- ==========-=-=----
   //-------------------------------------------------------------------------------
-  num? newDesignPrice = 0;
-  num? shirtPrice = 0;
+  int? newDesignPrice = 0;
+  int? shirtPrice = 0;
 
   // num? newDesignPriceForOD = 0;
   // num? shirtPriceForOD = 0;
@@ -32,6 +33,7 @@ class HomeController extends GetxController {
   RxList<NewShirtDesignModel> popularDesignLimitedDataList = RxList<NewShirtDesignModel>([]);
   // RxList<NewShirtDesignModel> popularDesignDataList = RxList<NewShirtDesignModel>([]);
 
+  RxList<ShirtImageModel> shirtImageList = RxList<ShirtImageModel>([]);
 
   CollectionReference collectionReference = FirebaseFirestore.instance.collection("NewShirtDesign");
 
@@ -40,6 +42,8 @@ class HomeController extends GetxController {
     super.onInit();
 
     // InAppPayments.setSquareApplicationId('sandbox-sq0idb-DmyyChN1jRRS7sq8M3e_XQ');
+    shirtImageList.bindStream(getShirtImagesData());
+    print("Get Shirt Images Data");
 
     savedDesignDataList.bindStream(getSavedDesignData());
     savedDesignAllDataList.bindStream(getAllSavedDesignData());
@@ -71,6 +75,18 @@ class HomeController extends GetxController {
   int? selectedSecondImageColorOfOpenedDesign;
   int? popularityCountInt;
 
+  //           ===============================================================================
+  // -------------- ==========    Get featured design of current user data from Firestore    ========== --------------
+  //           ===============================================================================
+
+  CollectionReference collectionReferenceOfShirt = FirebaseFirestore.instance.collection("shirts");
+
+  Stream<List<ShirtImageModel>> getShirtImagesData() =>
+      collectionReferenceOfShirt.snapshots().map((query) =>
+          query.docs.map((item) =>
+              ShirtImageModel.fromDocumentSnapshot(item)).toList());
+
+
   List<ShirtModel> createNewDesignList = [
     ShirtModel(
         frontImage: "assets/t_shirt.png",
@@ -88,7 +104,7 @@ class HomeController extends GetxController {
         frontImage: "assets/Long-Sleeve.png",
         backImage: "assets/Long-Sleeve.png",
         title: "Adult Long-Sleeve",
-        shirtPrice: 10.5
+        shirtPrice: 10
     ),
     ShirtModel(
         frontImage: "assets/Women's-Tee.png",
