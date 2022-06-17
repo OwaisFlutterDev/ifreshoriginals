@@ -142,7 +142,7 @@ Widget savedAndDesignHistoryWidget({void Function()? onTap, String? image,String
               decoration: BoxDecoration(
                   color: whiteColor,
                   borderRadius: BorderRadius.circular(30.r),
-                  image: DecorationImage(image: NetworkImage(image!),fit: BoxFit.scaleDown,)
+                  image: DecorationImage(image: CachedNetworkImageProvider(image!),fit: BoxFit.scaleDown,)
               ),
             ),
           ),

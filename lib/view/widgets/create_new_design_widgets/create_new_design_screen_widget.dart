@@ -121,6 +121,9 @@ Widget zoomAndChangeImageSideWidget() {
       InkWell(
         onTap: (){
           functionalityOnImageController.flipCarController.flipcard();
+          functionalityOnImageController.flipCarController.state!.isFront ? functionalityOnImageController.imageSideBool = false :
+          functionalityOnImageController.imageSideBool = true;
+          functionalityOnImageController.update();
         },
         child: imageWidget(
           image: "assets/Asset 41.png",

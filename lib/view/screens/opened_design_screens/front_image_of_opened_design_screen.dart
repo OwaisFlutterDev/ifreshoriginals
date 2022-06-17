@@ -1,4 +1,5 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
@@ -24,7 +25,7 @@ Widget frontImageOfOpenedDesign( context) {
               decoration: BoxDecoration(
                   color: Colors.transparent,
                   // border: Border.all(color: blackColor,width: 1),
-                  image: DecorationImage(image: AssetImage("${homeController.selectedFrontImageOfOpenedDesign}",),
+                  image: DecorationImage(image: CachedNetworkImageProvider("${homeController.selectedFrontImageOfOpenedDesign}",),
                       fit: BoxFit.fill,
                       colorFilter: ColorFilter.mode(controller.convertedColorForShirt ?? Colors.white  , BlendMode.modulate)
                   )
@@ -179,7 +180,7 @@ Widget frontImageOfOpenedDesign( context) {
                                 width: controller.stickerListFirstImageOfOD[i].stickerWeight,
                                     decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        image: DecorationImage(image: AssetImage("${controller.stickerListFirstImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
+                                        image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListFirstImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
                                   ),
 
                               child:   Container(
@@ -187,7 +188,7 @@ Widget frontImageOfOpenedDesign( context) {
                                 width: controller.stickerListFirstImageOfOD[i].stickerWeight,
                                     decoration: BoxDecoration(
                                         color: Colors.transparent,
-                                        image: DecorationImage(image: AssetImage("${controller.stickerListFirstImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
+                                        image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListFirstImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
                                   ),
 
 

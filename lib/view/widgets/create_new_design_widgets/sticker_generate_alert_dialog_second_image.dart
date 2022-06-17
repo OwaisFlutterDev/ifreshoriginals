@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -59,17 +60,17 @@ AlertDialog stickerGenerateAlertDialogSecondImage() {
                                 crossAxisCount: 4,
                                 mainAxisExtent: 220.h,
                               ),
-                              itemCount: controller.stickerAssetList.length,
+                              itemCount: controller.stickersDataList.length,
                               itemBuilder: (BuildContext ctx, index) {
                                 return  InkWell(
                                     onTap: () {
-                                      controller.selectedStickerSecondImage = controller.stickerAssetList[index].sticker;
+                                      controller.selectedStickerSecondImage = controller.stickersDataList[index].stickerImage;
                                       controller.selectedIndexOfStickerSecondImage = index;
                                       controller.update();
                                       print("2nd image function");
                                     },
                                     child: Container(
-                                      height: 170.w,
+                                      height: 190.w,
                                       width: 150.h,
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
@@ -84,11 +85,11 @@ AlertDialog stickerGenerateAlertDialogSecondImage() {
                                             width: 135.h,
                                             decoration: BoxDecoration(
                                                 color: Colors.transparent,
-                                                image: DecorationImage(image: AssetImage("${controller.stickerAssetList[index].sticker}"),fit: BoxFit.scaleDown)),
+                                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickersDataList[index].stickerImage}"),fit: BoxFit.scaleDown)),
                                           ),
                                           SizedBox(height: 10.h,
                                           ),
-                                          Center(child: smallText(title: "${controller.stickerAssetList[index].title}"))
+                                          Center(child: commonText(title: "${controller.stickersDataList[index].stickerName}",textStyle: TextStyle(fontSize: 9,),textAlign: TextAlign.center))
                                         ],
                                       ),
                                     )

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
@@ -24,7 +25,7 @@ Widget backImageOfOpenedDesign(context) {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
-                image: DecorationImage(image: AssetImage("${homeController.selectedBackImageOfOpenedDesign}",),
+                image: DecorationImage(image: CachedNetworkImageProvider("${homeController.selectedBackImageOfOpenedDesign}",),
                     fit: BoxFit.fill,
                     colorFilter: ColorFilter.mode(controller.convertedColorForSecondShirt ?? whiteColor, BlendMode.modulate)
                 )
@@ -180,7 +181,7 @@ Widget backImageOfOpenedDesign(context) {
                               width: controller.stickerListSecondImageOfOD[i].stickerWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
-                                  image: DecorationImage(image: AssetImage("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
+                                  image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
                             ),
 
                             child:   Container(
@@ -188,7 +189,7 @@ Widget backImageOfOpenedDesign(context) {
                               width: controller.stickerListSecondImageOfOD[i].stickerWeight,
                               decoration: BoxDecoration(
                                   color: Colors.transparent,
-                                  image: DecorationImage(image: AssetImage("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
+                                  image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListSecondImageOfOD[i].sticker}"),fit: BoxFit.scaleDown)),
                             ),
 
                             onDragEnd: (drag) {

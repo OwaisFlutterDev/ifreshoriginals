@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -45,57 +46,57 @@ AlertDialog stickerGenerateAlertDialog() {
 
                         // -------- === colors buttons === --------
                         SizedBox(height: 50.h,),
-                        Container(
-                          width: 0.9.sw,
-                          height: 440.h,
-                          color: Colors.transparent,
-                          // color: Colors.blue[100]
-                          child: GridView.builder(
-                              scrollDirection: Axis.vertical,
-                              physics: ScrollPhysics(),
-                              shrinkWrap: true,
-                              gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                                // maxCrossAxisExtent: 400.h,
-                                crossAxisCount: 4,
-                                mainAxisExtent: 220.h,
-                              ),
-                              itemCount: controller.stickerAssetList.length,
-                              itemBuilder: (BuildContext ctx, index) {
-                                return  InkWell(
-                                    onTap: () {
-                                      controller.selectedSticker = controller.stickerAssetList[index].sticker;
-                                      controller.selectedIndexOfSticker = index;
-                                      controller.update();
-                                      print("1st image function");
-                                    },
-                                    child: Container(
-                                      height: 170.w,
-                                      width: 150.h,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                        border: controller.selectedIndexOfSticker == index ? Border.all(color: redColor,width: 1) : Border.all(color: Colors.transparent,width: 1),
-                                        borderRadius: controller.selectedIndexOfSticker == index ? BorderRadius.circular(20.r) : BorderRadius.circular(0.r),
-                                        // image: DecorationImage(image: AssetImage("${controller.stickerAssetList[index].sticker}"),fit: BoxFit.scaleDown)
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Container(
-                                            height: 135.w,
-                                            width: 135.h,
-                                            decoration: BoxDecoration(
-                                                color: Colors.transparent,
-                                                image: DecorationImage(image: AssetImage("${controller.stickerAssetList[index].sticker}"),fit: BoxFit.scaleDown)),
-                                          ),
-                                          SizedBox(height: 10.h,
-                                          ),
-                                          Center(child: smallText(title: "${controller.stickerAssetList[index].title}"))
-                                        ],
-                                      ),
-                                    )
+                       Obx(() =>  Container(
+                         width: 0.9.sw,
+                         height: 440.h,
+                         color: Colors.transparent,
+                         // color: Colors.blue[100]
+                         child: GridView.builder(
+                             scrollDirection: Axis.vertical,
+                             physics: ScrollPhysics(),
+                             shrinkWrap: true,
+                             gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                               // maxCrossAxisExtent: 400.h,
+                               crossAxisCount: 4,
+                               mainAxisExtent: 220.h,
+                             ),
+                             itemCount: controller.stickersDataList.length,
+                             itemBuilder: (BuildContext ctx, index) {
+                               return  InkWell(
+                                   onTap: () {
+                                     controller.selectedSticker = controller.stickersDataList[index].stickerImage;
+                                     controller.selectedIndexOfSticker = index;
+                                     controller.update();
+                                     print("1st image function");
+                                   },
+                                   child: Container(
+                                     height: 190.w,
+                                     width: 150.h,
+                                     decoration: BoxDecoration(
+                                       color: Colors.transparent,
+                                       border: controller.selectedIndexOfSticker == index ? Border.all(color: redColor,width: 1) : Border.all(color: Colors.transparent,width: 1),
+                                       borderRadius: controller.selectedIndexOfSticker == index ? BorderRadius.circular(20.r) : BorderRadius.circular(0.r),
+                                       // image: DecorationImage(image: AssetImage("${controller.stickerAssetList[index].sticker}"),fit: BoxFit.scaleDown)
+                                     ),
+                                     child: Column(
+                                       children: [
+                                         Container(
+                                           height: 135.w,
+                                           width: 135.h,
+                                           decoration: BoxDecoration(
+                                               color: Colors.transparent,
+                                               image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickersDataList[index].stickerImage}"),fit: BoxFit.scaleDown)),
+                                         ),
+                                         SizedBox(height: 10.h,
+                                         ),
+                                         Center(child: commonText(title: "${controller.stickersDataList[index].stickerName}",textStyle: TextStyle(fontSize: 9,),textAlign: TextAlign.center))
+                                       ],
+                                     ),
+                                   )
 
-                                );
-                              }),
-                        ),
+                               );
+                             }),
+                       ),),
 
                         SizedBox(height: 50.h,),
                         // --------===------========  Done Button =======------===--------

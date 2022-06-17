@@ -90,25 +90,45 @@ class OpenedDesignScreen extends StatelessWidget{
                             height: 400,
                             width: 1.sw,
                             color: Color(0xffE2E2E2),
-                            child: Center(
-                                child: InteractiveViewer(
-                                  transformationController: functionalityOnOpenedDesignController.interactiveViewerControllerOfOD,
-                                  child:  FlipCard(
-                                    rotateSide: RotateSide.right,
-                                    onTapFlipping: false,
-                                    axis: FlipAxis.vertical,
-                                    controller: functionalityOnOpenedDesignController.flipCarControllerOfOD,
-                                    // -----------------------------------------------------
-                                    // -----=--======= front image of Shirt ========--=-----
-                                    // -----------------------------------------------------
-                                    frontWidget: frontImageOfOpenedDesign(context),
-                                    // -----------------------------------------------------
-                                    // -----=--======= back image of Shirt ========--=-----
-                                    // -----------------------------------------------------
-                                    backWidget: backImageOfOpenedDesign(context),
-                                  ),
-                                )
+                            child: Stack(
+                              children: [
 
+                                Positioned(
+                                  top: 10,
+                                  right: 10,
+                                  child: GetBuilder<FunctionalityOnOpenedDesignController>(
+                                      init: FunctionalityOnOpenedDesignController(),
+                                      builder: (cont) {
+                                        return commonButton(
+                                            buttonName: cont.imageSideOfOIBool == false ? "Front" : "Back",
+                                            buttonColor: redColor,
+                                            buttonWidth: 70,
+                                            buttonHeight: 30,
+                                            textColor: Colors.white
+                                        );
+                                      }),),
+
+                                Center(
+                                    child: InteractiveViewer(
+                                      transformationController: functionalityOnOpenedDesignController.interactiveViewerControllerOfOD,
+                                      child:  FlipCard(
+                                        rotateSide: RotateSide.right,
+                                        onTapFlipping: false,
+                                        axis: FlipAxis.vertical,
+                                        controller: functionalityOnOpenedDesignController.flipCarControllerOfOD,
+                                        // -----------------------------------------------------
+                                        // -----=--======= front image of Shirt ========--=-----
+                                        // -----------------------------------------------------
+                                        frontWidget: frontImageOfOpenedDesign(context),
+                                        // -----------------------------------------------------
+                                        // -----=--======= back image of Shirt ========--=-----
+                                        // -----------------------------------------------------
+                                        backWidget: backImageOfOpenedDesign(context),
+                                      ),
+                                    )
+
+                                ),
+                              ],
                             ),
                           );
                         }

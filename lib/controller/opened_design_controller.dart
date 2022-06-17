@@ -17,6 +17,29 @@ import 'package:path_provider/path_provider.dart';
 
 class OpenedDesignController extends GetxController{
 
+
+
+
+  RxList<StickerDataModel> stickersDataList = RxList<StickerDataModel>([]);
+  // RxList<ShirtImageModel> shirtImageList = RxList<ShirtImageModel>([]);
+
+  CollectionReference collectionReferenceOfPrice = FirebaseFirestore.instance.collection("stickers");
+
+  @override
+  void onInit() {
+    super.onInit();
+    stickersDataList.bindStream(getShirtImagesData());
+  }
+
+  //           ===============================================================================
+  // -------------- ==========    Get featured design of current user data from Firestore    ========== --------------
+  //           ===============================================================================
+
+  Stream<List<StickerDataModel>> getShirtImagesData() =>
+      collectionReferenceOfPrice.snapshots().map((query) =>
+          query.docs.map((item) =>
+              StickerDataModel.fromDocumentSnapshot(item)).toList());
+
   // ----------------------------=== ==================================== ===------------------------
   // ----------------------------===            Price  details            ===------------------------
   // ----------------------------=== ==================================== ===------------------------

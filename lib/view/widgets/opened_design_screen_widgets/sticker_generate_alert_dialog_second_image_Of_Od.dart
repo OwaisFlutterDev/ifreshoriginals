@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -45,7 +46,7 @@ AlertDialog stickerGenerateAlertDialogSecondImageOfOd() {
 
                         // -------- === colors buttons === --------
                         SizedBox(height: 50.h,),
-                        Container(
+                        Obx(() =>  Container(
                           width: 0.9.sw,
                           height: 440.h,
                           color: Colors.transparent,
@@ -59,17 +60,17 @@ AlertDialog stickerGenerateAlertDialogSecondImageOfOd() {
                                 crossAxisCount: 4,
                                 mainAxisExtent: 220.h,
                               ),
-                              itemCount: controller.stickerAssetListOfOd.length,
+                              itemCount: controller.stickersDataList.length,
                               itemBuilder: (BuildContext ctx, index) {
                                 return  InkWell(
                                     onTap: () {
-                                      controller.selectedStickerSecondImageOfOD = controller.stickerAssetListOfOd[index].sticker;
+                                      controller.selectedStickerSecondImageOfOD = controller.stickersDataList[index].stickerImage;
                                       controller.selectedIndexOfStickerSecondImageOfOD = index;
                                       controller.update();
                                       print("2nd image function");
                                     },
                                     child: Container(
-                                      height: 170.w,
+                                      height: 190.w,
                                       width: 150.h,
                                       decoration: BoxDecoration(
                                         color: Colors.transparent,
@@ -84,18 +85,19 @@ AlertDialog stickerGenerateAlertDialogSecondImageOfOd() {
                                             width: 135.h,
                                             decoration: BoxDecoration(
                                                 color: Colors.transparent,
-                                                image: DecorationImage(image: AssetImage("${controller.stickerAssetListOfOd[index].sticker}"),fit: BoxFit.scaleDown)),
+                                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickersDataList[index].stickerImage}"),fit: BoxFit.scaleDown)),
                                           ),
                                           SizedBox(height: 10.h,
                                           ),
-                                          Center(child: smallText(title: "${controller.stickerAssetListOfOd[index].title}"))
+                                          Center(child: commonText(title: "${controller.stickersDataList[index].stickerName}", textStyle: TextStyle(fontSize: 9),textAlign: TextAlign.center))
                                         ],
                                       ),
                                     )
 
                                 );
                               }),
-                        ),
+                        ),),
+
 
                         SizedBox(height: 50.h,),
                         // --------===------========  Done Button =======------===--------

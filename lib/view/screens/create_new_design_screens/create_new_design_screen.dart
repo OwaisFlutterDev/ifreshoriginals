@@ -25,7 +25,6 @@ import '../../widgets/create_new_design_widgets/image_picker_alert_dialog_widget
 import 'package:flutter_flip_card/flutter_flip_card.dart';
 import 'back_image_of_new_design.dart';
 
-
 class CreateNewDesignScreen extends StatelessWidget{
   CreateNewDesignScreen({Key? key}) : super(key: key);
 
@@ -90,25 +89,45 @@ class CreateNewDesignScreen extends StatelessWidget{
                           height: 400,
                           width: 1.sw,
                           color: Color(0xffE2E2E2),
-                          child: Center(
-                            child: InteractiveViewer(
-                              transformationController: functionalityOnImageController.interactiveViewerController,
-                              child:  FlipCard(
-                                rotateSide: RotateSide.right,
-                                onTapFlipping: false,
-                                axis: FlipAxis.vertical,
-                                controller: functionalityOnImageController.flipCarController,
-                                // -----------------------------------------------------
-                                // -----=--======= front image of Shirt ========--=-----
-                                // -----------------------------------------------------
-                                frontWidget: frontImageOfNewDesign(context),
-                                // -----------------------------------------------------
-                                // -----=--======= back image of Shirt ========--=-----
-                                // -----------------------------------------------------
-                                backWidget:  backImageOfNewDesign(context),
-                              ),
-                            )
+                          child: Stack(
+                            children: [
 
+                             Positioned(
+                                      top: 10,
+                                      right: 10,
+                                      child: GetBuilder<FunctionalityOnImageController>(
+                                        init: FunctionalityOnImageController(),
+                                        builder: (cont) {
+                                          return commonButton(
+                                              buttonName: functionalityOnImageController.imageSideBool == false ? "Front" : "Back",
+                                              buttonColor: redColor,
+                                              buttonWidth: 70,
+                                              buttonHeight: 30,
+                                              textColor: Colors.white
+                                          );
+                                        }),),
+
+                              Center(
+                                child: InteractiveViewer(
+                                  transformationController: functionalityOnImageController.interactiveViewerController,
+                                  child:  FlipCard(
+                                    rotateSide: RotateSide.right,
+                                    onTapFlipping: false,
+                                    axis: FlipAxis.vertical,
+                                    controller: functionalityOnImageController.flipCarController,
+                                    // -----------------------------------------------------
+                                    // -----=--======= front image of Shirt ========--=-----
+                                    // -----------------------------------------------------
+                                    frontWidget: frontImageOfNewDesign(context),
+                                    // -----------------------------------------------------
+                                    // -----=--======= back image of Shirt ========--=-----
+                                    // -----------------------------------------------------
+                                    backWidget:  backImageOfNewDesign(context),
+                                  ),
+                                )
+
+                              ),
+                            ],
                           ),
                         );
                     }

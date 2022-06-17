@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../view/widgets/common_widgets.dart';
 
 class FunctionalityOnOpenedDesignController extends GetxController{
+  bool imageSideOfOIBool = false;
 
   //  ==========================================================================
   //   ------- === --- == ---- flip image controller ---- == --- === ----------

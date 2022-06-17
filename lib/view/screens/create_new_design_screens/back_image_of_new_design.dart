@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../constant/constants.dart';
@@ -25,7 +26,7 @@ Widget backImageOfNewDesign(context) {
             decoration: BoxDecoration(
                 color: Colors.transparent,
                 // border: Border.all(color: blackColor,width: 1),
-                image: DecorationImage(image: NetworkImage("${homeController.selectedBackImage}",),
+                image: DecorationImage(image: CachedNetworkImageProvider("${homeController.selectedBackImage}",),
                     fit: BoxFit.fill,
                     colorFilter: ColorFilter.mode(controller.convertedColorForSecondShirt ?? whiteColor, BlendMode.modulate)
                 )
@@ -176,7 +177,7 @@ Widget backImageOfNewDesign(context) {
                             width: controller.stickerListSecondImage[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: AssetImage("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
                           ),
 
                           child:   Container(
@@ -184,7 +185,7 @@ Widget backImageOfNewDesign(context) {
                             width: controller.stickerListSecondImage[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: AssetImage("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerListSecondImage[i].sticker}"),fit: BoxFit.scaleDown)),
                           ),
 
                           onDragEnd: (drag) {

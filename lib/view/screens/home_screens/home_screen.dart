@@ -97,12 +97,12 @@ class HomeScreen extends StatelessWidget {
                              color: Colors.transparent,
                              height: 370.h,
                              child: ListView.builder(
-                             shrinkWrap: true,
-                             physics: ScrollPhysics(),
-                             scrollDirection: Axis.horizontal,
-                             itemCount: homeController.savedDesignDataList.length,
-                             itemBuilder: (context, index) {
-                               return  Row(
+                               shrinkWrap: true,
+                               physics: ScrollPhysics(),
+                               scrollDirection: Axis.horizontal,
+                               itemCount: homeController.savedDesignDataList.length,
+                               itemBuilder: (context, index) {
+                                 return  Row(
                                      children: [
                                        savedAndDesignHistoryWidget(
                                          image: homeController.savedDesignDataList[index].frontImageOfDesign,

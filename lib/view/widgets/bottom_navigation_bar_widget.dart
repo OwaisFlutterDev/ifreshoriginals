@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
@@ -62,7 +63,7 @@ Widget drawerWidget() {
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         shape: BoxShape.circle,
-                        image: DecorationImage(image: NetworkImage(controller.userProfileModel.image!),fit: BoxFit.cover)
+                        image: DecorationImage(image: CachedNetworkImageProvider(controller.userProfileModel.image!),fit: BoxFit.cover)
                     ),
                   ),
                   SizedBox(height: 17.h,),

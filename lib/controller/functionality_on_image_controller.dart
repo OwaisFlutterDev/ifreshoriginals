@@ -15,6 +15,7 @@ import '../view/widgets/common_widgets.dart';
 class FunctionalityOnImageController extends GetxController{
 
   // bool createDesignBool = false;
+   bool imageSideBool = false;
 
   //  ==========================================================================
   //   ------- === --- == ---- flip image controller ---- == --- === ----------

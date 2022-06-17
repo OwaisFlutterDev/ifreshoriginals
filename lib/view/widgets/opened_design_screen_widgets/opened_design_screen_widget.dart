@@ -90,6 +90,9 @@ Widget zoomAndChangeImageSideWidgetOfOpenedDesign() {
       InkWell(
         onTap: (){
           functionalityOnImageController.flipCarControllerOfOD.flipcard();
+          functionalityOnImageController.flipCarControllerOfOD.state!.isFront ? functionalityOnImageController.imageSideOfOIBool = false :
+          functionalityOnImageController.imageSideOfOIBool = true;
+          functionalityOnImageController.update();
         },
         child: imageWidget(
           image: "assets/Asset 41.png",

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +26,7 @@ Widget frontImageOfNewDesign( context) {
           decoration: BoxDecoration(
               color: Colors.transparent,
               // border: Border.all(color: blackColor,width: 1),
-              image: DecorationImage(image: NetworkImage("${homeController.selectedFrontImage}",),
+              image: DecorationImage(image: CachedNetworkImageProvider("${homeController.selectedFrontImage}"),
                   fit: BoxFit.fill,
                   colorFilter: ColorFilter.mode(controller.convertedColorForShirt ?? Colors.white  , BlendMode.modulate)
               )
@@ -180,7 +181,7 @@ Widget frontImageOfNewDesign( context) {
                             width: controller.stickerList[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: AssetImage("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown,)),
+                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown,)),
                           ),
 
                           child:   Container(
@@ -188,7 +189,7 @@ Widget frontImageOfNewDesign( context) {
                             width: controller.stickerList[i].stickerWeight,
                             decoration: BoxDecoration(
                                 color: Colors.transparent,
-                                image: DecorationImage(image: AssetImage("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown)),
+                                image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickerList[i].sticker}"),fit: BoxFit.scaleDown)),
                           ),
 
                           onDragEnd: (drag) {

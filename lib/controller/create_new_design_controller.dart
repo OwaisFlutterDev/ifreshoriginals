@@ -20,11 +20,27 @@ import 'package:widget_to_image/widget_to_image.dart';
 class CreateNewDesignController extends GetxController {
 
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //
-  // }
+
+
+  RxList<StickerDataModel> stickersDataList = RxList<StickerDataModel>([]);
+  // RxList<ShirtImageModel> shirtImageList = RxList<ShirtImageModel>([]);
+
+  CollectionReference collectionReferenceOfPrice = FirebaseFirestore.instance.collection("stickers");
+
+  @override
+  void onInit() {
+    super.onInit();
+    stickersDataList.bindStream(getShirtImagesData());
+  }
+
+  //           ===============================================================================
+  // -------------- ==========    Get featured design of current user data from Firestore    ========== --------------
+  //           ===============================================================================
+
+  Stream<List<StickerDataModel>> getShirtImagesData() =>
+      collectionReferenceOfPrice.snapshots().map((query) =>
+          query.docs.map((item) =>
+              StickerDataModel.fromDocumentSnapshot(item)).toList());
 
   // ----------------------------=== ==================================== ===------------------------
   // ----------------------------===            Price  details            ===------------------------
@@ -315,49 +331,6 @@ class CreateNewDesignController extends GetxController {
 // ----------------------------=== ===================== ===------------------------
 // ----------------------------===      For Sticker      ===------------------------
 // ----------------------------=== ===================== ===------------------------
-
-  List<StickerModel> stickerAssetList = [
-    StickerModel(
-      sticker: "assets/Asset 57.png",
-      title: "white",
-      stickerPrice: 4
-    ),
-    StickerModel(
-        sticker: "assets/Asset 58.png",
-        title: "Black",
-        stickerPrice: 3
-    ),
-    StickerModel(
-      sticker: "assets/Asset 59.png",
-      title: "Blue",
-        stickerPrice: 6
-    ),
-    StickerModel(
-      sticker: "assets/Asset 60.png",
-      title: "Yellow",
-        stickerPrice: 4
-    ),
-    StickerModel(
-      sticker: "assets/Asset 61.png",
-      title: "Red",
-        stickerPrice: 5
-    ),
-    StickerModel(
-      sticker: "assets/Asset 62.png",
-      title: "Green",
-        stickerPrice: 4
-    ),
-    StickerModel(
-      sticker: "assets/Asset 63.png",
-      title: "Pink",
-        stickerPrice: 3
-    ),
-    StickerModel(
-      sticker: "assets/Asset 64.png",
-      title: "Brown",
-        stickerPrice: 2
-    ),
-  ];
 
 
   List<StickerModel> stickerList = [];
