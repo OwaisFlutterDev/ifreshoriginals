@@ -201,6 +201,7 @@ class CreateNewDesignScreen extends StatelessWidget{
                               ),
                               // -- == color button
                               imageButton(
+
                                   title: "Text",
                                   image:"assets/Asset 45.png",
                                   onTap: (){
