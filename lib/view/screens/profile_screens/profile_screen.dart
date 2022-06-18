@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/order_controller.dart';
@@ -23,6 +24,8 @@ class ProfileScreen extends StatelessWidget {
    final HomeController homeController = Get.find<HomeController>();
    final OpenedDesignController openedDesignController = Get.put(OpenedDesignController());
    final OrderController orderController = Get.put(OrderController());
+   final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +178,7 @@ class ProfileScreen extends StatelessWidget {
                                                 image: homeController.savedDesignDataList[index].frontImageOfDesign,
                                                 name: homeController.savedDesignDataList[index].designName,
                                                 onTap: () async {
-
+                                                  functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                                                   homeController.selectedFrontImageOfOpenedDesign =  homeController.savedDesignDataList[index].frontImage;
                                                   homeController.selectedBackImageOfOpenedDesign =   homeController.savedDesignDataList[index].backImage;
                                                   homeController.selectedShirtNameOfOpenedDesign =   homeController.savedDesignDataList[index].designName;
@@ -451,11 +454,11 @@ class ProfileScreen extends StatelessWidget {
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           children: [
                                                              commonButton(
-                                                               buttonColor: orderController.orderHistoryList[index].status == false ?  Colors.red.shade400 : Colors.blue.shade500 ,
-                                                               buttonName:  orderController.orderHistoryList[index].status == false ?  "Pending" : "Delivered",
+                                                               buttonColor: orderController.orderHistoryList[index].status == false ?  Colors.red.shade700 : Colors.blue.shade500 ,
+                                                               buttonName:  orderController.orderHistoryList[index].status == false ?  "Delivery Pending" : "Delivered",
                                                                textColor:   whiteColor,
                                                                buttonHeight: 31,
-                                                               buttonWidth: 95,
+                                                               buttonWidth: 125,
                                                                textSize: 12
                                                              )
                                                         ],)

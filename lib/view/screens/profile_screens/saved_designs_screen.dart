@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/opened_design_screens/opened_design_screen.dart';
@@ -16,6 +17,8 @@ class SavedDesignsScreen extends StatelessWidget{
 
    final HomeController homeController  = Get.find<HomeController>();
    final OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
+  final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +75,7 @@ class SavedDesignsScreen extends StatelessWidget{
                           image: homeController.savedDesignAllDataList[index].frontImageOfDesign,
                           name: homeController.savedDesignAllDataList[index].designName,
                           onTap: () async {
-
+                            functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                             homeController.selectedFrontImageOfOpenedDesign =  homeController.savedDesignAllDataList[index].frontImage;
                             homeController.selectedBackImageOfOpenedDesign =   homeController.savedDesignAllDataList[index].backImage;
                             homeController.selectedShirtNameOfOpenedDesign =   homeController.savedDesignAllDataList[index].designName;

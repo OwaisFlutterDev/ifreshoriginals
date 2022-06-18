@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/view/screens/explore_screens/all_designs_screen.dart';
@@ -17,6 +18,8 @@ class ExploreScreen extends StatelessWidget {
 
   final HomeController homeController  = Get.find<HomeController>();
   final OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
+  final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +60,7 @@ class ExploreScreen extends StatelessWidget {
                                             image: homeController.popularDesignLimitedDataList[index].frontImageOfDesign,
                                             name: homeController.popularDesignLimitedDataList[index].designName,
                                             onTap: () async {
-
+                                              functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                                               homeController.selectedFrontImageOfOpenedDesign =  homeController.popularDesignLimitedDataList[index].frontImage;
                                               homeController.selectedBackImageOfOpenedDesign =   homeController.popularDesignLimitedDataList[index].backImage;
                                               homeController.selectedShirtNameOfOpenedDesign =   homeController.popularDesignLimitedDataList[index].designName;
@@ -148,7 +151,7 @@ class ExploreScreen extends StatelessWidget {
                                             image: homeController.featuredDesignLimitedDataList[index].frontImageOfDesign,
                                             name: homeController.featuredDesignLimitedDataList[index].designName,
                                             onTap: () async {
-
+                                              functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                                               homeController.selectedFrontImageOfOpenedDesign =  homeController.featuredDesignLimitedDataList[index].frontImage;
                                               homeController.selectedBackImageOfOpenedDesign =   homeController.featuredDesignLimitedDataList[index].backImage;
                                               homeController.selectedShirtNameOfOpenedDesign =   homeController.featuredDesignLimitedDataList[index].designName;
@@ -238,7 +241,7 @@ class ExploreScreen extends StatelessWidget {
                                             image: homeController.allDesignLimitedDataList[index].frontImageOfDesign,
                                             name: homeController.allDesignLimitedDataList[index].designName,
                                             onTap: ()  async {
-
+                                              functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                                               homeController.selectedFrontImageOfOpenedDesign =  homeController.allDesignLimitedDataList[index].frontImage;
                                               homeController.selectedBackImageOfOpenedDesign =   homeController.allDesignLimitedDataList[index].backImage;
                                               homeController.selectedShirtNameOfOpenedDesign =   homeController.allDesignLimitedDataList[index].designName;

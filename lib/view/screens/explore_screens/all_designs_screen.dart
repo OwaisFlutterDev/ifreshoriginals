@@ -6,6 +6,7 @@ import 'package:flutterfire_ui/firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ifreshoriginals_userapp/constant/constants.dart';
+import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/home_controller.dart';
 import 'package:ifreshoriginals_userapp/controller/opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/model/create_new_design_models.dart';
@@ -18,6 +19,8 @@ class AllDesignsScreen extends StatelessWidget{
 
   final HomeController homeController  = Get.find<HomeController>();
   final OpenedDesignController  openedDesignController = Get.put(OpenedDesignController());
+  final FunctionalityOnOpenedDesignController functionalityOnOpenedDesignController = Get.put(FunctionalityOnOpenedDesignController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +95,7 @@ class AllDesignsScreen extends StatelessWidget{
                           image: data.frontImageOfDesign,
                           name: data.designName,
                           onTap: () async {
-
+                            functionalityOnOpenedDesignController.imageSideOfOIBool = false;
                             homeController.selectedFrontImageOfOpenedDesign =  data.frontImage;
                             homeController.selectedBackImageOfOpenedDesign =  data.backImage;
                             homeController.selectedShirtNameOfOpenedDesign =  data.designName;

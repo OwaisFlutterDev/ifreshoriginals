@@ -22,7 +22,7 @@ Widget frontImageOfNewDesign( context) {
         key: functionalityOnImageController.frontGlobalKey,
         child: Container(
           height: 360,
-          width: 940.w,
+          width: 320,
           decoration: BoxDecoration(
               color: Colors.transparent,
               // border: Border.all(color: blackColor,width: 1),

@@ -59,7 +59,7 @@ AlertDialog stickerGenerateAlertDialogOfOD() {
                                   gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
                                     // maxCrossAxisExtent: 400.h,
                                     crossAxisCount: 4,
-                                    mainAxisExtent: 220.h,
+                                    mainAxisExtent: 87,
                                   ),
                                   itemCount: controller.stickersDataList.length,
                                   itemBuilder: (BuildContext ctx, index) {
@@ -71,7 +71,7 @@ AlertDialog stickerGenerateAlertDialogOfOD() {
                                           print("1st image function");
                                         },
                                         child: Container(
-                                          height: 190.w,
+
                                           width: 150.h,
                                           decoration: BoxDecoration(
                                             color: Colors.transparent,
@@ -82,15 +82,15 @@ AlertDialog stickerGenerateAlertDialogOfOD() {
                                           child: Column(
                                             children: [
                                               Container(
-                                                height: 135.w,
-                                                width: 135.h,
+                                                height: 45,
+                                                width: 45,
                                                 decoration: BoxDecoration(
                                                     color: Colors.transparent,
                                                     image: DecorationImage(image: CachedNetworkImageProvider("${controller.stickersDataList[index].stickerImage}"),fit: BoxFit.scaleDown)),
                                               ),
                                               SizedBox(height: 10.h,
                                               ),
-                                              Center(child: commonText(title: "${controller.stickersDataList[index].stickerName}", textStyle: TextStyle(fontSize: 9),textAlign: TextAlign.center))
+                                              Center(child: commonText(title: "${controller.stickersDataList[index].stickerName}", textStyle: TextStyle(fontSize: 10),textAlign: TextAlign.center))
                                             ],
                                           ),
                                         )

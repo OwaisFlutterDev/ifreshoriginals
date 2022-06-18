@@ -183,13 +183,24 @@ AlertDialog textGenerateAlertDialogWidgetOfOd() {
                                   ScrollNavigationItem(icon: Column(
                                     children: [
                                       imageWidget(
-                                          image: "assets/Asset 65.png",
+                                          image: "assets/Asset 85.png",
                                           height: 150.h,
                                           width: 180.w
                                       ),
                                       smallText(title: "Colors")
                                     ],
-                                  ),),
+                                  ),
+                                    activeIcon: Column(
+                                      children: [
+                                        imageWidget(
+                                            image: "assets/Asset 65.png",
+                                            height: 150.h,
+                                            width: 180.w
+                                        ),
+                                        smallText(title: "Colors")
+                                      ],
+                                    ),
+                                  ),
                                   ScrollNavigationItem(icon: Column(
                                     children: [
                                       imageWidget(
@@ -199,7 +210,18 @@ AlertDialog textGenerateAlertDialogWidgetOfOd() {
                                       ),
                                       smallText(title: "Font")
                                     ],
-                                  ),),
+                                  ),
+                                    activeIcon: Column(
+                                      children: [
+                                        imageWidget(
+                                            image: "assets/Asset 86.png",
+                                            height: 150.h,
+                                            width: 180.w
+                                        ),
+                                        smallText(title: "Font")
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
