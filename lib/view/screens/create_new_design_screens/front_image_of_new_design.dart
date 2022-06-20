@@ -111,7 +111,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.textList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textList[i].top =  off.dy-200;
+                              controller.textList[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -234,7 +234,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerList[i].top =  off.dy-200;
+                              controller.stickerList[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -262,13 +262,13 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].stickerWeight! >= 65 ?  controller.stickerList[i].left = 175 :
                               controller.stickerList[i].stickerWeight! >= 60 ?  controller.stickerList[i].left = 180 :
                               controller.stickerList[i].stickerWeight! >= 55 ?  controller.stickerList[i].left = 185 :
-                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 190 :
-                              controller.stickerList[i].stickerWeight! >= 45 ?  controller.stickerList[i].left = 195 :
-                              controller.stickerList[i].stickerWeight! >= 40 ?  controller.stickerList[i].left = 200 :
-                              controller.stickerList[i].stickerWeight! >= 35 ?  controller.stickerList[i].left = 205 :
-                              controller.stickerList[i].stickerWeight! >= 30 ?  controller.stickerList[i].left = 210 :
-                              controller.stickerList[i].stickerWeight! >= 25 ?  controller.stickerList[i].left = 215 :
-                              controller.stickerList[i].stickerWeight! >= 20 ?  controller.stickerList[i].left = 220 :
+                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 180 :
+                              // controller.stickerList[i].stickerWeight! >= 48 ?  controller.stickerList[i].left = 190 :
+                              // controller.stickerList[i].stickerWeight! >= 40 ?  controller.stickerList[i].left = 120 :
+
+                              controller.stickerList[i].stickerWeight! >= 30 ?  controller.stickerList[i].left = 200 :
+                              controller.stickerList[i].stickerWeight! >= 25 ?  controller.stickerList[i].left = 218 :
+                              controller.stickerList[i].stickerWeight! >= 20 ?  controller.stickerList[i].left = 225 :
                               controller.stickerList[i].left = 230;
                               // controller.update();
                             }else if(off.dx < 140){
@@ -344,7 +344,13 @@ Widget frontImageOfNewDesign( context) {
                             off.dy > 450
                             )
                             {
-                              controller.imageList[i].imageHeight! >= 130 ? controller.imageList[i].top = 160 :
+                              controller.imageList[i].imageHeight! >= 250 ? controller.imageList[i].top = 79 :
+                              controller.imageList[i].imageHeight! >= 230 ? controller.imageList[i].top = 89 :
+                              controller.imageList[i].imageHeight! >= 210 ? controller.imageList[i].top = 93 :
+                              controller.imageList[i].imageHeight! >= 190 ? controller.imageList[i].top = 106 :
+                              controller.imageList[i].imageHeight! >= 170 ? controller.imageList[i].top = 127 :
+                              controller.imageList[i].imageHeight! >= 150 ? controller.imageList[i].top = 148 :
+                              controller.imageList[i].imageHeight! >= 130 ? controller.imageList[i].top = 169 :
                               controller.imageList[i].imageHeight! >= 110 ? controller.imageList[i].top = 185 :
                               controller.imageList[i].imageHeight! >= 90 ? controller.imageList[i].top = 210 :
                               controller.imageList[i].imageHeight! >= 70 ? controller.imageList[i].top = 230 :
@@ -356,7 +362,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageList[i].top =  off.dy-200;
+                              controller.imageList[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -369,12 +375,28 @@ Widget frontImageOfNewDesign( context) {
                             off.dx > 270
                             )
                             {
-                              controller.imageList[i].imageWeight! >= 130 ?  controller.imageList[i].left = 95 :
-                              controller.imageList[i].imageWeight! >= 110 ?  controller.imageList[i].left = 116 :
-                              controller.imageList[i].imageWeight! >= 90 ?  controller.imageList[i].left = 140 :
-                              controller.imageList[i].imageWeight! >= 70 ?  controller.imageList[i].left = 155 :
+                              controller.imageList[i].imageWeight! >= 135 ?  controller.imageList[i].left = 95 :
+                              controller.imageList[i].imageWeight! >= 130 ?  controller.imageList[i].left = 100 :
+                              controller.imageList[i].imageWeight! >= 125 ?  controller.imageList[i].left = 105 :
+                              controller.imageList[i].imageWeight! >= 120 ?  controller.imageList[i].left = 110 :
+                              controller.imageList[i].imageWeight! >= 115 ?  controller.imageList[i].left = 120 :
+                              controller.imageList[i].imageWeight! >= 110 ?  controller.imageList[i].left = 125 :
+                              controller.imageList[i].imageWeight! >= 105 ?  controller.imageList[i].left = 130 :
+                              controller.imageList[i].imageWeight! >= 100 ?  controller.imageList[i].left = 135 :
+                              controller.imageList[i].imageWeight! >= 95 ?  controller.imageList[i].left = 140 :
+
+                              controller.imageList[i].imageWeight! >= 90 ?  controller.imageList[i].left = 146 :
+                              controller.imageList[i].imageWeight! >= 86 ?  controller.imageList[i].left = 152 :
+                              controller.imageList[i].imageWeight! >= 80 ?  controller.imageList[i].left = 155 :
+                              controller.imageList[i].imageWeight! >= 74 ?  controller.imageList[i].left = 163 :
+                              controller.imageList[i].imageWeight! >= 68 ?  controller.imageList[i].left = 168 :
+                              controller.imageList[i].imageWeight! >= 62 ?  controller.imageList[i].left = 170 :
+                              controller.imageList[i].imageWeight! >= 56 ?  controller.imageList[i].left = 180 :
                               controller.imageList[i].imageWeight! >= 50 ?  controller.imageList[i].left = 185 :
-                              controller.imageList[i].left = 195;
+                              controller.imageList[i].imageWeight! >= 46 ?  controller.imageList[i].left = 190 :
+                              controller.imageList[i].imageWeight! >= 42 ?  controller.imageList[i].left = 195 :
+                              controller.imageList[i].imageWeight! >= 38 ?  controller.imageList[i].left = 200 :
+                              controller.imageList[i].left = 210;
                               // controller.imageList[i].left = 160;
                               print("${  controller.imageList[i].imageWeight!}");
                               // controller.update();

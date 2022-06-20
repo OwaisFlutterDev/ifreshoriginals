@@ -252,7 +252,7 @@ class OpenedDesignController extends GetxController{
   Future addNewImageOfOd() async{
     await getAllPriceData();
     imageListOfOd.add(ImageFromGalleryAndCamModel(
-        image: imageFromGalleryOfOd ?? imageFromCamOfOd ,left: 135,top: 84, imageUrl: null,imageWeight: 70,imageHeight: 70));
+        image: imageFromGalleryOfOd ?? imageFromCamOfOd ,left: 135,top: 84, imageUrl: null,imageWeight: 60,imageHeight: 70));
 
     imageFromGalleryOfOd != null ? addImagesPriceOnFirImage() : imageFromCamOfOd != null ? addImagesPriceOnFirImage() : null;
 
@@ -267,13 +267,13 @@ class OpenedDesignController extends GetxController{
 
   increaseSizeOfImage() {
     imageListOfOd[currentIndexOfImage].imageHeight =    imageListOfOd[currentIndexOfImage].imageHeight! + 5;
-    imageListOfOd[currentIndexOfImage].imageWeight =    imageListOfOd[currentIndexOfImage].imageWeight! + 5;
+    imageListOfOd[currentIndexOfImage].imageWeight =    imageListOfOd[currentIndexOfImage].imageWeight! + 3;
     update();
   }
 
   decreaseSizeOfImage() {
     imageListOfOd[currentIndexOfImage].imageHeight =    imageListOfOd[currentIndexOfImage].imageHeight! - 5;
-    imageListOfOd[currentIndexOfImage].imageWeight =    imageListOfOd[currentIndexOfImage].imageWeight! - 5;
+    imageListOfOd[currentIndexOfImage].imageWeight =    imageListOfOd[currentIndexOfImage].imageWeight! - 3;
     update();
   }
 

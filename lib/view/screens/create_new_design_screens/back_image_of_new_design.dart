@@ -108,7 +108,7 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textListForSecondImage[i].top =  off.dy-200;
+                              controller.textListForSecondImage[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -232,7 +232,7 @@ Widget backImageOfNewDesign(context) {
                               controller.stickerListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerListSecondImage[i].top =  off.dy-200;
+                              controller.stickerListSecondImage[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -340,19 +340,26 @@ Widget backImageOfNewDesign(context) {
                             off.dy > 450
                             )
                             {
-                              controller.imageListSecondImage[i].imageHeight! >= 130 ? controller.imageListSecondImage[i].top = 160 :
+                              controller.imageListSecondImage[i].imageHeight! >= 250 ? controller.imageListSecondImage[i].top = 79 :
+                              controller.imageListSecondImage[i].imageHeight! >= 230 ? controller.imageListSecondImage[i].top = 89 :
+                              controller.imageListSecondImage[i].imageHeight! >= 210 ? controller.imageListSecondImage[i].top = 93 :
+                              controller.imageListSecondImage[i].imageHeight! >= 190 ? controller.imageListSecondImage[i].top = 106 :
+                              controller.imageListSecondImage[i].imageHeight! >= 170 ? controller.imageListSecondImage[i].top = 127 :
+                              controller.imageListSecondImage[i].imageHeight! >= 150 ? controller.imageListSecondImage[i].top = 148 :
+                              controller.imageListSecondImage[i].imageHeight! >= 130 ? controller.imageListSecondImage[i].top = 169 :
                               controller.imageListSecondImage[i].imageHeight! >= 110 ? controller.imageListSecondImage[i].top = 185 :
                               controller.imageListSecondImage[i].imageHeight! >= 90 ? controller.imageListSecondImage[i].top = 210 :
                               controller.imageListSecondImage[i].imageHeight! >= 70 ? controller.imageListSecondImage[i].top = 230 :
                               controller.imageListSecondImage[i].imageHeight! >= 50 ? controller.imageListSecondImage[i].top = 240 :
                               controller.imageListSecondImage[i].top = 256;
+
                               print("${controller.imageListSecondImage[i].imageHeight!}");
                               // controller.update();
                             }else if(off.dy < 240){
                               controller.imageListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageListSecondImage[i].top =  off.dy-200;
+                              controller.imageListSecondImage[i].top =  off.dy-210;
                               // controller.update();
                             }
 
@@ -365,12 +372,28 @@ Widget backImageOfNewDesign(context) {
                             off.dx > 270
                             )
                             {
-                              controller.imageListSecondImage[i].imageWeight! >= 130 ?  controller.imageListSecondImage[i].left = 95 :
-                              controller.imageListSecondImage[i].imageWeight! >= 110 ?  controller.imageListSecondImage[i].left = 116 :
-                              controller.imageListSecondImage[i].imageWeight! >= 90 ?  controller.imageListSecondImage[i].left = 140 :
-                              controller.imageListSecondImage[i].imageWeight! >= 70 ?  controller.imageListSecondImage[i].left = 155 :
-                              controller.imageListSecondImage[i].imageWeight! >= 50 ?  controller.imageListSecondImage[i].left = 176 :
-                              controller.imageListSecondImage[i].left = 195;
+                              controller.imageListSecondImage[i].imageWeight! >= 135 ?  controller.imageListSecondImage[i].left = 95 :
+                              controller.imageListSecondImage[i].imageWeight! >= 130 ?  controller.imageListSecondImage[i].left = 100 :
+                              controller.imageListSecondImage[i].imageWeight! >= 125 ?  controller.imageListSecondImage[i].left = 105 :
+                              controller.imageListSecondImage[i].imageWeight! >= 120 ?  controller.imageListSecondImage[i].left = 110 :
+                              controller.imageListSecondImage[i].imageWeight! >= 115 ?  controller.imageListSecondImage[i].left = 120 :
+                              controller.imageListSecondImage[i].imageWeight! >= 110 ?  controller.imageListSecondImage[i].left = 125 :
+                              controller.imageListSecondImage[i].imageWeight! >= 105 ?  controller.imageListSecondImage[i].left = 130 :
+                              controller.imageListSecondImage[i].imageWeight! >= 100 ?  controller.imageListSecondImage[i].left = 135 :
+                              controller.imageListSecondImage[i].imageWeight! >= 95 ?  controller.imageListSecondImage[i].left = 140 :
+
+                              controller.imageListSecondImage[i].imageWeight! >= 90 ?  controller.imageListSecondImage[i].left = 146 :
+                              controller.imageListSecondImage[i].imageWeight! >= 86 ?  controller.imageListSecondImage[i].left = 152 :
+                              controller.imageListSecondImage[i].imageWeight! >= 80 ?  controller.imageListSecondImage[i].left = 155 :
+                              controller.imageListSecondImage[i].imageWeight! >= 74 ?  controller.imageListSecondImage[i].left = 163 :
+                              controller.imageListSecondImage[i].imageWeight! >= 68 ?  controller.imageListSecondImage[i].left = 168 :
+                              controller.imageListSecondImage[i].imageWeight! >= 62 ?  controller.imageListSecondImage[i].left = 170 :
+                              controller.imageListSecondImage[i].imageWeight! >= 56 ?  controller.imageListSecondImage[i].left = 180 :
+                              controller.imageListSecondImage[i].imageWeight! >= 50 ?  controller.imageListSecondImage[i].left = 185 :
+                              controller.imageListSecondImage[i].imageWeight! >= 46 ?  controller.imageListSecondImage[i].left = 190 :
+                              controller.imageListSecondImage[i].imageWeight! >= 42 ?  controller.imageListSecondImage[i].left = 195 :
+                              controller.imageListSecondImage[i].imageWeight! >= 38 ?  controller.imageListSecondImage[i].left = 200 :
+                              controller.imageListSecondImage[i].left = 210;
                               // controller.imageList[i].left = 160;
                               print("${  controller.imageListSecondImage[i].imageWeight!}");
                               // controller.update();
