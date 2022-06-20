@@ -645,7 +645,7 @@ class OpenedDesignController extends GetxController{
     await getAllPriceData();
     stickerListSecondImageOfOD.add(StickerModel(
         sticker: selectedStickerSecondImageOfOD,  left: 135,top: 84,title: '',
-        stickerWeight: 50,stickerHeight: 50,
+        stickerWeight: 60,stickerHeight: 70,
     ));
 
     HomeController homeController = Get.find<HomeController>();
@@ -662,13 +662,13 @@ class OpenedDesignController extends GetxController{
    increaseSizeOfStickerSI() {
 
     stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight =  stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight! + 5;
-    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight! + 5;
+    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight! + 3;
     update();
   }
 
   decreaseSizeOfStickerSI() {
     stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight =  stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerHeight! - 5;
-    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight! - 5;
+    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight =    stickerListSecondImageOfOD[currentIndexOfStickerOfSecImage].stickerWeight! - 3;
     update();
   }
 
@@ -725,7 +725,7 @@ class OpenedDesignController extends GetxController{
     await getAllPriceData();
     imageListSecondImageOfOd.add(ImageFromGalleryAndCamModel(
         image: imageFromGallerySecondImageOfOd ?? imageFromCamSecondImageOfOd ,
-        imageHeight: 70, imageWeight: 70,
+        imageHeight: 70, imageWeight: 60,
         left: 135,top: 84,imageUrl: null));
 
     imageFromGallerySecondImageOfOd != null ? addImagesPriceOnSecImage() : imageFromCamSecondImageOfOd != null ? addImagesPriceOnSecImage() : null;
@@ -740,13 +740,13 @@ class OpenedDesignController extends GetxController{
 
   increaseSizeOfImageSI() {
     imageListSecondImageOfOd[currentIndexOfImageOfSI].imageHeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageHeight! + 5;
-    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight! + 5;
+    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight! + 3;
     update();
   }
 
   decreaseSizeOfImageSI() {
     imageListSecondImageOfOd[currentIndexOfImageOfSI].imageHeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageHeight! - 5;
-    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight! - 5;
+    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight =    imageListSecondImageOfOd[currentIndexOfImageOfSI].imageWeight! - 3;
     update();
   }
 

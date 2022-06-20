@@ -111,7 +111,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.textList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textList[i].top =  off.dy-159;
+                              controller.textList[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -124,12 +124,24 @@ Widget frontImageOfNewDesign( context) {
                               off.dx > 270
                             )
                             {
-                              controller.textList[i].fontSize! >= 55 ?  controller.textList[i].left = 75 :
-                              controller.textList[i].fontSize! >= 40 ?  controller.textList[i].left = 100 :
-                              controller.textList[i].fontSize! >= 30 ?  controller.textList[i].left = 142 :
-                              controller.textList[i].fontSize! >= 20 ?  controller.textList[i].left = 155 :
-                              controller.textList[i].fontSize! >= 10 ?  controller.textList[i].left = 175 :
-                              controller.textList[i].left = 200;
+                              controller.textList[i].fontSize! >= 50 ?  controller.textList[i].left = 68 :
+                              controller.textList[i].fontSize! >= 48 ?  controller.textList[i].left = 74 :
+                              controller.textList[i].fontSize! >= 44 ?  controller.textList[i].left = 80 :
+                              controller.textList[i].fontSize! >= 40 ?  controller.textList[i].left = 90 :
+                              controller.textList[i].fontSize! >= 36 ?  controller.textList[i].left = 100 :
+                              controller.textList[i].fontSize! >= 34 ?  controller.textList[i].left = 104 :
+                              controller.textList[i].fontSize! >= 32 ?  controller.textList[i].left = 118 :
+                              controller.textList[i].fontSize! >= 30 ?  controller.textList[i].left = 128 :
+                              controller.textList[i].fontSize! >= 27 ?  controller.textList[i].left = 135 :
+                              controller.textList[i].fontSize! >= 25 ?  controller.textList[i].left = 140 :
+                              controller.textList[i].fontSize! >= 22 ?  controller.textList[i].left = 151 :
+                              controller.textList[i].fontSize! >= 20 ?  controller.textList[i].left = 164 :
+                              controller.textList[i].fontSize! >= 17 ?  controller.textList[i].left = 172 :
+                              controller.textList[i].fontSize! >= 15 ?  controller.textList[i].left = 180 :
+                              controller.textList[i].fontSize! >= 12 ?  controller.textList[i].left = 187 :
+                              controller.textList[i].fontSize! >= 10 ?  controller.textList[i].left = 200 :
+                              controller.textList[i].fontSize! >= 5 ?  controller.textList[i].left = 210 :
+                              controller.textList[i].left = 220;
                             // controller.imageList[i].left = 160;
                             print("${  controller.textList[i].fontSize!}");
 
@@ -137,7 +149,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.textList[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.textList[i].left =  off.dx-60;
+                              controller.textList[i].left =  off.dx-40;
                               // controller.update();
                             }
 
@@ -209,6 +221,8 @@ Widget frontImageOfNewDesign( context) {
                             off.dy > 450
                             )
                             {
+                              controller.stickerList[i].stickerHeight! >= 130 ? controller.stickerList[i].top = 150 :
+                              controller.stickerList[i].stickerHeight! >= 120 ? controller.stickerList[i].top = 160 :
                               controller.stickerList[i].stickerHeight! >= 110 ? controller.stickerList[i].top = 170 :
                               controller.stickerList[i].stickerHeight! >= 90 ? controller.stickerList[i].top = 190 :
                               controller.stickerList[i].stickerHeight! >= 70 ? controller.stickerList[i].top = 210 :
@@ -220,7 +234,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerList[i].top =  off.dy-159;
+                              controller.stickerList[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -231,17 +245,37 @@ Widget frontImageOfNewDesign( context) {
                                 off.dx > 270
                             )
                             {
-                              controller.stickerList[i].stickerWeight! >= 110 ?  controller.stickerList[i].left = 116 :
-                              controller.stickerList[i].stickerWeight! >= 90 ?  controller.stickerList[i].left = 140 :
-                              controller.stickerList[i].stickerWeight! >= 70 ?  controller.stickerList[i].left = 155 :
-                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 176 :
-                              controller.stickerList[i].left = 200;
+                              controller.stickerList[i].stickerWeight! >= 135 ?  controller.stickerList[i].left = 105 :
+                              controller.stickerList[i].stickerWeight! >= 130 ?  controller.stickerList[i].left = 110 :
+                              controller.stickerList[i].stickerWeight! >= 125 ?  controller.stickerList[i].left = 115 :
+                              controller.stickerList[i].stickerWeight! >= 120 ?  controller.stickerList[i].left = 120 :
+                              controller.stickerList[i].stickerWeight! >= 115 ?  controller.stickerList[i].left = 125 :
+                              controller.stickerList[i].stickerWeight! >= 110 ?  controller.stickerList[i].left = 130 :
+                              controller.stickerList[i].stickerWeight! >= 105 ?  controller.stickerList[i].left = 135 :
+                              controller.stickerList[i].stickerWeight! >= 100 ?  controller.stickerList[i].left = 140 :
+                              controller.stickerList[i].stickerWeight! >= 95 ?  controller.stickerList[i].left = 145 :
+                              controller.stickerList[i].stickerWeight! >= 90 ?  controller.stickerList[i].left = 150 :
+                              controller.stickerList[i].stickerWeight! >= 85 ?  controller.stickerList[i].left = 155 :
+                              controller.stickerList[i].stickerWeight! >= 80 ?  controller.stickerList[i].left = 160 :
+                              controller.stickerList[i].stickerWeight! >= 75 ?  controller.stickerList[i].left = 165 :
+                              controller.stickerList[i].stickerWeight! >= 70 ?  controller.stickerList[i].left = 170 :
+                              controller.stickerList[i].stickerWeight! >= 65 ?  controller.stickerList[i].left = 175 :
+                              controller.stickerList[i].stickerWeight! >= 60 ?  controller.stickerList[i].left = 180 :
+                              controller.stickerList[i].stickerWeight! >= 55 ?  controller.stickerList[i].left = 185 :
+                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 190 :
+                              controller.stickerList[i].stickerWeight! >= 45 ?  controller.stickerList[i].left = 195 :
+                              controller.stickerList[i].stickerWeight! >= 40 ?  controller.stickerList[i].left = 200 :
+                              controller.stickerList[i].stickerWeight! >= 35 ?  controller.stickerList[i].left = 205 :
+                              controller.stickerList[i].stickerWeight! >= 30 ?  controller.stickerList[i].left = 210 :
+                              controller.stickerList[i].stickerWeight! >= 25 ?  controller.stickerList[i].left = 215 :
+                              controller.stickerList[i].stickerWeight! >= 20 ?  controller.stickerList[i].left = 220 :
+                              controller.stickerList[i].left = 230;
                               // controller.update();
                             }else if(off.dx < 140){
                               controller.stickerList[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.stickerList[i].left =  off.dx-60;
+                              controller.stickerList[i].left =  off.dx-40;
                               // controller.update();
                             }
                             controller.update();
@@ -322,7 +356,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageList[i].top =  off.dy-159;
+                              controller.imageList[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -339,7 +373,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].imageWeight! >= 110 ?  controller.imageList[i].left = 116 :
                               controller.imageList[i].imageWeight! >= 90 ?  controller.imageList[i].left = 140 :
                               controller.imageList[i].imageWeight! >= 70 ?  controller.imageList[i].left = 155 :
-                              controller.imageList[i].imageWeight! >= 50 ?  controller.imageList[i].left = 176 :
+                              controller.imageList[i].imageWeight! >= 50 ?  controller.imageList[i].left = 185 :
                               controller.imageList[i].left = 195;
                               // controller.imageList[i].left = 160;
                               print("${  controller.imageList[i].imageWeight!}");
@@ -348,7 +382,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.imageList[i].left =  off.dx-60;
+                              controller.imageList[i].left =  off.dx-40;
                               // controller.update();
                             }
 

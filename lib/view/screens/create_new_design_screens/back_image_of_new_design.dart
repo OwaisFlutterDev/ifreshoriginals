@@ -84,13 +84,13 @@ Widget backImageOfNewDesign(context) {
                             style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
                                 color: Color(controller.textListForSecondImage[i].color ?? blackHexColor), fontStyle: controller.textListForSecondImage[i].fontStyle,
                                 fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
-                            )),
+                            )),textAlign: controller.textListForSecondImage[i].textAlign
                           ),
                           child: Text("${controller.textListForSecondImage[i].text}",
                             style: GoogleFonts.getFont('${controller.textListForSecondImage[i].fontFamily}' , textStyle: TextStyle(
                                 color: Color(controller.textListForSecondImage[i].color ?? blackHexColor), fontStyle: controller.textListForSecondImage[i].fontStyle,
                                 fontSize: controller.textListForSecondImage[i].fontSize, fontWeight: controller.textListForSecondImage[i].fontWeight
-                            )),
+                            )),textAlign: controller.textListForSecondImage[i].textAlign
                           ),
 
                           onDragEnd: (drag) {
@@ -108,7 +108,7 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textListForSecondImage[i].top =  off.dy-159;
+                              controller.textListForSecondImage[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -121,12 +121,25 @@ Widget backImageOfNewDesign(context) {
                             off.dx > 270
                             )
                             {
-                              controller.textListForSecondImage[i].fontSize! >= 55 ?  controller.textListForSecondImage[i].left = 75 :
-                              controller.textListForSecondImage[i].fontSize! >= 40 ?  controller.textListForSecondImage[i].left = 100 :
-                              controller.textListForSecondImage[i].fontSize! >= 30 ?  controller.textListForSecondImage[i].left = 142 :
-                              controller.textListForSecondImage[i].fontSize! >= 20 ?  controller.textListForSecondImage[i].left = 155 :
-                              controller.textListForSecondImage[i].fontSize! >= 10 ?  controller.textListForSecondImage[i].left = 175 :
-                              controller.textListForSecondImage[i].left = 200;
+                              controller.textListForSecondImage[i].fontSize! >= 50 ?  controller.textListForSecondImage[i].left = 68 :
+                              controller.textListForSecondImage[i].fontSize! >= 48 ?  controller.textListForSecondImage[i].left = 74 :
+                              controller.textListForSecondImage[i].fontSize! >= 44 ?  controller.textListForSecondImage[i].left = 80 :
+                              controller.textListForSecondImage[i].fontSize! >= 40 ?  controller.textListForSecondImage[i].left = 90 :
+                              controller.textListForSecondImage[i].fontSize! >= 36 ?  controller.textListForSecondImage[i].left = 100 :
+                              controller.textListForSecondImage[i].fontSize! >= 34 ?  controller.textListForSecondImage[i].left = 104 :
+                              controller.textListForSecondImage[i].fontSize! >= 32 ?  controller.textListForSecondImage[i].left = 118 :
+                              controller.textListForSecondImage[i].fontSize! >= 30 ?  controller.textListForSecondImage[i].left = 128 :
+                              controller.textListForSecondImage[i].fontSize! >= 27 ?  controller.textListForSecondImage[i].left = 135 :
+                              controller.textListForSecondImage[i].fontSize! >= 25 ?  controller.textListForSecondImage[i].left = 140 :
+                              controller.textListForSecondImage[i].fontSize! >= 22 ?  controller.textListForSecondImage[i].left = 151 :
+                              controller.textListForSecondImage[i].fontSize! >= 20 ?  controller.textListForSecondImage[i].left = 164 :
+                              controller.textListForSecondImage[i].fontSize! >= 17 ?  controller.textListForSecondImage[i].left = 168 :
+                              controller.textListForSecondImage[i].fontSize! >= 15 ?  controller.textListForSecondImage[i].left = 180 :
+                              controller.textListForSecondImage[i].fontSize! >= 12 ?  controller.textListForSecondImage[i].left = 187 :
+                              controller.textListForSecondImage[i].fontSize! >= 10 ?  controller.textListForSecondImage[i].left = 200 :
+                              controller.textListForSecondImage[i].fontSize! >= 5 ?  controller.textListForSecondImage[i].left = 210 :
+                              controller.textListForSecondImage[i].left = 220;
+
                               // controller.imageList[i].left = 160;
                               print("${  controller.textListForSecondImage[i].fontSize!}");
 
@@ -134,7 +147,7 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.textListForSecondImage[i].left =  off.dx-60;
+                              controller.textListForSecondImage[i].left =  off.dx-40;
                               // controller.update();
                             }
 
@@ -206,6 +219,8 @@ Widget backImageOfNewDesign(context) {
                             off.dy > 450
                             )
                             {
+                              controller.stickerListSecondImage[i].stickerHeight! >= 130 ? controller.stickerListSecondImage[i].top = 150 :
+                              controller.stickerListSecondImage[i].stickerHeight! >= 120 ? controller.stickerListSecondImage[i].top = 160 :
                               controller.stickerListSecondImage[i].stickerHeight! >= 110 ? controller.stickerListSecondImage[i].top = 170 :
                               controller.stickerListSecondImage[i].stickerHeight! >= 90 ? controller.stickerListSecondImage[i].top = 190 :
                               controller.stickerListSecondImage[i].stickerHeight! >= 70 ? controller.stickerListSecondImage[i].top = 210 :
@@ -217,7 +232,7 @@ Widget backImageOfNewDesign(context) {
                               controller.stickerListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerListSecondImage[i].top =  off.dy-159;
+                              controller.stickerListSecondImage[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -228,17 +243,37 @@ Widget backImageOfNewDesign(context) {
                             off.dx > 270
                             )
                             {
-                              controller.stickerListSecondImage[i].stickerWeight! >= 110 ?  controller.stickerListSecondImage[i].left = 116 :
-                              controller.stickerListSecondImage[i].stickerWeight! >= 90 ?  controller.stickerListSecondImage[i].left = 140 :
-                              controller.stickerListSecondImage[i].stickerWeight! >= 70 ?  controller.stickerListSecondImage[i].left = 155 :
-                              controller.stickerListSecondImage[i].stickerWeight! >= 50 ?  controller.stickerListSecondImage[i].left = 176 :
-                              controller.stickerListSecondImage[i].left = 200;
+                              controller.stickerListSecondImage[i].stickerWeight! >= 135 ?  controller.stickerListSecondImage[i].left = 105 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 130 ?  controller.stickerListSecondImage[i].left = 110 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 125 ?  controller.stickerListSecondImage[i].left = 115 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 120 ?  controller.stickerListSecondImage[i].left = 120 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 115 ?  controller.stickerListSecondImage[i].left = 125 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 110 ?  controller.stickerListSecondImage[i].left = 130 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 105 ?  controller.stickerListSecondImage[i].left = 135 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 100 ?  controller.stickerListSecondImage[i].left = 140 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 95 ?  controller.stickerListSecondImage[i].left = 145 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 90 ?  controller.stickerListSecondImage[i].left = 150 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 85 ?  controller.stickerListSecondImage[i].left = 155 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 80 ?  controller.stickerListSecondImage[i].left = 160 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 75 ?  controller.stickerListSecondImage[i].left = 165 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 70 ?  controller.stickerListSecondImage[i].left = 170 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 65 ?  controller.stickerListSecondImage[i].left = 175 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 60 ?  controller.stickerListSecondImage[i].left = 180 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 55 ?  controller.stickerListSecondImage[i].left = 185 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 50 ?  controller.stickerListSecondImage[i].left = 190 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 45 ?  controller.stickerListSecondImage[i].left = 195 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 40 ?  controller.stickerListSecondImage[i].left = 200 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 35 ?  controller.stickerListSecondImage[i].left = 205 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 30 ?  controller.stickerListSecondImage[i].left = 210 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 25 ?  controller.stickerListSecondImage[i].left = 215 :
+                              controller.stickerListSecondImage[i].stickerWeight! >= 20 ?  controller.stickerListSecondImage[i].left = 220 :
+                              controller.stickerListSecondImage[i].left = 230;
                               // controller.update();
                             }else if(off.dx < 140){
                               controller.stickerListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.stickerListSecondImage[i].left =  off.dx-60;
+                              controller.stickerListSecondImage[i].left =  off.dx-40;
                               // controller.update();
                             }
                             controller.update();
@@ -317,7 +352,7 @@ Widget backImageOfNewDesign(context) {
                               controller.imageListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageListSecondImage[i].top =  off.dy-159;
+                              controller.imageListSecondImage[i].top =  off.dy-200;
                               // controller.update();
                             }
 
@@ -343,7 +378,7 @@ Widget backImageOfNewDesign(context) {
                               controller.imageListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.imageListSecondImage[i].left =  off.dx-60;
+                              controller.imageListSecondImage[i].left =  off.dx-40;
                               // controller.update();
                             }
                             controller.update();

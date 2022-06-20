@@ -144,7 +144,7 @@ Widget saveImageWidget(context) {
         children: [
           SizedBox(width: 30.w,),
           SizedBox(width: 50.w,),
-          headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
+          // headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
           InkWell(
             onTap: () {
               showDialog(

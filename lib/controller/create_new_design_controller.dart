@@ -442,7 +442,7 @@ class CreateNewDesignController extends GetxController {
   Future addNewImage()  async{
     await getAllPriceData();
     imageList.add(ImageFromGalleryAndCamModel(
-        image: imageFromGallery ?? imageFromCam ,left: 135,top: 84, imageUrl: '',imagePrice: imagePrice,imageHeight: 70,imageWeight: 70
+        image: imageFromGallery ?? imageFromCam ,left: 135,top: 84, imageUrl: '',imagePrice: imagePrice,imageHeight: 70,imageWeight: 60
     ));
 
     imageFromGallery != null ? addImagesPriceOnFirImage() : imageFromCam != null ? addImagesPriceOnFirImage() : null;
@@ -458,13 +458,13 @@ class CreateNewDesignController extends GetxController {
 
   increaseSizeOfImage() {
     imageList[currentIndexOfImage].imageHeight =    imageList[currentIndexOfImage].imageHeight! + 5;
-    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! + 5;
+    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! + 3;
     update();
   }
 
   decreaseSizeOfImage() {
     imageList[currentIndexOfImage].imageHeight =    imageList[currentIndexOfImage].imageHeight! - 5;
-    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! - 5;
+    imageList[currentIndexOfImage].imageWeight =    imageList[currentIndexOfImage].imageWeight! - 3;
     update();
   }
 
@@ -681,7 +681,7 @@ class CreateNewDesignController extends GetxController {
     await getAllPriceData();
     imageListSecondImage.add(ImageFromGalleryAndCamModel(
       image: imageFromGallerySecondImage ?? imageFromCamSecondImage ,left: 135,top: 84,imageUrl: '',imagePrice: imagePrice,
-        imageHeight: 70, imageWeight: 70
+        imageHeight: 70, imageWeight: 60
 
     ));
 
@@ -697,13 +697,13 @@ class CreateNewDesignController extends GetxController {
 
   increaseSizeOfImageSI() {
     imageListSecondImage[currentIndexOfImageOfSI].imageHeight =    imageListSecondImage[currentIndexOfImageOfSI].imageHeight! + 5;
-    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! + 5;
+    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! + 3;
     update();
   }
 
   decreaseSizeOfImageSI() {
     imageListSecondImage[currentIndexOfImageOfSI].imageHeight =    imageListSecondImage[currentIndexOfImageOfSI].imageHeight! - 5;
-    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! - 5;
+    imageListSecondImage[currentIndexOfImageOfSI].imageWeight =    imageListSecondImage[currentIndexOfImageOfSI].imageWeight! - 3;
     update();
   }
 

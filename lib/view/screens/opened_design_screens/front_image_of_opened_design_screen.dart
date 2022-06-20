@@ -112,7 +112,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.textListOfOd[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.textListOfOd[i].top =  off.dy-159;
+                                  controller.textListOfOd[i].top =  off.dy-200;
                                   // controller.update();
                                 }
 
@@ -125,12 +125,25 @@ Widget frontImageOfOpenedDesign( context) {
                                 off.dx > 270
                                 )
                                 {
-                                  controller.textListOfOd[i].fontSize! >= 55 ?  controller.textListOfOd[i].left = 75 :
-                                  controller.textListOfOd[i].fontSize! >= 40 ?  controller.textListOfOd[i].left = 100 :
-                                  controller.textListOfOd[i].fontSize! >= 30 ?  controller.textListOfOd[i].left = 142 :
-                                  controller.textListOfOd[i].fontSize! >= 20 ?  controller.textListOfOd[i].left = 155 :
-                                  controller.textListOfOd[i].fontSize! >= 10 ?  controller.textListOfOd[i].left = 175 :
-                                  controller.textListOfOd[i].left = 200;
+                                  controller.textListOfOd[i].fontSize! >= 50 ?  controller.textListOfOd[i].left = 68 :
+                                  controller.textListOfOd[i].fontSize! >= 48 ?  controller.textListOfOd[i].left = 74 :
+                                  controller.textListOfOd[i].fontSize! >= 44 ?  controller.textListOfOd[i].left = 80 :
+                                  controller.textListOfOd[i].fontSize! >= 40 ?  controller.textListOfOd[i].left = 90 :
+                                  controller.textListOfOd[i].fontSize! >= 36 ?  controller.textListOfOd[i].left = 100 :
+                                  controller.textListOfOd[i].fontSize! >= 34 ?  controller.textListOfOd[i].left = 104 :
+                                  controller.textListOfOd[i].fontSize! >= 32 ?  controller.textListOfOd[i].left = 118 :
+                                  controller.textListOfOd[i].fontSize! >= 30 ?  controller.textListOfOd[i].left = 128 :
+                                  controller.textListOfOd[i].fontSize! >= 27 ?  controller.textListOfOd[i].left = 135 :
+                                  controller.textListOfOd[i].fontSize! >= 25 ?  controller.textListOfOd[i].left = 140 :
+                                  controller.textListOfOd[i].fontSize! >= 22 ?  controller.textListOfOd[i].left = 151 :
+                                  controller.textListOfOd[i].fontSize! >= 20 ?  controller.textListOfOd[i].left = 164 :
+                                  controller.textListOfOd[i].fontSize! >= 17 ?  controller.textListOfOd[i].left = 168 :
+                                  controller.textListOfOd[i].fontSize! >= 15 ?  controller.textListOfOd[i].left = 180 :
+                                  controller.textListOfOd[i].fontSize! >= 12 ?  controller.textListOfOd[i].left = 187 :
+                                  controller.textListOfOd[i].fontSize! >= 10 ?  controller.textListOfOd[i].left = 200 :
+                                  controller.textListOfOd[i].fontSize! >= 5 ?  controller.textListOfOd[i].left = 210 :
+                                  controller.textListOfOd[i].left = 220;
+
                                   // controller.imageList[i].left = 160;
                                   print("${  controller.textListOfOd[i].fontSize!}");
 
@@ -138,7 +151,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.textListOfOd[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.textListOfOd[i].left =  off.dx-60;
+                                  controller.textListOfOd[i].left =  off.dx-40;
                                   // controller.update();
                                 }
 
@@ -205,6 +218,8 @@ Widget frontImageOfOpenedDesign( context) {
                                 off.dy > 450
                                 )
                                 {
+                                  controller.stickerListFirstImageOfOD[i].stickerHeight! >= 130 ? controller.stickerListFirstImageOfOD[i].top = 150 :
+                                  controller.stickerListFirstImageOfOD[i].stickerHeight! >= 120 ? controller.stickerListFirstImageOfOD[i].top = 160 :
                                   controller.stickerListFirstImageOfOD[i].stickerHeight! >= 110 ? controller.stickerListFirstImageOfOD[i].top = 170 :
                                   controller.stickerListFirstImageOfOD[i].stickerHeight! >= 90 ? controller.stickerListFirstImageOfOD[i].top = 190 :
                                   controller.stickerListFirstImageOfOD[i].stickerHeight! >= 70 ? controller.stickerListFirstImageOfOD[i].top = 210 :
@@ -216,7 +231,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.stickerListFirstImageOfOD[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.stickerListFirstImageOfOD[i].top =  off.dy-159;
+                                  controller.stickerListFirstImageOfOD[i].top =  off.dy-200;
                                   // controller.update();
                                 }
 
@@ -227,17 +242,38 @@ Widget frontImageOfOpenedDesign( context) {
                                 off.dx > 270
                                 )
                                 {
-                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 110 ?  controller.stickerListFirstImageOfOD[i].left = 116 :
-                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 90 ?  controller.stickerListFirstImageOfOD[i].left = 140 :
-                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 70 ?  controller.stickerListFirstImageOfOD[i].left = 155 :
-                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 50 ?  controller.stickerListFirstImageOfOD[i].left = 176 :
-                                  controller.stickerListFirstImageOfOD[i].left = 200;
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 135 ?  controller.stickerListFirstImageOfOD[i].left = 105 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 130 ?  controller.stickerListFirstImageOfOD[i].left = 110 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 125 ?  controller.stickerListFirstImageOfOD[i].left = 115 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 120 ?  controller.stickerListFirstImageOfOD[i].left = 120 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 115 ?  controller.stickerListFirstImageOfOD[i].left = 125 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 110 ?  controller.stickerListFirstImageOfOD[i].left = 130 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 105 ?  controller.stickerListFirstImageOfOD[i].left = 135 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 100 ?  controller.stickerListFirstImageOfOD[i].left = 140 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 95 ?  controller.stickerListFirstImageOfOD[i].left = 145 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 90 ?  controller.stickerListFirstImageOfOD[i].left = 150 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 85 ?  controller.stickerListFirstImageOfOD[i].left = 155 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 80 ?  controller.stickerListFirstImageOfOD[i].left = 160 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 75 ?  controller.stickerListFirstImageOfOD[i].left = 165 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 70 ?  controller.stickerListFirstImageOfOD[i].left = 170 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 65 ?  controller.stickerListFirstImageOfOD[i].left = 175 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 60 ?  controller.stickerListFirstImageOfOD[i].left = 180 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 55 ?  controller.stickerListFirstImageOfOD[i].left = 185 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 50 ?  controller.stickerListFirstImageOfOD[i].left = 190 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 45 ?  controller.stickerListFirstImageOfOD[i].left = 195 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 40 ?  controller.stickerListFirstImageOfOD[i].left = 200 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 35 ?  controller.stickerListFirstImageOfOD[i].left = 205 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 30 ?  controller.stickerListFirstImageOfOD[i].left = 210 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 25 ?  controller.stickerListFirstImageOfOD[i].left = 215 :
+                                  controller.stickerListFirstImageOfOD[i].stickerWeight! >= 20 ?  controller.stickerListFirstImageOfOD[i].left = 220 :
+                                  controller.stickerListFirstImageOfOD[i].left = 230;
+
                                   // controller.update();
                                 }else if(off.dx < 140){
                                   controller.stickerListFirstImageOfOD[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.stickerListFirstImageOfOD[i].left =  off.dx-60;
+                                  controller.stickerListFirstImageOfOD[i].left =  off.dx-40;
                                   // controller.update();
                                 }
                                 controller.update();
@@ -327,7 +363,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.imageListOfOd[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.imageListOfOd[i].top =  off.dy-159;
+                                  controller.imageListOfOd[i].top =  off.dy-200;
                                   // controller.update();
                                 }
 
@@ -353,7 +389,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.imageListOfOd[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.imageListOfOd[i].left =  off.dx-60;
+                                  controller.imageListOfOd[i].left =  off.dx-40;
                                   // controller.update();
                                 }
                                 controller.update();
