@@ -234,9 +234,20 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerList[i].top =  off.dy-210;
+                               print("Screen height: ${ScreenUtil().screenHeight}");
+                               ScreenUtil().screenHeight >= 845 ? controller.stickerList[i].top =  off.dy-220 :
+                               ScreenUtil().screenHeight >= 810 ? controller.stickerList[i].top =  off.dy-215 :
+                               ScreenUtil().screenHeight >= 770 ? controller.stickerList[i].top =  off.dy-210 :
+                               ScreenUtil().screenHeight >= 740 ? controller.stickerList[i].top =  off.dy-205 :
+                               ScreenUtil().screenHeight >= 700 ? controller.stickerList[i].top =  off.dy-200 :
+                               ScreenUtil().screenHeight >= 650 ? controller.stickerList[i].top =  off.dy-180 :
+                               ScreenUtil().screenHeight >= 590 ? controller.stickerList[i].top =  off.dy-170 :
+                               ScreenUtil().screenHeight >= 530 ? controller.stickerList[i].top =  off.dy-165 :
+                               controller.stickerList[i].top =  off.dy-130;
                               // controller.update();
                             }
+
+
 
                             if( controller.stickerList[i].stickerWeight! >= 50 ? off.dx > 235 :
                                 controller.stickerList[i].stickerWeight! >= 70 ? off.dx > 205 :
@@ -262,7 +273,7 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].stickerWeight! >= 65 ?  controller.stickerList[i].left = 175 :
                               controller.stickerList[i].stickerWeight! >= 60 ?  controller.stickerList[i].left = 180 :
                               controller.stickerList[i].stickerWeight! >= 55 ?  controller.stickerList[i].left = 185 :
-                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 180 :
+                              controller.stickerList[i].stickerWeight! >= 50 ?  controller.stickerList[i].left = 190 :
                               // controller.stickerList[i].stickerWeight! >= 48 ?  controller.stickerList[i].left = 190 :
                               // controller.stickerList[i].stickerWeight! >= 40 ?  controller.stickerList[i].left = 120 :
 
@@ -275,7 +286,15 @@ Widget frontImageOfNewDesign( context) {
                               controller.stickerList[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.stickerList[i].left =  off.dx-40;
+                              print("Screen width: ${ScreenUtil().screenWidth}");
+                              ScreenUtil().screenWidth >= 430 ? controller.stickerList[i].left =  off.dx-50 :
+                              ScreenUtil().screenWidth >= 410 ? controller.stickerList[i].left =  off.dx-45 :
+                              ScreenUtil().screenWidth >= 390 ? controller.stickerList[i].left =  off.dx-40 :
+                              ScreenUtil().screenWidth >= 375 ? controller.stickerList[i].left =  off.dx-35 :
+                              ScreenUtil().screenWidth >= 360 ? controller.stickerList[i].left =  off.dx-30 :
+                              ScreenUtil().screenWidth >= 340 ? controller.stickerList[i].left =  off.dx-20 :
+                              ScreenUtil().screenWidth >= 320 ? controller.stickerList[i].left =  off.dx-10 :
+                              controller.stickerList[i].left =  off.dx-5 ;
                               // controller.update();
                             }
                             controller.update();

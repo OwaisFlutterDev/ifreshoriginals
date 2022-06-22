@@ -34,38 +34,55 @@ class PaymentMethodController extends GetxController {
           final OrderController orderController = Get.find<OrderController>();
           int totalForPayInt = totalForPay.toInt();
           int deliveryChargeInt = deliveryCharge.toInt();
-          final response = await http.post(
-              Uri.parse(
-                  'https://us-central1-ifresh-originals.cloudfunctions.net/chargeForShirt'
-              ),
-              body: {
-                'nonce': result.nonce,
-                'amount': totalForPayInt.toString(), //   support only int type of data
-              });
-          if (response.statusCode == 200) {
-            print("response: 200");
-            await orderController.addOrderDetails(totalForPayInt,deliveryChargeInt );
-          }
-
-          print(":response:  ${response.statusCode}");
 
           await Get.defaultDialog(
-            title: "Payments Conformation",
-            middleText: response.body.toString(),
+            title: "Payment Conformation ",
+            middleText: "Total Amount: \$$totalForPayInt",
             backgroundColor: Colors.white,
             titleStyle: TextStyle(color: Colors.black,fontSize: 18),
             middleTextStyle: TextStyle(color: Colors.black,fontSize: 13),
             actions:  <Widget>[
               TextButton(
-                child: Text("OK"),
-                onPressed: () {
+                child: Text("Pay"),
+                onPressed: () async {
+                  final response = await http.post(
+                      Uri.parse(
+                          'https://us-central1-ifresh-originals.cloudfunctions.net/chargeForShirt'
+                      ),
+                      body: {
+                        'nonce': result.nonce,
+                        'amount': totalForPayInt.toString(), //   support only int type of data
+                      });
+                  if (response.statusCode == 200) {
+                    print("response: 200");
+                    await orderController.addOrderDetails(totalForPayInt,deliveryChargeInt );
+                  }
+
+                  print(":response:  ${response.statusCode}");
+
+                  await Get.defaultDialog(
+                    title: "Payments Conformation",
+                    middleText: response.body.toString(),
+                    backgroundColor: Colors.white,
+                    titleStyle: TextStyle(color: Colors.black,fontSize: 18),
+                    middleTextStyle: TextStyle(color: Colors.black,fontSize: 13),
+                    actions:  <Widget>[
+                      TextButton(
+                        child: Text("OK"),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      ),
+                    ],
+                  );
+
+                  print("Success...........");
                   Get.back();
                 },
               ),
             ],
           );
 
-          print("Success...........");
         }
     );
   }
