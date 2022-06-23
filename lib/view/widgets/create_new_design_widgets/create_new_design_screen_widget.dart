@@ -139,7 +139,21 @@ Widget saveImageWidget(context) {
   return GetBuilder<CreateNewDesignController>(
     init: CreateNewDesignController(),
     builder: (controller) {
-      return FirebaseAuth.instance.currentUser!.isAnonymous ? Container() :  Row(
+      return FirebaseAuth.instance.currentUser!.isAnonymous ? Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding:  EdgeInsets.symmetric(vertical: 15),
+            child: commonText(
+              title: "Demo Account",
+              textStyle: TextStyle(
+                fontSize: 15
+              )
+            ),
+          )
+
+        ],
+      ):  Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(width: 30.w,),

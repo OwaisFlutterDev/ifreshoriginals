@@ -47,7 +47,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.esols.ifreshoriginals"
         minSdkVersion 24
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -58,8 +58,8 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
             multiDexEnabled true
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

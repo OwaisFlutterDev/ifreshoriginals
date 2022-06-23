@@ -108,7 +108,18 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textListForSecondImage[i].top =  off.dy-210;
+                              ScreenUtil().screenHeight >= 860 ? controller.textListForSecondImage[i].top =  off.dy-220 :
+                              ScreenUtil().screenHeight >= 815 ? controller.textListForSecondImage[i].top =  off.dy-210 :
+                              ScreenUtil().screenHeight >= 770 ? controller.textListForSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 730 ? controller.textListForSecondImage[i].top =  off.dy-185 :
+                              ScreenUtil().screenHeight >= 690 ? controller.textListForSecondImage[i].top =  off.dy-182 :
+                              ScreenUtil().screenHeight >= 650 ? controller.textListForSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 610 ? controller.textListForSecondImage[i].top =  off.dy-175 :
+
+                              ScreenUtil().screenHeight >= 570 ? controller.textListForSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 530 ? controller.textListForSecondImage[i].top =  off.dy-165 :
+                              ScreenUtil().screenHeight >= 490 ? controller.textListForSecondImage[i].top =  off.dy-160 :
+                              controller.textListForSecondImage[i].top =  off.dy-155;
                               // controller.update();
                             }
 
@@ -147,7 +158,16 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.textListForSecondImage[i].left =  off.dx-40;
+
+                              ScreenUtil().screenWidth >= 430 ? controller.textListForSecondImage[i].left =  off.dx-50 :
+                              ScreenUtil().screenWidth >= 410 ? controller.textListForSecondImage[i].left =  off.dx-44 :
+                              ScreenUtil().screenWidth >= 390 ? controller.textListForSecondImage[i].left =  off.dx-39 :
+                              ScreenUtil().screenWidth >= 375 ? controller.textListForSecondImage[i].left =  off.dx-32 :
+                              ScreenUtil().screenWidth >= 360 ? controller.textListForSecondImage[i].left =  off.dx-23 :
+                              ScreenUtil().screenWidth >= 340 ? controller.textListForSecondImage[i].left =  off.dx-14 :
+                              ScreenUtil().screenWidth >= 320 ? controller.textListForSecondImage[i].left =  off.dx-3 :
+                              controller.textListForSecondImage[i].left =  off.dx-2 ;
+
                               // controller.update();
                             }
 
@@ -232,7 +252,18 @@ Widget backImageOfNewDesign(context) {
                               controller.stickerListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.stickerListSecondImage[i].top =  off.dy-210;
+                              ScreenUtil().screenHeight >= 860 ? controller.stickerListSecondImage[i].top =  off.dy-220 :
+                              ScreenUtil().screenHeight >= 815 ? controller.stickerListSecondImage[i].top =  off.dy-210 :
+                              ScreenUtil().screenHeight >= 770 ? controller.stickerListSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 730 ? controller.stickerListSecondImage[i].top =  off.dy-185 :
+                              ScreenUtil().screenHeight >= 690 ? controller.stickerListSecondImage[i].top =  off.dy-182 :
+                              ScreenUtil().screenHeight >= 650 ? controller.stickerListSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 610 ? controller.stickerListSecondImage[i].top =  off.dy-175 :
+
+                              ScreenUtil().screenHeight >= 570 ? controller.stickerListSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 530 ? controller.stickerListSecondImage[i].top =  off.dy-165 :
+                              ScreenUtil().screenHeight >= 490 ? controller.stickerListSecondImage[i].top =  off.dy-160 :
+                              controller.stickerListSecondImage[i].top =  off.dy-155;
                               // controller.update();
                             }
 
@@ -273,7 +304,15 @@ Widget backImageOfNewDesign(context) {
                               controller.stickerListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.stickerListSecondImage[i].left =  off.dx-40;
+                              ScreenUtil().screenWidth >= 430 ? controller.stickerListSecondImage[i].left =  off.dx-50 :
+                              ScreenUtil().screenWidth >= 410 ? controller.stickerListSecondImage[i].left =  off.dx-44 :
+                              ScreenUtil().screenWidth >= 390 ? controller.stickerListSecondImage[i].left =  off.dx-39 :
+                              ScreenUtil().screenWidth >= 375 ? controller.stickerListSecondImage[i].left =  off.dx-32 :
+                              ScreenUtil().screenWidth >= 360 ? controller.stickerListSecondImage[i].left =  off.dx-23 :
+                              ScreenUtil().screenWidth >= 340 ? controller.stickerListSecondImage[i].left =  off.dx-14 :
+                              ScreenUtil().screenWidth >= 320 ? controller.stickerListSecondImage[i].left =  off.dx-3 :
+                              controller.stickerListSecondImage[i].left =  off.dx-2 ;
+
                               // controller.update();
                             }
                             controller.update();
@@ -359,7 +398,18 @@ Widget backImageOfNewDesign(context) {
                               controller.imageListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageListSecondImage[i].top =  off.dy-210;
+                              ScreenUtil().screenHeight >= 860 ? controller.imageListSecondImage[i].top =  off.dy-220 :
+                              ScreenUtil().screenHeight >= 815 ? controller.imageListSecondImage[i].top =  off.dy-210 :
+                              ScreenUtil().screenHeight >= 770 ? controller.imageListSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 730 ? controller.imageListSecondImage[i].top =  off.dy-185 :
+                              ScreenUtil().screenHeight >= 690 ? controller.imageListSecondImage[i].top =  off.dy-182 :
+                              ScreenUtil().screenHeight >= 650 ? controller.imageListSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 610 ? controller.imageListSecondImage[i].top =  off.dy-175 :
+
+                              ScreenUtil().screenHeight >= 570 ? controller.imageListSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 530 ? controller.imageListSecondImage[i].top =  off.dy-165 :
+                              ScreenUtil().screenHeight >= 490 ? controller.imageListSecondImage[i].top =  off.dy-160 :
+                              controller.imageListSecondImage[i].top =  off.dy-155;
                               // controller.update();
                             }
 
@@ -401,7 +451,14 @@ Widget backImageOfNewDesign(context) {
                               controller.imageListSecondImage[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.imageListSecondImage[i].left =  off.dx-40;
+                              ScreenUtil().screenWidth >= 430 ? controller.imageListSecondImage[i].left =  off.dx-50 :
+                              ScreenUtil().screenWidth >= 410 ? controller.imageListSecondImage[i].left =  off.dx-44 :
+                              ScreenUtil().screenWidth >= 390 ? controller.imageListSecondImage[i].left =  off.dx-39 :
+                              ScreenUtil().screenWidth >= 375 ? controller.imageListSecondImage[i].left =  off.dx-32 :
+                              ScreenUtil().screenWidth >= 360 ? controller.imageListSecondImage[i].left =  off.dx-23 :
+                              ScreenUtil().screenWidth >= 340 ? controller.imageListSecondImage[i].left =  off.dx-14 :
+                              ScreenUtil().screenWidth >= 320 ? controller.imageListSecondImage[i].left =  off.dx-3 :
+                              controller.imageListSecondImage[i].left =  off.dx-2 ;
                               // controller.update();
                             }
                             controller.update();

@@ -112,7 +112,18 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.textListOfOd[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.textListOfOd[i].top =  off.dy-210;
+                                  ScreenUtil().screenHeight >= 860 ? controller.textListOfOd[i].top =  off.dy-220 :
+                                  ScreenUtil().screenHeight >= 815 ? controller.textListOfOd[i].top =  off.dy-210 :
+                                  ScreenUtil().screenHeight >= 770 ? controller.textListOfOd[i].top =  off.dy-200 :
+                                  ScreenUtil().screenHeight >= 730 ? controller.textListOfOd[i].top =  off.dy-185 :
+                                  ScreenUtil().screenHeight >= 690 ? controller.textListOfOd[i].top =  off.dy-182 :
+                                  ScreenUtil().screenHeight >= 650 ? controller.textListOfOd[i].top =  off.dy-180 :
+                                  ScreenUtil().screenHeight >= 610 ? controller.textListOfOd[i].top =  off.dy-175 :
+
+                                  ScreenUtil().screenHeight >= 570 ? controller.textListOfOd[i].top =  off.dy-170 :
+                                  ScreenUtil().screenHeight >= 530 ? controller.textListOfOd[i].top =  off.dy-165 :
+                                  ScreenUtil().screenHeight >= 490 ? controller.textListOfOd[i].top =  off.dy-160 :
+                                  controller.textListOfOd[i].top =  off.dy-155;
                                   // controller.update();
                                 }
 
@@ -141,7 +152,7 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.textListOfOd[i].fontSize! >= 15 ?  controller.textListOfOd[i].left = 180 :
                                   controller.textListOfOd[i].fontSize! >= 12 ?  controller.textListOfOd[i].left = 187 :
                                   controller.textListOfOd[i].fontSize! >= 10 ?  controller.textListOfOd[i].left = 200 :
-                                  controller.textListOfOd[i].fontSize! >= 5 ?  controller.textListOfOd[i].left = 210 :
+                                  controller.textListOfOd[i].fontSize! >= 5 ?   controller.textListOfOd[i].left = 210 :
                                   controller.textListOfOd[i].left = 220;
 
                                   // controller.imageList[i].left = 160;
@@ -151,7 +162,14 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.textListOfOd[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.textListOfOd[i].left =  off.dx-40;
+                                  ScreenUtil().screenWidth >= 430 ? controller.textListOfOd[i].left =  off.dx-50 :
+                                  ScreenUtil().screenWidth >= 410 ? controller.textListOfOd[i].left =  off.dx-44 :
+                                  ScreenUtil().screenWidth >= 390 ? controller.textListOfOd[i].left =  off.dx-39 :
+                                  ScreenUtil().screenWidth >= 375 ? controller.textListOfOd[i].left =  off.dx-32 :
+                                  ScreenUtil().screenWidth >= 360 ? controller.textListOfOd[i].left =  off.dx-23 :
+                                  ScreenUtil().screenWidth >= 340 ? controller.textListOfOd[i].left =  off.dx-14 :
+                                  ScreenUtil().screenWidth >= 320 ? controller.textListOfOd[i].left =  off.dx-3 :
+                                  controller.textListOfOd[i].left =  off.dx-2 ;
                                   // controller.update();
                                 }
 
@@ -231,7 +249,18 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.stickerListFirstImageOfOD[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.stickerListFirstImageOfOD[i].top =  off.dy-210;
+                                  ScreenUtil().screenHeight >= 860 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-220 :
+                                  ScreenUtil().screenHeight >= 815 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-210 :
+                                  ScreenUtil().screenHeight >= 770 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-200 :
+                                  ScreenUtil().screenHeight >= 730 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-185 :
+                                  ScreenUtil().screenHeight >= 690 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-182 :
+                                  ScreenUtil().screenHeight >= 650 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-180 :
+                                  ScreenUtil().screenHeight >= 610 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-175 :
+
+                                  ScreenUtil().screenHeight >= 570 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-170 :
+                                  ScreenUtil().screenHeight >= 530 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-165 :
+                                  ScreenUtil().screenHeight >= 490 ? controller.stickerListFirstImageOfOD[i].top =  off.dy-160 :
+                                  controller.stickerListFirstImageOfOD[i].top =  off.dy-155;
                                   // controller.update();
                                 }
 
@@ -273,7 +302,14 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.stickerListFirstImageOfOD[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.stickerListFirstImageOfOD[i].left =  off.dx-40;
+                                  ScreenUtil().screenWidth >= 430 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-50 :
+                                  ScreenUtil().screenWidth >= 410 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-44 :
+                                  ScreenUtil().screenWidth >= 390 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-39 :
+                                  ScreenUtil().screenWidth >= 375 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-32 :
+                                  ScreenUtil().screenWidth >= 360 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-23 :
+                                  ScreenUtil().screenWidth >= 340 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-14 :
+                                  ScreenUtil().screenWidth >= 320 ? controller.stickerListFirstImageOfOD[i].left =  off.dx-3 :
+                                  controller.stickerListFirstImageOfOD[i].left =  off.dx-2 ;
                                   // controller.update();
                                 }
                                 controller.update();
@@ -369,7 +405,18 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.imageListOfOd[i].top = 80;
                                   // controller.update();
                                 }else{
-                                  controller.imageListOfOd[i].top =  off.dy-210;
+                                  ScreenUtil().screenHeight >= 860 ? controller.imageListOfOd[i].top =  off.dy-220 :
+                                  ScreenUtil().screenHeight >= 815 ? controller.imageListOfOd[i].top =  off.dy-210 :
+                                  ScreenUtil().screenHeight >= 770 ? controller.imageListOfOd[i].top =  off.dy-200 :
+                                  ScreenUtil().screenHeight >= 730 ? controller.imageListOfOd[i].top =  off.dy-185 :
+                                  ScreenUtil().screenHeight >= 690 ? controller.imageListOfOd[i].top =  off.dy-182 :
+                                  ScreenUtil().screenHeight >= 650 ? controller.imageListOfOd[i].top =  off.dy-180 :
+                                  ScreenUtil().screenHeight >= 610 ? controller.imageListOfOd[i].top =  off.dy-175 :
+
+                                  ScreenUtil().screenHeight >= 570 ? controller.imageListOfOd[i].top =  off.dy-170 :
+                                  ScreenUtil().screenHeight >= 530 ? controller.imageListOfOd[i].top =  off.dy-165 :
+                                  ScreenUtil().screenHeight >= 490 ? controller.imageListOfOd[i].top =  off.dy-160 :
+                                  controller.imageListOfOd[i].top =  off.dy-155;
                                   // controller.update();
                                 }
 
@@ -411,7 +458,14 @@ Widget frontImageOfOpenedDesign( context) {
                                   controller.imageListOfOd[i].left = 84;
                                   // controller.update();
                                 }else{
-                                  controller.imageListOfOd[i].left =  off.dx-40;
+                                  ScreenUtil().screenWidth >= 430 ? controller.imageListOfOd[i].left =  off.dx-50 :
+                                  ScreenUtil().screenWidth >= 410 ? controller.imageListOfOd[i].left =  off.dx-44 :
+                                  ScreenUtil().screenWidth >= 390 ? controller.imageListOfOd[i].left =  off.dx-39 :
+                                  ScreenUtil().screenWidth >= 375 ? controller.imageListOfOd[i].left =  off.dx-32 :
+                                  ScreenUtil().screenWidth >= 360 ? controller.imageListOfOd[i].left =  off.dx-23 :
+                                  ScreenUtil().screenWidth >= 340 ? controller.imageListOfOd[i].left =  off.dx-14 :
+                                  ScreenUtil().screenWidth >= 320 ? controller.imageListOfOd[i].left =  off.dx-3 :
+                                  controller.imageListOfOd[i].left =  off.dx-2 ;
                                   // controller.update();
                                 }
                                 controller.update();

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:ifreshoriginals_userapp/controller/functionality_on_opened_design_controller.dart';
 import 'package:ifreshoriginals_userapp/model/user_profile_model.dart';
 import 'package:path_provider/path_provider.dart';
@@ -59,9 +60,18 @@ class CartController extends GetxController{
 
          // ------------ saving first image -----------------
 
+
          final tempDir = await getTemporaryDirectory();
          File frontImageFile = await File('${tempDir.path}/${user!.uid + DateTime.now().toString()}').create();
          frontImageFile.writeAsBytesSync(frontByteImage!.buffer.asUint8List());
+
+         //  await FlutterImageCompress.compressWithFile(
+         //     frontImageFile.absolute.path,
+         //     minWidth: 2500,
+         //     minHeight: 3000,
+         //     quality: 10,
+         //     rotate: 0,
+         // );
 
          String filePath = basename(frontImageFile.path);
 

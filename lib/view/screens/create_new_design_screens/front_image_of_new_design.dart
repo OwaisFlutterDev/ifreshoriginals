@@ -95,6 +95,7 @@ Widget frontImageOfNewDesign( context) {
                             ), ), textAlign: controller.textList[i].textAlign ,
                           ),
 
+
                           onDragEnd: (drag) {
 
                             final renderBox = context.findRenderObject() as RenderBox;
@@ -111,7 +112,20 @@ Widget frontImageOfNewDesign( context) {
                               controller.textList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.textList[i].top =  off.dy-210;
+
+                              ScreenUtil().screenHeight >= 860 ? controller.textList[i].top =  off.dy-220 :
+                              ScreenUtil().screenHeight >= 815 ? controller.textList[i].top =  off.dy-210 :
+                              ScreenUtil().screenHeight >= 770 ? controller.textList[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 730 ? controller.textList[i].top =  off.dy-185 :
+                              ScreenUtil().screenHeight >= 690 ? controller.textList[i].top =  off.dy-182 :
+                              ScreenUtil().screenHeight >= 650 ? controller.textList[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 610 ? controller.textList[i].top =  off.dy-175 :
+
+                              ScreenUtil().screenHeight >= 570 ? controller.textList[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 530 ? controller.textList[i].top =  off.dy-165 :
+                              ScreenUtil().screenHeight >= 490 ? controller.textList[i].top =  off.dy-160 :
+                              controller.textList[i].top =  off.dy-155;
+
                               // controller.update();
                             }
 
@@ -149,10 +163,20 @@ Widget frontImageOfNewDesign( context) {
                               controller.textList[i].left = 84;
                               // controller.update();
                             }else{
+
+
                               controller.textList[i].left =  off.dx-40;
                               // controller.update();
                             }
 
+                            ScreenUtil().screenWidth >= 430 ? controller.textList[i].left =  off.dx-50 :
+                            ScreenUtil().screenWidth >= 410 ? controller.textList[i].left =  off.dx-44 :
+                            ScreenUtil().screenWidth >= 390 ? controller.textList[i].left =  off.dx-39 :
+                            ScreenUtil().screenWidth >= 375 ? controller.textList[i].left =  off.dx-32 :
+                            ScreenUtil().screenWidth >= 360 ? controller.textList[i].left =  off.dx-23 :
+                            ScreenUtil().screenWidth >= 340 ? controller.textList[i].left =  off.dx-14 :
+                            ScreenUtil().screenWidth >= 320 ? controller.textList[i].left =  off.dx-3 :
+                            controller.textList[i].left =  off.dx-2 ;
 
                             controller.update();
 
@@ -235,18 +259,20 @@ Widget frontImageOfNewDesign( context) {
                               // controller.update();
                             }else{
                                print("Screen height: ${ScreenUtil().screenHeight}");
-                               ScreenUtil().screenHeight >= 845 ? controller.stickerList[i].top =  off.dy-220 :
-                               ScreenUtil().screenHeight >= 810 ? controller.stickerList[i].top =  off.dy-215 :
-                               ScreenUtil().screenHeight >= 770 ? controller.stickerList[i].top =  off.dy-210 :
-                               ScreenUtil().screenHeight >= 740 ? controller.stickerList[i].top =  off.dy-205 :
-                               ScreenUtil().screenHeight >= 700 ? controller.stickerList[i].top =  off.dy-200 :
+                               ScreenUtil().screenHeight >= 860 ? controller.stickerList[i].top =  off.dy-220 :
+                               ScreenUtil().screenHeight >= 815 ? controller.stickerList[i].top =  off.dy-210 :
+                               ScreenUtil().screenHeight >= 770 ? controller.stickerList[i].top =  off.dy-200 :
+                               ScreenUtil().screenHeight >= 730 ? controller.stickerList[i].top =  off.dy-185 :
+                               ScreenUtil().screenHeight >= 690 ? controller.stickerList[i].top =  off.dy-182 :
                                ScreenUtil().screenHeight >= 650 ? controller.stickerList[i].top =  off.dy-180 :
-                               ScreenUtil().screenHeight >= 590 ? controller.stickerList[i].top =  off.dy-170 :
+                               ScreenUtil().screenHeight >= 610 ? controller.stickerList[i].top =  off.dy-175 :
+
+                               ScreenUtil().screenHeight >= 570 ? controller.stickerList[i].top =  off.dy-170 :
                                ScreenUtil().screenHeight >= 530 ? controller.stickerList[i].top =  off.dy-165 :
-                               controller.stickerList[i].top =  off.dy-130;
+                               ScreenUtil().screenHeight >= 490 ? controller.stickerList[i].top =  off.dy-160 :
+                               controller.stickerList[i].top =  off.dy-155;
                               // controller.update();
                             }
-
 
 
                             if( controller.stickerList[i].stickerWeight! >= 50 ? off.dx > 235 :
@@ -288,13 +314,13 @@ Widget frontImageOfNewDesign( context) {
                             }else{
                               print("Screen width: ${ScreenUtil().screenWidth}");
                               ScreenUtil().screenWidth >= 430 ? controller.stickerList[i].left =  off.dx-50 :
-                              ScreenUtil().screenWidth >= 410 ? controller.stickerList[i].left =  off.dx-45 :
-                              ScreenUtil().screenWidth >= 390 ? controller.stickerList[i].left =  off.dx-40 :
-                              ScreenUtil().screenWidth >= 375 ? controller.stickerList[i].left =  off.dx-35 :
-                              ScreenUtil().screenWidth >= 360 ? controller.stickerList[i].left =  off.dx-30 :
-                              ScreenUtil().screenWidth >= 340 ? controller.stickerList[i].left =  off.dx-20 :
-                              ScreenUtil().screenWidth >= 320 ? controller.stickerList[i].left =  off.dx-10 :
-                              controller.stickerList[i].left =  off.dx-5 ;
+                              ScreenUtil().screenWidth >= 410 ? controller.stickerList[i].left =  off.dx-44 :
+                              ScreenUtil().screenWidth >= 390 ? controller.stickerList[i].left =  off.dx-39 :
+                              ScreenUtil().screenWidth >= 375 ? controller.stickerList[i].left =  off.dx-32 :
+                              ScreenUtil().screenWidth >= 360 ? controller.stickerList[i].left =  off.dx-23 :
+                              ScreenUtil().screenWidth >= 340 ? controller.stickerList[i].left =  off.dx-14 :
+                              ScreenUtil().screenWidth >= 320 ? controller.stickerList[i].left =  off.dx-3 :
+                              controller.stickerList[i].left =  off.dx-2 ;
                               // controller.update();
                             }
                             controller.update();
@@ -381,7 +407,20 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].top = 80;
                               // controller.update();
                             }else{
-                              controller.imageList[i].top =  off.dy-210;
+
+                              ScreenUtil().screenHeight >= 860 ? controller.imageList[i].top =  off.dy-220 :
+                              ScreenUtil().screenHeight >= 815 ? controller.imageList[i].top =  off.dy-210 :
+                              ScreenUtil().screenHeight >= 770 ? controller.imageList[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 730 ? controller.imageList[i].top =  off.dy-185 :
+                              ScreenUtil().screenHeight >= 690 ? controller.imageList[i].top =  off.dy-182 :
+                              ScreenUtil().screenHeight >= 650 ? controller.imageList[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 610 ? controller.imageList[i].top =  off.dy-175 :
+
+                              ScreenUtil().screenHeight >= 570 ? controller.imageList[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 530 ? controller.imageList[i].top =  off.dy-165 :
+                              ScreenUtil().screenHeight >= 490 ? controller.imageList[i].top =  off.dy-160 :
+                              controller.imageList[i].top =  off.dy-155;
+
                               // controller.update();
                             }
 
@@ -423,7 +462,16 @@ Widget frontImageOfNewDesign( context) {
                               controller.imageList[i].left = 84;
                               // controller.update();
                             }else{
-                              controller.imageList[i].left =  off.dx-40;
+
+                              ScreenUtil().screenWidth >= 430 ? controller.imageList[i].left =  off.dx-50 :
+                              ScreenUtil().screenWidth >= 410 ? controller.imageList[i].left =  off.dx-44 :
+                              ScreenUtil().screenWidth >= 390 ? controller.imageList[i].left =  off.dx-39 :
+                              ScreenUtil().screenWidth >= 375 ? controller.imageList[i].left =  off.dx-32 :
+                              ScreenUtil().screenWidth >= 360 ? controller.imageList[i].left =  off.dx-23 :
+                              ScreenUtil().screenWidth >= 340 ? controller.imageList[i].left =  off.dx-14 :
+                              ScreenUtil().screenWidth >= 320 ? controller.imageList[i].left =  off.dx-3 :
+                              controller.imageList[i].left =  off.dx-2 ;
+
                               // controller.update();
                             }
 
