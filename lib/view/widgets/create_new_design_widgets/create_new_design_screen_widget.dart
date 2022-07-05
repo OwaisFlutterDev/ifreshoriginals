@@ -139,148 +139,156 @@ Widget saveImageWidget(context) {
   return GetBuilder<CreateNewDesignController>(
     init: CreateNewDesignController(),
     builder: (controller) {
-      return FirebaseAuth.instance.currentUser!.isAnonymous ? Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding:  EdgeInsets.symmetric(vertical: 15),
-            child: commonText(
-              title: "Demo Account",
-              textStyle: TextStyle(
-                fontSize: 15
-              )
-            ),
-          )
+      return FirebaseAuth.instance.currentUser!.isAnonymous ? Container(
+        height: 60,
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding:  EdgeInsets.symmetric(vertical: 15),
+              child: commonText(
+                title: "Demo Account",
+                textStyle: TextStyle(
+                  fontSize: 15
+                )
+              ),
+            )
 
-        ],
-      ):  Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(width: 30.w,),
-          SizedBox(width: 50.w,),
-          // headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
-          InkWell(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                        scrollable: true,
-                        alignment: Alignment.center,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(15))),
-                        backgroundColor: bgColor,
-                        content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children:  [
-                                  InkWell(
-                                      onTap: (){
-                                        Get.back();
-                                        },
-                                      child: Container(
-                                          height: 70.h,
-                                          width: 70.w,
-                                          decoration: BoxDecoration(
-                                              color: Colors.transparent,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(width: 4.r,color: blackColor)
-                                          ),
-                                          child: Center(child: Icon(CupertinoIcons.clear, color: redColor,size: 40.r,)))
-                                  )
-                                ],),
+          ],
+        ),
+      ):  Container(
+        height: 60,
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(width: 30.w,),
+            SizedBox(width: 50.w,),
+            // headerThree(title: "Animal Kingdom",color: blackColor, fontWeight: FontWeight.w700),
+            InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                          scrollable: true,
+                          alignment: Alignment.center,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(15))),
+                          backgroundColor: bgColor,
+                          content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children:  [
+                                    InkWell(
+                                        onTap: (){
+                                          Get.back();
+                                          },
+                                        child: Container(
+                                            height: 70.h,
+                                            width: 70.w,
+                                            decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                shape: BoxShape.circle,
+                                                border: Border.all(width: 4.r,color: blackColor)
+                                            ),
+                                            child: Center(child: Icon(CupertinoIcons.clear, color: redColor,size: 40.r,)))
+                                    )
+                                  ],),
 
-                              SizedBox(height: 70.h,),
+                                SizedBox(height: 70.h,),
 
-                              GetBuilder<CreateNewDesignController>(
-                                  builder: (controller) {
-                                    return controller.saveNewDesignShirtBool == true ? Wrap(
-                                      children: [
-                                        commonText(
-                                          title: "Please Wait The Shirt Design Is Saving...",
-                                          textAlign: TextAlign.center,
-                                          textStyle: TextStyle(color: blackColor,fontSize: 18)
-                                        ),
-                                      ],
-                                    ) : Form(
-                                    key: controller.shirtDesignGlobalKey,
-                                    child: Column(children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                GetBuilder<CreateNewDesignController>(
+                                    builder: (controller) {
+                                      return controller.saveNewDesignShirtBool == true ? Wrap(
                                         children: [
                                           commonText(
-                                              title: "   Give Design Name",
-                                              textStyle: TextStyle(fontSize: 32.sp)
+                                            title: "Please Wait The Shirt Design Is Saving...",
+                                            textAlign: TextAlign.center,
+                                            textStyle: TextStyle(color: blackColor,fontSize: 18)
                                           ),
                                         ],
+                                      ) : Form(
+                                      key: controller.shirtDesignGlobalKey,
+                                      child: Column(children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            commonText(
+                                                title: "   Give Design Name",
+                                                textStyle: TextStyle(fontSize: 32.sp)
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(height: 30.h,),
+                                        commonTextFormField(
+                                          hintText: "Design Name",
+                                          controller: controller.designNameController,
+                                          validator: FormValidatorConstant.commonValidator,
+                                          prefixIcon: (CupertinoIcons.arrow_right_circle)
+                                        )
+                                      ],),
+                                    );
+                                  }
+                                ),
+                                SizedBox(height: 200.h,),
+                                // --------===------========  save image button =======------===--------
+
+                                GetBuilder<CreateNewDesignController>(
+                                  builder: (controller) {
+                                    return controller.saveNewDesignShirtBool == true ? CircularProgressIndicator() :
+                                    InkWell(
+                                      onTap: (){
+                                        if (controller.shirtDesignGlobalKey.currentState!.validate()) {
+                                          controller.saveNewShirtDesign();
+                                        } else {
+                                          Get.snackbar("New Shirt Design Screen",
+                                              "Please Fill The Field",
+                                              duration: Duration(seconds: 3));
+                                        }
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: redColor,
+                                            borderRadius: BorderRadius.circular(70.r)
+                                        ),
+                                        height: 39,
+                                        width: 0.6.sw,
+                                        child: Align(
+                                            alignment: Alignment.center,
+                                            child: commonText(title: "Save Shirt Design", textStyle: TextStyle(
+                                                color: whiteColor,fontWeight: FontWeight.w500,fontSize: 12) )),
                                       ),
-                                      SizedBox(height: 30.h,),
-                                      commonTextFormField(
-                                        hintText: "Design Name",
-                                        controller: controller.designNameController,
-                                        validator: FormValidatorConstant.commonValidator,
-                                        prefixIcon: (CupertinoIcons.arrow_right_circle)
-                                      )
-                                    ],),
-                                  );
-                                }
-                              ),
-                              SizedBox(height: 200.h,),
-                              // --------===------========  save image button =======------===--------
+                                    );
+                                  }
+                                ) ,
 
-                              GetBuilder<CreateNewDesignController>(
-                                builder: (controller) {
-                                  return controller.saveNewDesignShirtBool == true ? CircularProgressIndicator() :
-                                  InkWell(
-                                    onTap: (){
-                                      if (controller.shirtDesignGlobalKey.currentState!.validate()) {
-                                        controller.saveNewShirtDesign();
-                                      } else {
-                                        Get.snackbar("New Shirt Design Screen",
-                                            "Please Fill The Field",
-                                            duration: Duration(seconds: 3));
-                                      }
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: redColor,
-                                          borderRadius: BorderRadius.circular(70.r)
-                                      ),
-                                      height: 39,
-                                      width: 0.6.sw,
-                                      child: Align(
-                                          alignment: Alignment.center,
-                                          child: commonText(title: "Save Shirt Design", textStyle: TextStyle(
-                                              color: whiteColor,fontWeight: FontWeight.w500,fontSize: 12) )),
-                                    ),
-                                  );
-                                }
-                              ) ,
+                                SizedBox(height: 30.h,),
 
-                              SizedBox(height: 30.h,),
-
-                            ]));
-                  });
-            },
-            child: Row(
-              children: [
-                Container(
-                  width: 170.w,
-                  height: 170.h,
-                  decoration: BoxDecoration(
-                      color: Colors.transparent
+                              ]));
+                    });
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: 170.w,
+                    height: 170.h,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent
+                    ),
+                    child: Image(image: AssetImage("assets/Asset 34.png"),
+                      fit: BoxFit.scaleDown,),
                   ),
-                  child: Image(image: AssetImage("assets/Asset 34.png"),
-                    fit: BoxFit.scaleDown,),
-                ),
-                SizedBox(width: 20.w,)
-              ],
+                  SizedBox(width: 20.w,)
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
   );

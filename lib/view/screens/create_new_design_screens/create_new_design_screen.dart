@@ -41,7 +41,7 @@ class CreateNewDesignScreen extends StatelessWidget{
           leadingWidget: InkWell(
             onTap: () {
               Get.back();
-            } ,
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

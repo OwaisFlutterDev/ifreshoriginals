@@ -405,7 +405,6 @@ class OpenedDesignController extends GetxController{
   int? selectedIndexOfFontOfOd ;
 
 
-
   // --- ===  add text on short from TextField === ---
   Future addNewTextOfOd() async{
     await getAllPriceData();

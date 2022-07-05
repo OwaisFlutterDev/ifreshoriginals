@@ -108,15 +108,14 @@ Widget backImageOfNewDesign(context) {
                               controller.textListForSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              ScreenUtil().screenHeight >= 860 ? controller.textListForSecondImage[i].top =  off.dy-220 :
-                              ScreenUtil().screenHeight >= 815 ? controller.textListForSecondImage[i].top =  off.dy-210 :
-                              ScreenUtil().screenHeight >= 770 ? controller.textListForSecondImage[i].top =  off.dy-200 :
-                              ScreenUtil().screenHeight >= 730 ? controller.textListForSecondImage[i].top =  off.dy-185 :
-                              ScreenUtil().screenHeight >= 690 ? controller.textListForSecondImage[i].top =  off.dy-182 :
-                              ScreenUtil().screenHeight >= 650 ? controller.textListForSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 860 ? controller.textListForSecondImage[i].top =  off.dy-207 :
+                              ScreenUtil().screenHeight >= 800 ? controller.textListForSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 780 ? controller.textListForSecondImage[i].top =  off.dy-195 :
+
+                              ScreenUtil().screenHeight >= 650 ? controller.textListForSecondImage[i].top =  off.dy-178 :
                               ScreenUtil().screenHeight >= 610 ? controller.textListForSecondImage[i].top =  off.dy-175 :
 
-                              ScreenUtil().screenHeight >= 570 ? controller.textListForSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 570 ? controller.textListForSecondImage[i].top =  off.dy-167 :
                               ScreenUtil().screenHeight >= 530 ? controller.textListForSecondImage[i].top =  off.dy-165 :
                               ScreenUtil().screenHeight >= 490 ? controller.textListForSecondImage[i].top =  off.dy-160 :
                               controller.textListForSecondImage[i].top =  off.dy-155;
@@ -252,15 +251,14 @@ Widget backImageOfNewDesign(context) {
                               controller.stickerListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              ScreenUtil().screenHeight >= 860 ? controller.stickerListSecondImage[i].top =  off.dy-220 :
-                              ScreenUtil().screenHeight >= 815 ? controller.stickerListSecondImage[i].top =  off.dy-210 :
-                              ScreenUtil().screenHeight >= 770 ? controller.stickerListSecondImage[i].top =  off.dy-200 :
-                              ScreenUtil().screenHeight >= 730 ? controller.stickerListSecondImage[i].top =  off.dy-185 :
-                              ScreenUtil().screenHeight >= 690 ? controller.stickerListSecondImage[i].top =  off.dy-182 :
-                              ScreenUtil().screenHeight >= 650 ? controller.stickerListSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 860 ? controller.stickerListSecondImage[i].top =  off.dy-207 :
+                              ScreenUtil().screenHeight >= 800 ? controller.stickerListSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 780 ? controller.stickerListSecondImage[i].top =  off.dy-195 :
+
+                              ScreenUtil().screenHeight >= 650 ? controller.stickerListSecondImage[i].top =  off.dy-178 :
                               ScreenUtil().screenHeight >= 610 ? controller.stickerListSecondImage[i].top =  off.dy-175 :
 
-                              ScreenUtil().screenHeight >= 570 ? controller.stickerListSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 570 ? controller.stickerListSecondImage[i].top =  off.dy-167 :
                               ScreenUtil().screenHeight >= 530 ? controller.stickerListSecondImage[i].top =  off.dy-165 :
                               ScreenUtil().screenHeight >= 490 ? controller.stickerListSecondImage[i].top =  off.dy-160 :
                               controller.stickerListSecondImage[i].top =  off.dy-155;
@@ -398,15 +396,14 @@ Widget backImageOfNewDesign(context) {
                               controller.imageListSecondImage[i].top = 80;
                               // controller.update();
                             }else{
-                              ScreenUtil().screenHeight >= 860 ? controller.imageListSecondImage[i].top =  off.dy-220 :
-                              ScreenUtil().screenHeight >= 815 ? controller.imageListSecondImage[i].top =  off.dy-210 :
-                              ScreenUtil().screenHeight >= 770 ? controller.imageListSecondImage[i].top =  off.dy-200 :
-                              ScreenUtil().screenHeight >= 730 ? controller.imageListSecondImage[i].top =  off.dy-185 :
-                              ScreenUtil().screenHeight >= 690 ? controller.imageListSecondImage[i].top =  off.dy-182 :
-                              ScreenUtil().screenHeight >= 650 ? controller.imageListSecondImage[i].top =  off.dy-180 :
+                              ScreenUtil().screenHeight >= 860 ? controller.imageListSecondImage[i].top =  off.dy-207 :
+                              ScreenUtil().screenHeight >= 800 ? controller.imageListSecondImage[i].top =  off.dy-200 :
+                              ScreenUtil().screenHeight >= 780 ? controller.imageListSecondImage[i].top =  off.dy-195 :
+
+                              ScreenUtil().screenHeight >= 650 ? controller.imageListSecondImage[i].top =  off.dy-178 :
                               ScreenUtil().screenHeight >= 610 ? controller.imageListSecondImage[i].top =  off.dy-175 :
 
-                              ScreenUtil().screenHeight >= 570 ? controller.imageListSecondImage[i].top =  off.dy-170 :
+                              ScreenUtil().screenHeight >= 570 ? controller.imageListSecondImage[i].top =  off.dy-167 :
                               ScreenUtil().screenHeight >= 530 ? controller.imageListSecondImage[i].top =  off.dy-165 :
                               ScreenUtil().screenHeight >= 490 ? controller.imageListSecondImage[i].top =  off.dy-160 :
                               controller.imageListSecondImage[i].top =  off.dy-155;
